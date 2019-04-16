@@ -1,0 +1,6 @@
+alert_cycle_id,alert_cycle_name,alert_cycle_description
+1,daily,daily digest
+2,immediate,immediate release
+3,online,online only
+4,business,business hours
+5,hourly,hourly digest

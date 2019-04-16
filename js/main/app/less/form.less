@@ -1,0 +1,203 @@
+@import "data";
+@import "button";
+
+
+div.alert-type, div.form-inline {
+  h4 {
+    margin-bottom: 20px;
+  }
+
+  ul {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: inline-block;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+div.separator {
+  border-top: 1px solid @colorBorder;
+  padding-top: 10px;
+}
+
+div.error {
+  color: @colorError;
+
+  ul {
+    margin-bottom: 30px;
+
+    li {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.profile {
+
+  & ~ .profile {
+    margin-top: 50px;
+  }
+
+  div.form-group {
+    label {
+      display: inline-block;
+      line-height: 2.2;
+    }
+
+    p.readOnly {
+      display: inline-block;
+      line-height: 2.2;
+      padding-left: 4px;
+    }
+  }
+}
+
+div.form-group {
+  margin-bottom: 10px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  &.form-inline, &.alert-type {
+    label {
+      display: inline-block;
+    }
+  }
+
+  input, textarea, select, button {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .form-control-container {
+    position: relative;
+
+    .input-icon {
+      color: @colorLink;
+      cursor: pointer;
+      position: absolute;
+      right: 9px;
+      top: 9px;
+
+      &:hover {
+        color: @colorDefault;
+      }
+    }
+  }
+
+  .read-only.ui-select-match {
+    display: block !important;
+  }
+
+  .ui-select-bootstrap .ui-select-choices-row.active > a {
+    background-color: @colorLink;
+  }
+
+  .btn-default-focus {
+    box-shadow: none;
+  }
+
+  .ui-select-toggle {
+    color: #999;
+    line-height: 1.2;
+  }
+
+  .ui-select-bootstrap .ui-select-choices-row > a:focus, .ui-select-bootstrap .ui-select-choices-row > a:hover {
+    background-color: @colorLink;
+    color: #fff;
+  }
+
+  .ui-select-match {
+    background-color: @colorBg;
+
+    .ui-select-toggle {
+      font-size: 1em;
+      line-height: 1.3;
+
+      .text-muted {
+        color: #999;
+      }
+    }
+  }
+
+  .error {
+    color: @colorError;
+    margin-top: 5px;
+  }
+
+  .form-control {
+    background-color: @colorInputBg;
+    border: 1px solid @colorIcon;
+    color: @colorDefault;
+
+    .input-style;
+
+    &:focus {
+      border: 1px solid @colorLink;
+    }
+  }
+
+  .btn-style {
+    background-color: lighten(@colorLink, 20%);
+    border-color: @colorLink;
+
+    i {
+      cursor: pointer;
+      font-size: 0.9em;
+      margin-left: 5px;
+    }
+  }
+}
+
+div.form-group, div.form-inline-group {
+  label.new-group {
+    color: @colorDefault;
+    font-weight: normal;
+  }
+
+  button, input[type="button"] {
+    cursor: pointer;
+    .input-style;
+    .btn-style-main;
+    .btn-pressed;
+    .btn-disabled;
+
+    &.btn-secondary {
+      .btn-style-secondary
+    }
+
+    &.dropdown-toggle {
+      &:hover {
+        background-color: @colorInputBg;
+      }
+    }
+  }
+}
+
+div.form, div.form-inline {
+  div.form-inline-group {
+    input, select, textarea, button {
+      margin-right: 10px;
+    }
+  }
+}
+
+@media handheld, only screen and (max-width: @mobileMaxWidth) {
+  .accordion-toggle {
+    div.form-inline {
+      div.form-inline-group {
+        button {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}

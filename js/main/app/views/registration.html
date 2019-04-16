@@ -1,0 +1,69 @@
+<section class="static-page">
+  <div class="col-5-12" ng-show="showImages">
+    <p class="illustrations"><img src="images/png/registration.png" alt="registration icon" /></p>
+  </div>
+  <div class="{{ mainCss }}">
+    <p class="more-space" translate="{{ 'registration' + i18App + '.description' }}"></p>
+    <form class="clearfix" name="registrationForm" ng-submit="send()" ng-enter="send()" novalidate>
+      <div class="error" ng-show="error.length > 0">
+        <ul>
+          <li ng-repeat="err in error track by $index" ng-bind="err"></li>
+        </ul>
+      </div>
+      <div class="form">
+        <div class="form-group" ng-hide="hidePricePlan">
+          <ui-select ng-model="data.pricingPlanId" theme="bootstrap" ng-disabled="disabled" search-enabled="false" required>
+            <ui-select-match class="read-only" placeholder="{{ 'registration.selectPleaseChoose' | translate }}">
+              <span>{{ $select.selected.text}}</span>
+            </ui-select-match>
+            <ui-select-choices repeat="price in prices">
+              {{ price.text }}
+            </ui-select-choices>
+          </ui-select>
+          <p ng-show="registrationForm.pricingPlanId.$touched && registrationForm.pricingPlanId.$dirty && registrationForm.pricingPlanId.$invalid" class="error" translate="registration.errorPricing"></p>
+        </div>
+        <div class="form-group">
+          <input placeholder="{{ 'registration.placeholderEmail' | translate }}" auto-focus class="form-control" id="username" name="username" ng-model="data.username" ng-blur="checkUniqueEmail()" required="" type="email"/>
+          <p ng-show="(registrationForm.username.$touched && registrationForm.username.$dirty && registrationForm.username.$invalid)" class="error" translate="registration.errorEmail"></p>
+          <p ng-show="!isUnique && registrationForm.username.$touched && registrationForm.username.$dirty" class="error" translate="registration.errorEmailUnique"></p>
+        </div>
+        <div class="form-group">
+          <input placeholder="{{ 'registration.placeholderFirstname' | translate }}" class="form-control" id="firstname" name="firstname" required="" ng-model="data.firstname" type="text"/>
+          <p ng-show="(registrationForm.firstname.$touched && registrationForm.firstname.$dirty && registrationForm.firstname.$invalid)" class="error" translate="registration.errorFirstname"></p>
+        </div>
+        <div class="form-group">
+          <input placeholder="{{ 'registration.placeholderLastname' | translate }}" class="form-control" id="lastname" name="lastname" required="" ng-model="data.lastname" type="text"/>
+          <p ng-show="(registrationForm.lastname.$touched && registrationForm.lastname.$dirty && registrationForm.lastname.$invalid)" class="error" translate="registration.errorLastname"></p>
+        </div>
+        <div class="form-group">
+          <input placeholder="{{ 'registration.placeholderCompany' | translate }}" class="form-control" id="company" name="company" ng-model="data.company" type="text"/>
+          <p ng-show="(registrationForm.company.$touched && registrationForm.company.$dirty && registrationForm.company.$invalid)" class="error" translate="registration.errorCompany"></p>
+        </div>
+
+        <div class="form-group">
+          <input placeholder="{{ 'registration.placeholderVoucher' | translate }}" class="form-control" id="voucher" name="voucher" ng-model="data.voucher" type="text"/>
+          <p ng-show="(registrationForm.voucher.$touched && registrationForm.voucher.$dirty && registrationForm.voucher.$invalid)" class="error" translate="registration.errorVoucher"></p>
+        </div>
+
+        <div class="form-group">
+          <input class="form-control" id="pwd1" name="pwd1" ng-minlength="8" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/" ng-model="data.pwd1" placeholder="{{ 'registration.placeholderPw1' | translate }}" required="" type="password"/>
+          <p ng-show="registrationForm.pwd1.$touched && registrationForm.pwd1.$dirty && registrationForm.pwd1.$invalid" class="error" translate="registration.errorPw1"></p>
+        </div>
+        <div class="form-group">
+          <input class="form-control" id="pwd2" field-match="data.pwd1" name="pwd2" ng-model="data.pwd2" placeholder="{{ 'registration.placeholderPw2' | translate }}" required="" type="password"/>
+          <p ng-show="registrationForm.pwd2.$touched && registrationForm.pwd2.$dirty && registrationForm.pwd2.$invalid" class="error" translate="registration.errorPw2"></p>
+        </div>
+        <div class="form-group clearfix">
+          <p class="push-2-12">
+            <button class="col-10-12 mobile-col-10-12" ng-disabled="registrationForm.$invalid || !isUnique" translate="registration.btnSend"></button>
+          </p>
+        </div>
+      </div>
+    </form>
+    <nav class="vertical-nav centered">
+      <ul>
+        <li>{{ 'registration.isRegister' | translate }} <a href="#/login" translate="registration.login"></a></li>
+      </ul>
+    </nav>
+  </div>
+</section>

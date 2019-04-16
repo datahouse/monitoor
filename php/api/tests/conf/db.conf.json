@@ -1,0 +1,8 @@
+{
+    "type": "postgres",
+    "host": "pgsql.datalan.ch",
+    "port": 5434,
+    "username": "project_mon",
+    "password": "<redacted>",
+    "database": "project_mon"
+}

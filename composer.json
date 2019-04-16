@@ -1,0 +1,12 @@
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.datalan.ch/composer/"
+        }
+    ],
+    "require-dev": {
+        "datahouse/buildcollectors": "0.*",
+        "datahouse/database": ">=1.4"
+    }
+}

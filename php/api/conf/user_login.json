@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#user_login_api",
+  "title": "user login",
+  "method": "POST",
+  "url": "/v1/user/login/de/",
+  "type": "object",
+  "properties": {
+    "token": {
+      "id": "#token",
+      "stereotype": "struct",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "required": [
+    "token"
+  ]
+}

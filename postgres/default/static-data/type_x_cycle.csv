@@ -1,0 +1,9 @@
+type_x_cycle_id,alert_type_id,alert_cycle_id,is_active
+1,1,2,false
+2,2,1,false
+3,2,2,true
+4,3,3,true
+5,4,2,true
+6,2,4,false
+7,5,2,true
+8,2,5,true

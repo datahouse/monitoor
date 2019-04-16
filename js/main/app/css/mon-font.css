@@ -1,0 +1,37 @@
+@font-face {
+	font-family: 'mon';
+	src:url('../fonts/mon.eot?5tcc36');
+	src:url('../fonts/mon.eot?#iefix5tcc36') format('embedded-opentype'),
+		url('../fonts/mon.woff?5tcc36') format('woff'),
+		url('../fonts/mon.ttf?5tcc36') format('truetype'),
+		url('../fonts/mon.svg?5tcc36#mon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+i.mon {
+	font-family: 'mon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+i.mon.mon-o1:before {
+	content: "\e600";
+}
+
+i.mon.mon-o2:before {
+	content: "\e601";
+}
+
+i.mon.mon-o3:before {
+	content: "\e602";
+}
+

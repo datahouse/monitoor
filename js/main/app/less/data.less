@@ -1,0 +1,73 @@
+@mobileMaxWidth: 768px;
+@desktopMinWidth: 769px;
+
+@colorDefault: #444444;
+@colorLink: #249ba7;
+@colorLinkHover: #1f8892;
+@colorGra: #e1ae1b;
+@colorIcon: #c6c6c5;
+@colorBg: #ffffff;
+@colorInputBg: #ffffff;
+@colorBorder: #dddddd;
+@colorError: #cc0000;
+@colorActionActive: #e9ae0c;
+@colorFavorite: #cc0000;
+
+@colorMainBtn: #249ba7;
+@colorMainBtnHover: #1f8892;
+@colorSecoundaryBtn: #c6c6c5;
+@colorSecoundaryBtnHover: #878785;
+@colorBtnPressed: #434343;
+@colorBtnDisabled: #e6e6e4;
+
+@colorBasis: #9fc5ac;
+@colorBusiness: #94c9c3;
+@colorEnterprise: #94cfd3;
+
+@headingSize1: 1.875em; // ~ 60px
+@headingSize2: 1.25em; // ~ 30px
+@headingSize3: 1.1em; // ~ 20px
+@heading3Lh: 1.5em; // line-height ~ 24px
+@contentSize: 1.125em; // ~ 18px
+@contentLh: 1.375em; // line-height ~ 22px
+
+@colorGradiantStart: #81cbcb;
+@colorGradiantStop: #e1ae1b;
+
+@colorKeywordHighlight: #6699cc;
+
+.bookmarklet {
+  background-color: @colorIcon;
+  color: @colorBg;
+  float: left;
+  font-size: @headingSize3;
+  margin-left: 8px;
+  padding: 10px 10px 9px 10px;
+  text-align: center;
+  width: 40px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  a, span.action {
+    color: @colorBg;
+    cursor: pointer;
+
+    &:hover {
+      color: @colorDefault;
+    }
+  }
+}
+
+.bookmarklet-top {
+  .bookmarklet;
+  border-bottom-left-radius: 100% 1em;
+  border-bottom-right-radius: 100% 1em;
+}
+
+.bookmarklet-bottom {
+  .bookmarklet;
+  border-top-left-radius: 100% 1em;
+  border-top-right-radius: 100% 1em;
+}

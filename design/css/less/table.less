@@ -1,0 +1,43 @@
+@import "data";
+
+table.table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin: 20px 0;
+  width: 100%;
+
+  [class*='col-'] {
+    float: none;
+    padding-right: 0; /* column-space */
+  }
+
+  th, td {
+    border-bottom: 1px solid @colorIcon;
+    padding: 15px 5px;
+  }
+
+  th {
+    border-bottom: 2px solid @colorIcon;
+    font-weight: bold;
+    padding-bottom: 5px;
+    text-align: left;
+    vertical-align: bottom;
+  }
+
+  td {
+    i {
+      color: @colorLink;
+      cursor: pointer;
+
+      &:hover {
+        color: @colorDefault;
+      }
+    }
+  }
+
+  tr:not(:first-child) {
+    &:hover {
+      background-color: lighten(@colorLink, 30%);
+    }
+  }
+}

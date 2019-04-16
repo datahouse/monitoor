@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#alert_get_api",
+  "title": "alert detail",
+  "method": "GET",
+  "url": "/v1/alert/get/<id>/de/",
+  "type": "object",
+  "properties": {
+    "alert": {
+      "id": "#alert",
+      "stereotype": "struct",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "urlGroup": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            }
+          }
+        },
+        "alertShapingList": {
+          "type": "array",
+          "items": {
+            "type": "alertShaping"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "url"
+      ]
+    }
+  }
+}

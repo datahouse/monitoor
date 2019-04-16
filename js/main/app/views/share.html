@@ -1,0 +1,25 @@
+<section class="static-page">
+  <section>
+    <article class="clearfix separator separator-diff">
+      <header>
+        <h2 class="diff-title">
+          <a ng-if="!change.url.external" ng-href="{{ change.alternativeUrl || change.url.url }}" ng-bind="change.url.title"></a>
+          <span class="diff-title" ng-if="item.url.external" ng-bind="item.url.title"></span>
+          <button class="btn btn-style-main toggle-old" ng-init="toggleOldValue[$index] = true" ng-click="toggleOld($index, $event)" tooltip-enable="enableTooltip" tooltip="{{ toggleOldValue[$index]?'share.tooltipShowRemovedText':'share.tooltipHideRemovedText' | translate }}"><i ng-class="{ 'fa': true, 'fa-plus': toggleOldValue[$index], 'fa-minus': !toggleOldValue[$index] }"></i></button>
+        </h2>
+        <p>
+          <span class="diff-external-link nohover" ng-if="!change.url.external" ng-href="{{ change.alternativeUrl || change.url.url }}" ng-bind="change.url.url"></span>
+        </p>
+      </header>
+      <div>
+        <div class="textdiff">
+          <span class="datediff" ng-bind="change.change.changeDate"></span>
+          <div ng-show="toggleOldValue[$index]" ng-bind-html="change.change.diffPreview"></div>
+          <div ng-hide="toggleOldValue[$index]" ng-bind-html="change.change.diffHtml"></div>
+          <span class="datediff" ng-show="change.change.matchedKeywords.length > 0">Keywords: <span ng-repeat="keyword in change.change.matchedKeywords">{{ keyword }}<span ng-if="!$last">,</span> </span></span>
+        </div>
+      </div>
+    </article>
+    <p><a ng-href="#/urls/add?url={{ change.url.url }}" translate="share.addToMyUrls"></a> | <a ng-href="{{ link }}" translate="share.whatIsMonitoor"></a></p>
+  </section>
+</section>

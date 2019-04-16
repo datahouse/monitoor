@@ -1,0 +1,145 @@
+@import "data";
+
+& > main {
+  margin-top: 30px;
+
+  @import "mainNavigation";
+
+  h1 {
+    margin-bottom: 30px;
+  }
+
+  div.feed {
+    section {
+      margin-bottom: 50px;
+
+      article {
+        padding: 10px 0;
+
+        &.separator {
+          border-bottom: 1px solid @colorIcon;
+        }
+
+        div {
+          font-size: @contentSize;
+          line-height: @contentLh;
+
+          &.visualisation {
+            padding-top: 9px;
+          }
+        }
+      }
+
+      header {
+        position: relative;
+
+        ul {
+          position: absolute;
+          right: 0;
+          top: 0;
+
+          li {
+            .bookmarklet-bottom;
+          }
+        }
+
+      }
+
+      h2 {
+        border-bottom: 1px solid @colorIcon;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+      }
+
+      h3 {
+        color: @colorLink;
+      }
+    }
+  }
+
+  div.quick-feed {
+    h5 {
+      margin: 20px 0 10px;
+    }
+
+    article {
+      padding: 0;
+    }
+
+    ul {
+      li {
+        line-height: @contentLh;
+        margin-bottom: 30px;
+
+        a {
+          font-weight: normal;
+
+          &.active {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  div.quick-feed-content {
+
+    div.action-bar {
+      border-bottom: 1px solid @colorIcon;
+      margin: 50px 0 30px;
+      padding-top: 50px;
+      position: relative;
+
+      ul {
+        position: absolute;
+        top: 10px;
+
+        &.feed-action {
+          left: 0;
+        }
+
+        &.social-action {
+          right: 0;
+        }
+
+        li {
+          float: left;
+          .bookmarklet-bottom;
+
+          &.text {
+            background-color: transparent;
+            color: @colorIcon;
+            width: auto;
+            border-radius: 0;
+          }
+        }
+      }
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    h6 {
+      margin: 100px 0 30px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    p {
+      line-height: @contentLh;
+      margin-bottom: 10px;
+    }
+  }
+
+  div.pagination {
+    text-align: center;
+    margin-bottom: 30px; // TODO remove
+
+    span {
+      padding: 10px 15px;
+    }
+  }
+}

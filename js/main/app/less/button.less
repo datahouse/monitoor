@@ -1,0 +1,133 @@
+@import "data";
+
+.input-style {
+  border-radius: 4px;
+  font-weight: normal;
+  line-height: 1.2;
+  padding: 6px 3px;
+
+  &:focus {
+    border: 1px solid @colorLink;
+  }
+}
+
+.form-list {
+  margin-bottom: 5px;
+}
+
+.btn-style-main {
+  background-color: @colorMainBtn;
+  border: 1px solid @colorMainBtn;
+  color: @colorBg;
+
+  &:focus {
+    border-color: @colorMainBtn;
+  }
+
+  &:hover {
+    border-color: @colorMainBtnHover;
+    background-color: @colorMainBtnHover;
+  }
+}
+
+.btn-style-secondary {
+  background-color: @colorSecoundaryBtn;
+  border-color: @colorSecoundaryBtn;
+
+  &:focus {
+    border-color: @colorSecoundaryBtn;
+  }
+
+  &:hover {
+    border-color: @colorSecoundaryBtnHover;
+    background-color: @colorSecoundaryBtnHover;
+  }
+}
+
+.btn-pressed {
+  &:active {
+    border-color: @colorBtnPressed;
+    background-color: @colorBtnPressed;
+  }
+}
+
+.btn-disabled {
+  &:disabled {
+    background-color: @colorBtnDisabled;
+    border-color: @colorBtnDisabled;
+    color: @colorIcon;
+    cursor: not-allowed;
+
+    &:focus {
+      border-color: @colorBtnDisabled;
+    }
+
+    &:hover {
+      background-color: @colorBtnDisabled;
+      border-color: @colorBtnDisabled;
+      color: @colorIcon;
+    }
+  }
+}
+
+.btn-block {
+  width: 100%;
+
+  button {
+    text-align: left;
+    width: 100%;
+
+    span.caret {
+      &.right {
+        position: absolute;
+        right: 11px;
+        bottom: 20px;
+      }
+    }
+  }
+}
+
+.btn-style {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+
+  &.btn-style-last {
+    margin-right: 0;
+  }
+}
+
+.btn-style-main {
+  .btn-style;
+  .input-style;
+  .btn-style-main;
+  .btn-pressed;
+  .btn-disabled;
+}
+
+.btn-style-secondary {
+  .btn-style;
+  .input-style;
+  .btn-style-secondary;
+  .btn-pressed;
+  .btn-disabled;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-basis {
+  background-color: @colorBasis;
+  color: @colorBg;
+}
+
+.btn-business {
+  background-color: @colorBusiness;
+  color: @colorBg;
+}
+
+.btn-enterprise {
+  background-color: @colorEnterprise;
+  color: @colorBg;
+}

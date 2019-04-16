@@ -1,0 +1,89 @@
+<section class="static-page">
+  <div class="clearfix">
+    <div class="col-3-12 col-alpha hide-on-mobile">
+      <div class="fixed-height"></div>
+      <ul class="matrix">
+        <li translate="prices.priceMonth"></li>
+        <li translate="prices.priceUser"></li>
+        <li translate="prices.numUser"></li>
+        <li translate="prices.numUrls"></li>
+        <li translate="prices.numKeywords"></li>
+        <li translate="prices.mailNotify"></li>
+        <li translate="prices.urlGroups"></li>
+        <li translate="prices.definedSubscriptions"></li>
+        <li translate="prices.individualSubscriptions"></li>
+        <li translate="prices.webapp"></li>
+        <li translate="prices.restApi"></li>
+        <li translate="prices.support1"></li>
+        <li translate="prices.support2"></li>
+      </ul>
+    </div>
+    <div class="col-3-12 centered">
+      <div class="fixed-height">
+        <p class="more-space"><img src="images/png/price1.png" alt="private" /></p>
+        <h2 ng-bind="pricing[0].text"></h2>
+        <p class="special-info" translate="prices.freeDay"></p>
+      </div>
+      <ul class="matrix">
+        <li><span class="hide-on-desktop" translate="prices.priceMonth"></span><span>CHF 1'000.00</span></li>
+        <li><span class="hide-on-desktop" translate="prices.priceUser"></span><span>CHF 0.00</span></li>
+        <li><span class="hide-on-desktop" translate="prices.numUser"></span><span>1 - 9</span></li>
+        <li><span class="hide-on-desktop" translate="prices.numUrls"></span><span translate="prices.unlimited"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.numKeywords"></span><span translate="prices.unlimited"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.mailNotify"></span><span translate="prices.yes"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.urlGroups"></span><span translate="prices.unlimited"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.definedSubscriptions"></span><span translate="prices.yes"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.individualSubscriptions"></span><span translate="prices.onDemand"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.webapp"></span><span translate="prices.yes"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.restApi"></span><span translate="prices.yes"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.support1"></span><span translate="prices.inclusive"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.support2"></span><span translate="prices.inclusive"></span></li>
+      </ul>
+      <button class="btn btn-prices btn-basis" type="button" translate="prices.registration" ng-click="registration(pricing[0].id)"></button>
+    </div>
+    <div class="col-3-12 centered">
+      <div class="fixed-height">
+        <p class="more-space"><img src="images/png/price2.png" alt="business" /></p>
+        <h2 ng-bind="pricing[1].text"></h2>
+      </div>
+      <ul class="matrix">
+        <li><span class="hide-on-desktop" translate="prices.priceMonth"></span><span translate="prices.onDemand"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.priceUser"></span><span>CHF 0.00</span></li>
+        <li><span class="hide-on-desktop" translate="prices.numUser"></span><span><span translate="prices.from"></span><span> 10</span></span></li>
+        <li><span class="hide-on-desktop" translate="prices.numUrls"></span><span translate="prices.unlimited"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.numKeywords"></span><span translate="prices.unlimited"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.mailNotify"></span><span translate="prices.yes"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.urlGroups"></span><span translate="prices.unlimited"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.definedSubscriptions"></span><span translate="prices.yes"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.individualSubscriptions"></span><span translate="prices.onDemand"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.webapp"></span><span translate="prices.yes"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.restApi"></span><span translate="prices.yes"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.support1"></span><span translate="prices.inclusive"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.support2"></span><span translate="prices.inclusive"></span></li>
+      </ul>
+      <button class="btn btn-prices btn-business" type="button" translate="prices.registration" ng-click="registration(pricing[1].id)"></button>
+    </div>
+    <div class="col-3-12 col-omega centered">
+      <div class="fixed-height">
+        <p class="more-space"><img src="images/png/price3.png" alt="enterprise" /></p>
+        <h2 ng-bind="pricing[2].text"></h2>
+      </div>
+      <ul class="matrix">
+        <li><span class="hide-on-desktop" translate="prices.priceMonth"></span><span>CHF 0.00</span></li>
+        <li><span class="hide-on-desktop" translate="prices.priceUser"></span><span><span>CHF 75.00</span> <span translate="prices.perMonth"></span></span></li>
+        <li><span class="hide-on-desktop" translate="prices.numUser"></span><span translate="prices.unlimited"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.numUrls"></span><span translate="prices.unlimited"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.numKeywords"></span><span translate="prices.unlimited"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.mailNotify"></span><span translate="prices.yes"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.urlGroups"></span><span translate="prices.unlimited"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.definedSubscriptions"></span><span translate="prices.yes"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.individualSubscriptions"></span><span translate="prices.onDemand"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.webapp"></span><span translate="prices.no"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.restApi"></span><span translate="prices.yes"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.support1"></span><span translate="prices.no"></span></li>
+        <li><span class="hide-on-desktop" translate="prices.support2"></span><span translate="prices.inclusive"></span></li>
+      </ul>
+      <button class="btn btn-prices btn-enterprise" type="button" translate="prices.registration" ng-click="registration(pricing[2].id)"></button>
+    </div>
+  </div>
+</section>

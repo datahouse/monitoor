@@ -1,0 +1,66 @@
+<mon-main-navigation></mon-main-navigation>
+<div class="{{ mainCss }}">
+  <h1 ng-bind="urlGroup.title"></h1>
+  <section ng-show="showGraph">
+    <article class="clearfix separator">
+      <header>
+        <h2 translate="urlGroup.contentTitleChanges"></h2>
+        <ul class="push-right">
+          <li ng-if="urlGroup.alertId == null" tooltip-enable="enableTooltip" tooltip="{{ 'urlGroup.tooltipAddAlert' | translate }}"><a ng-href="#/alerts/add/{{ urlGroup.id }}"><i class="fa fa-bell-slash"></i></a></li>
+          <li ng-if="urlGroup.alertId != null" tooltip-enable="enableTooltip" tooltip="{{ 'urlGroup.tooltipEditAlert' | translate }}"><a ng-href="#/alerts/edit/{{ urlGroup.alertId }}"><i class="active fa fa-bell"></i></a></li>
+          <li ng-if="urlGroup.subscribed" tooltip-enable="enableTooltip" tooltip="{{ 'urlGroup.tooltipEditSubscribe' | translate }}"><a ng-href="#/subscribe"><i class="fa fa-bookmark"></i></a></li>
+        </ul>
+      </header>
+      <nvd3 ng-show="dataLoaded && alerts.length > 0" class="urlGroup-changes-graph" options="options" data="data" api="api" config="config"></nvd3>
+      <p ng-if="dataLoaded && alerts.length == 0" translate="urlGroup.noData"></p>
+    </article>
+    <article ng-show="dataLoaded && alerts.length > 0 && hasPieData" class="clearfix separator">
+      <header>
+        <h2 translate="urlGroup.contentTitleKeywords"></h2>
+        <ul class="push-right">
+          <li ng-if="urlGroup.alertId == null" tooltip-enable="enableTooltip" tooltip="{{ 'urlGroup.tooltipAddAlert' | translate }}"><a ng-href="#/alerts/add/{{ urlGroup.id }}"><i class="fa fa-bell-slash"></i></a></li>
+          <li ng-if="urlGroup.alertId != null" tooltip-enable="enableTooltip" tooltip="{{ 'urlGroup.tooltipEditAlert' | translate }}"><a ng-href="#/alerts/edit/{{ urlGroup.alertId }}"><i class="active fa fa-bell"></i></a></li>
+        </ul>
+      </header>
+      <nvd3 class="urlGroup-keywords-graph" options="optionsPie" data="dataPie" config="configPie"></nvd3>
+    </article>
+  </section>
+  <p ng-if="!showGraph && dataLoaded && alerts.length == 0" translate="urlGroup.noData"></p>
+  <div ng-show="dataLoaded && alerts.length > 0">
+    <section infinite-scroll='nextPage()' infinite-scroll-distance='0'>
+      <article class="clearfix separator separator-diff" ng-repeat="item in alerts">
+        <header>
+          <h2 class="diff-title">
+            <a ng-if="!item.url.external" ng-href="{{ item.alternativeUrl || item.url.url }}" ng-bind="item.url.title"></a>
+            <span class="diff-title" ng-if="item.url.external" ng-bind="item.url.title"></span>
+            <button class="btn btn-style-main toggle-old" ng-init="toggleOldValue[$index] = true" type="text" ng-click="toggleOld($index, $event)" tooltip-enable="enableTooltip" tooltip="{{ toggleOldValue[$index]?'urlGroup.tooltipShowRemovedText':'urlGroup.tooltipHideRemovedText' | translate }}"><i ng-class="{ 'fa': true, 'fa-plus': toggleOldValue[$index], 'fa-minus': !toggleOldValue[$index] }"></i></button>
+          </h2>
+          <p>
+            <span ng-if="isDemo" ng-bind="item.url.title"></span>
+            <span class="diff-external-link nohover" ng-if="!item.url.external" ng-href="{{ item.alternativeUrl || item.url.url }}" ng-bind="item.url.url"></span>
+          </p>
+        </header>
+        <div>
+          <div class="textdiff">
+            <span class="datediff" ng-bind="item.change.changeDate"></span>
+            <div ng-show="toggleOldValue[$index]" ng-bind-html="item.change.diffPreview"></div>
+            <div ng-hide="toggleOldValue[$index]" ng-bind-html="item.change.diffHtml"></div>
+            <span class="datediff" ng-show="item.change.matchedKeywords.length > 0">Keywords: <span ng-repeat="keyword in item.change.matchedKeywords">{{ keyword }}<span ng-if="!$last">,</span> </span></span>
+          </div>
+        </div>
+        <div class="social-media-share">
+          <div class="rating diff-rating">
+            <span ng-class="{ unrated: true }">
+              <i ng-repeat="index in [5, 4, 3, 2, 1]" ng-class="{ fa: true, 'fa-star': true, colorized: index <= item.rating, 'link': true }" ng-click="rate(item, item.alert.id, item.change.id, index)" tooltip-enable="enableTooltip" tooltip="{{ 'urlGroup.rate' + index | translate }}"></i>
+            </span>
+          </div>
+          <span ng-class="{'diff-like': true, 'liked': item.change.favorite}" tooltip-enable="enableTooltip" ng-click="toggleFavorite($index, item.change.id)" tooltip="{{ item.change.favorite?'urlGroup.tooltipRemoveFavorite':'urlGroup.tooltipAddFavorite' | translate }}"><i class="fa fa-heart"></i></span>
+          <span class="diff-fb" tooltip="{{ 'urlGroup.tooltipShareFb' | translate }}"><a href ng-click="social.share(item.change.id, 'fb', $event)"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></span>
+          <span class="diff-twitter" tooltip="{{ 'urlGroup.tooltipShareTwitter' | translate }}"><a href ng-click="social.share(item.change.id, 'twitter', $event)"><i class="fa fa-twitter" aria-hidden="true"></i></a></span>
+          <span class="diff-whatsapp" tooltip="{{ 'urlGroup.tooltipShareWhatsapp' | translate }}"><a href ng-click="social.share(item.change.id, 'whatsapp', $event)"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></span>
+          <span ng-if="enableMail" class="diff-email" tooltip="{{ 'urlGroup.tooltipShareEmail' | translate }}"><a href ng-click="social.share(item.change.id, 'email', $event)"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></span>
+        </div>
+      </article>
+    </section>
+  </div>
+</div>

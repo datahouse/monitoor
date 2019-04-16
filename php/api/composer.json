@@ -1,0 +1,41 @@
+{
+    "name": "datahouse/mon",
+    "repositories": [
+        {
+            "packagist": false
+        },
+        {
+            "type": "composer",
+            "url": "https://repo.datalan.ch/composer/"
+        },
+        {
+            "type": "path",
+            "url": "../common",
+            "options": { "symlink": false }
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "dev-master",
+        "datahouse/libraries": "7.3.*",
+        "datahouse/dice": "1.3.*",
+        "datahouse/framework": "v0.1.0",
+        "datahouse/json": "0.*",
+        "datahouse/mon-common": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*",
+        "pdepend/pdepend": "2.*",
+        "phpmd/phpmd": "2.*",
+        "squizlabs/php_codesniffer": "2.*",
+        "sebastian/phpcpd": "2.*",
+        "theseer/phpdox": "0.*",
+        "phploc/phploc": "2.*",
+        "datahouse/standards": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Datahouse\\MON\\": "src/",
+            "Datahouse\\MON\\Tests\\": "tests/"
+        }
+    }
+}

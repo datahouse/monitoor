@@ -1,0 +1,17 @@
+@import "data";
+
+rzslider span.rz-bar {
+  background-color: @colorBtnDisabled;
+}
+
+rzslider span.rz-pointer {
+  background-color: @colorLink;
+
+  &:after {
+    display: none;
+  }
+
+  &:hover {
+    background-color: @colorLinkHover;
+  }
+}

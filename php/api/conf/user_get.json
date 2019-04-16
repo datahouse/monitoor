@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#user_get_api",
+  "title": "user detail",
+  "method": "GET",
+  "url": "/v1/user/get/<id>/de/",
+  "type": "object",
+  "properties": {
+    "user": {
+      "id": "#user",
+      "stereotype": "struct",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "firstName",
+        "lastName",
+        "email",
+        "mobile"
+      ]
+    }
+  }
+}

@@ -1,0 +1,53 @@
+<mon-main-navigation></mon-main-navigation>
+<div class="{{ mainCss }}">
+  <h1 translate="subscribe.contentTitle"></h1>
+  <p class="description" translate="subscribe.description"></p>
+  <accordion close-others="false" class="clearfix subscribe">
+    <accordion-group ng-repeat="subscribe in subscribes track by $index" id="subscribe{{ subscribe.id }}" is-open="false">
+      <accordion-heading>
+        <div ng-click="toggleAccordion(subscribe.id)" class="form-inline clearfix">
+          <div class="col-alpha col-4-12 mobile-col-4-12 title acc-toggle">
+            <i  ng-class="{'fa': true, 'fa-chevron-right': !open[subscribe.id], 'fa-chevron-down': open[subscribe.id]}" aria-hidden="true"></i> {{ subscribe.title }}
+          </div>
+          <div class="col-4-12 mobile-col-4-12 description">
+            <div ng-bind="subscribe.description"></div>
+          </div>
+          <div class="col-4-12 mobile-col-4-12 col-omega actions toggle">
+            <div class="description price" ng-show="subscribe.price > 0">CHF <span ng-bind="subscribe.price"></span>.- <span translate="subscribe.price"></span></div> 
+            <i
+              ng-click="confirmPayment(subscribe.subscribed, subscribe.id, null, $index, null, subscribe.price > 0, $event)"
+              ng-class="{ 'toggle': true, 'cursor': true, 'fa': true, 'push-right': true, 'fa-toggle-on': subscribe.subscribed, 'fa-toggle-off': !subscribe.subscribed }"
+              tooltip-enable="enableTooltip" 
+              tooltip="{{ subscribe.subscribed?'subscribe.tooltipUnsubscribe':'subscribe.tooltipSubscribe' | translate }}"
+            ></i>
+          </div>
+        </div>
+      </accordion-heading>
+      <p class="no-item" ng-hide="subscribe.urls.length > 0" translate="subscribe.noEntries"></p>
+      <ul class="dragable">
+        <li class="clearfix" ng-repeat="url in subscribe.urls track by $index">
+          <span class="col-alpha col-4-12" ng-bind="url.title"></span>
+          <span ng-if="!url.external" class="col-alpha col-7-12"><a target="_blank" ng-href="{{ url.url }}" ng-bind="url.url"></a></span>
+          <i
+              ng-click="confirmPayment(url.subscribed, subscribe.id, url.id, $parent.$index, $index, subscribe.price > 0, $event)"
+              ng-class="{ 'toggle': true, 'cursor': true, 'fa': true, 'push-right': true, 'fa-toggle-on': url.subscribed, 'fa-toggle-off': !url.subscribed }"
+              tooltip-enable="enableTooltip"
+              tooltip="{{ url.subscribed?'subscribe.tooltipUnsubscribe':'subscribe.tooltipSubscribe' | translate }}"
+          ></i>
+        </li>
+      </ul>
+    </accordion-group>
+  </accordion>
+  <p translate="subscribe.infotext"></p>
+</div>
+<script type="text/ng-template" id="subscribeConfirm.html">
+  <div class="modal-header">
+    <h3 class="modal-title" translate="subscribe.confirmtext"></h3>
+  </div>
+  <!--<div class="modal-body">
+  </div>-->
+  <div class="modal-footer">
+    <button class="btn btn-default" ng-click="cancel()" translate="init.confirmCancel"></button>
+    <button class="btn-style-main" ng-click="ok()" translate="init.confirmYes"></button>
+  </div>
+</script>

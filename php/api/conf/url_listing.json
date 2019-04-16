@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#url_list_api",
+  "title": "url list",
+  "method": "GET",
+  "url": "/v1/url/listing/de/",
+  "type": "object",
+  "properties": {
+    "urlList": {
+      "id": "#urlList",
+      "stereotype": "struct",
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "urlItems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "id": "#urlItem",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "title",
+                  "url"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "count"
+    ]
+  }
+}

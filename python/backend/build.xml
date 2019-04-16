@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<project name="MON:backend" default="build">
+
+    <!-- MAKE YOUR CHANGES HERE - also change project short in the line above -->
+    <!-- also adapt the XML files in the build directory -->
+
+    <!-- DO NOT CHANGE ANYTHING BELOW THIS LINE (unless you are really sure what you are doing) -->
+    <property name="version" value="v2" />
+
+    <!-- make all of the environment variables accessible for
+         we-do-everything-a-tiny-differently-ant
+    -->
+    <property environment="env"/>
+
+    <!-- get the current user's uid and gid - didn't I already mention
+         I find ant pretty weird?
+    -->
+    <exec executable="id" failonerror="true" outputproperty="uid">
+      <arg value="--user"/>
+    </exec>
+    <exec executable="id" failonerror="true" outputproperty="gid">
+      <arg value="--group"/>
+    </exec>
+
+    <!-- list/generate support and helper variables -->
+    <property name="bindir" value="${basedir}/vendor/bin"/>
+
+    <!-- default targets -->
+    <target name="setup-ci" depends="setup"/>
+    <target name="setup"/>
+
+    <target name="build-ci" depends="build"/>
+    <target name="build" depends="python-lint,python-trial"
+            description="building project"/>
+
+    <!-- Note: for this python backend, we're using the docker stuff,
+         but not any of the standard (php based) targets. -->
+    <import file="../../ant/builder-php-docker.xml"/>
+
+    <target name="python-lint">
+      <antcall target="run-within-docker">
+        <param name="command"
+               value="/bin/bash -c '(cd ${basedir};
+                       pylint datahouse/monitoor)'"/>
+      </antcall>
+    </target>
+
+    <target name="python-trial">
+      <antcall target="run-within-docker">
+        <param name="failonerror" value="true"/>
+        <param name="command"
+               value="/bin/bash -c '(cd ${basedir};
+                       trial datahouse/monitoor)'"/>
+      </antcall>
+    </target>
+</project>

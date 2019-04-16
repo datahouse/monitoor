@@ -1,0 +1,399 @@
+---
+version: 1
+name: MON
+
+roles:
+  - project_mon
+
+config:
+  search_path:
+    prepend: ['public', 'thirdparty']
+    remove: ['"$user"']
+
+# requires extension: postgres-plpython3-${PGVERSION}
+
+static-data:
+  -
+    table: public.access_type
+    path: static-data/access_type.csv
+    format: csv
+  -
+    table: public.alert_cycle
+    path: static-data/alert_cycle.csv
+    format: csv
+  -
+    table: public.alert_option
+    path: static-data/alert_option.csv
+    format: csv
+  -
+    table: public.alert_type
+    path: static-data/alert_type.csv
+    format: csv
+  -
+    table: public.check_frequency
+    path: static-data/check_frequency.csv
+    format: csv
+  -
+    table: public.pricing_plan
+    path: static-data/pricing_plan.csv
+    format: csv
+  -
+    table: public.rating_value
+    path: static-data/rating_value.csv
+    format: csv
+  -
+    table: public.type_x_cycle
+    path: static-data/type_x_cycle.csv
+    format: csv
+
+tests:
+  - tests/common.sql
+  - tests/notifications.sql
+  - tests/materialize_changes.sql
+  - tests/multipart.sql
+  - tests/urls.sql
+
+migrations:
+  -
+    hash: a32034c7f381a6529b446d4ece94ba7f6f2e4f5a
+    path: schema/init.sql
+    mutable: false
+  -
+    hash: 38264ac93a2ff514227c623ab31396d85ad69213
+    path: funcs/xor.sql
+    mutable: true
+  -
+    hash: 21ec992396b69393254c5d45b5bcc118f468ca84
+    path: schema/add_change_has_delta_check.sql
+    mutable: false
+  -
+    hash: e4b7d8f0d46835419735914147d4801e4804737f
+    path: funcs/notification_counter_inc.sql
+    mutable: true
+  -
+    hash: 75677f24e3f6723d4862bc5346af5df4bcdb5572
+    path: schema/add_notification_counter_period_start_default.sql
+    mutable: false
+  -
+    hash: c68ded8be7cb460eb3f17868fd45d45423f3b697
+    path: funcs/json_array_collapse.sql
+    mutable: true
+  -
+    hash: 5cae191b73aaf5b584e5a2896f1eda92306856a7
+    path: funcs/json_uniq.sql
+    mutable: true
+  -
+    hash: 0e83d4686a53ac0780504b36fff7927de20b14a3
+    path: funcs/add_external_change.sql
+    mutable: true
+  -
+    hash: 1171dfefb134e358d3eb29308e17b6e5cee4cb5c
+    path: funcs/delete_changes_for.sql
+    mutable: true
+  -
+    hash: 3df5042950f0a3283c7badc12948d9b7bb3ac834
+    path: funcs/change_type_agg.sql
+    mutable: true
+  -
+    hash: 5bdfc1c8c3ad8590bac7fb667a3da3d655bf44e6
+    path: funcs/dequeue_live_task.sql
+    mutable: true
+  -
+    hash: 207da7fe60358d89e114231b337edc350ea5aa8e
+    path: funcs/enqueue_live_task.sql
+    mutable: true
+  -
+    hash: 8455fddc2b10326b24e42d4ca27382e61d0ac27a
+    path: views/spider_job_alert_type_cycle.sql
+    mutable: true
+  -
+    hash: 5cae6acc89dff00c0deecbcfab92939536a8c92a
+    path: funcs/get_pending_changes_for.sql
+    mutable: true
+  -
+    hash: d0e830cd61f4fb1465f6d8ac12c2c4ced4ce574d
+    path: funcs/get_xfrm_id.sql
+    mutable: true
+  -
+    hash: 9526d517d67978c628abab373aa2a2276a31a022
+    path: funcs/materialize_change.sql
+    mutable: true
+  -
+    hash: 04bd2a41b740d1cc154613602263b1380c22bfc8
+    path: funcs/spider_heartbeat.sql
+    mutable: true
+  -
+    hash: 068cdbe71acb0ec5f6b0ee0b64a332ae605fc575
+    path: funcs/spider_job_maybe_add.sql
+    mutable: true
+  -
+    hash: 51edb7ddf4536d63de33838bdf968792b35c478b
+    path: funcs/spider_job_update_or_delete.sql
+    mutable: true
+  -
+    hash: d46fce72bda4fcb7bb33e44f27ae21f9950334e2
+    path: views/spider_status.sql
+    mutable: true
+  -
+    hash: 72ae20ee19b2a376123950c7aeaef881ff3485a4
+    path: funcs/spider_rebalance_jobs.sql
+    mutable: true
+  -
+    hash: 08b0f71c8577f9c395f94848d8be250acdc98d60
+    path: funcs/spider_store_document.sql
+    mutable: true
+  -
+    hash: e64a564f2100462cc7e3c49f950b01e5fce16504
+    path: funcs/spider_update_job_meta.sql
+    mutable: true
+  -
+    hash: 473e7187016d9e9e04672407bdf3b82e88a878bf
+    path: funcs/subscribe.sql
+    mutable: true
+  -
+    hash: 8728811ea6ee19002fbc03f0f6df03deb227f806
+    path: funcs/unsubscribe.sql
+    mutable: true
+  -
+    hash: 0d09ad0892bab86a0e7de092a77ec4de96f152c6
+    path: funcs/update_keywords_for_alert.sql
+    mutable: true
+  -
+    hash: 25b4754205b569f3f4f6e0a3cab60c1735017f25
+    path: funcs/uri_encode.sql
+    mutable: true
+  -
+    hash: fc8ff6a8c8461b41fd9be3332ea14da874ada9b7
+    path: funcs/url_add.sql
+    mutable: true
+  -
+    hash: fc32161847ed1c0ace4851cb8e70b212b539bb87
+    path: funcs/url_filter.sql
+    mutable: true
+  -
+    hash: 67b4e421caae82ca569080f4e81d4af0360ba19f
+    path: funcs/url_triggers.sql
+    mutable: true
+  -
+    hash: 6f8dfbe159f107e067eb65651513e5c62f7c156f
+    path: triggers/url.sql
+    mutable: false
+  -
+    hash: f72e09abbb70436e4e29b5de507609ef882cc523
+    path: views/alert_latest_notification.sql
+    mutable: true
+  -
+    hash: 2d82c165c57ba08b212c5243a33d0a393803658a
+    path: views/notification_counter.sql
+    mutable: true
+  -
+    hash: ba086b97f4ac82597d5bbd04d012e35edbdef5f9
+    path: views/spider_document_meta.sql
+    mutable: true
+  -
+    hash: 5ad372d00a3dc778032c4a3d82f05954006f8641
+    path: views/spider_job_change.sql
+    mutable: true
+  -
+    hash: fbfc7e32fe821fe6087641859426fa9422a4cf88
+    path: views/spider_load_agg.sql
+    mutable: true
+  -
+    hash: 27350cf01eac772f393ddf91c22c7fe66ca363e7
+    path: views/v_alert_url_u_group.sql
+    mutable: true
+  -
+    hash: f49400e727110ff58a05ca1b5018590a7a302033
+    path: views/v_change.sql
+    mutable: true
+  -
+    hash: 8afdbd02584076f6701046c57c4baf8b83a9e5b4
+    path: views/notification_keyword.sql
+    mutable: true
+
+# this point equals the old schema version v32
+
+  -
+    hash: bec1b681818e6bbae94c29f0907c7433b231432c
+    path: funcs/materialize_change.sql
+    mutable: true
+
+# this point equals the old schema version v33
+
+  -
+    hash: d8491032289530add0fabf65992852954538b3fd
+    path: schema/add_user_id_to_notification_counter.sql
+    mutable: false
+  -
+    hash: b514052dfe228e90323f2657a96c11660b03498b
+    path: views/notification_counter.sql
+    mutable: true
+  -
+    hash: b990dfb23e2c325db9dca62852546acf3f9c2d9c
+    path: funcs/materialize_change.sql
+    mutable: true
+  -
+    hash: b48c69d8d9d2e4b1049c7433628195ff09cba0d7
+    path: funcs/notification_counter_inc.sql
+    mutable: true
+  -
+    hash: e933635ddb6ce7c4faf3ffa7e3ea61bf12d7030a
+    path: schema/repopulate_notification_counters.sql
+    mutable: false
+
+# this point equals the old schema version v34
+
+  -
+    hash: b346aeb7d1b40a45d38865b0ecce5e06f0b4fd57
+    path: funcs/materialize_change.sql
+    mutable: true
+  -
+    hash: 3343900647f79be326971a2e98f04f273f32783e
+    path: funcs/notification_counter_inc.sql
+    mutable: true
+
+# this point equals the old schema version v35
+
+  -
+    hash: 071d2829694629103047ad0ef7257fa4c50e75df
+    path: views/v_change.sql
+    mutable: true
+
+# this point equals the old schema version v36
+
+  -
+    hash: 617bf76ddd1ff7db639fec7acbcc8df4663611d8
+    path: schema/add_change_share_table.sql
+    mutable: false
+  -
+    hash: 54ef0021c7e981cb4b139f60c9a4e575a8a3dc4b
+    path: schema/add_sort_order_to_alert_type.sql
+    mutable: false
+  -
+    hash: c88565666ce87deb81eb9a087aaf51d93eed1491
+    path: schema/add_favorite_to_notification.sql
+    mutable: false
+  -
+    hash: 46375accc4fc2d7c23263fbc05d2a45e2640d7ce
+    path: views/v_change.sql
+    mutable: true
+  -
+    hash: 2fa8405ab13e838ca62c463532a3d93c18faae6a
+    path: schema/add_url_to_user_subscription.sql
+    mutable: false
+  -
+    hash: b4fe45f693f77ac549984d47171d927aafa3e080
+    path: funcs/subscribe.sql
+    mutable: true
+  -
+    hash: 5ee603bd17e7fa83ab18cf06ab9646877195e1ad
+    path: funcs/unsubscribe.sql
+    mutable: true
+  -
+    hash: 735f24df3f43eaa6cb09300d9a0017c9726719bf
+    path: funcs/materialize_change.sql
+    mutable: true
+  -
+    hash: acc287d9df329d9f8ce475185115d9f452407f2a
+    path: schema/add_extension_plpython3u.sql
+    mutable: false
+  -
+    hash: 9e4da723e92161d582804eb54b5173241096fba1
+    path: funcs/split_multipart.sql
+    mutable: true
+  -
+    hash: 62ef84f5bb358ff03e8571e2862f775ed7d2c1c7
+    path: funcs/spider_generate_pending_changes_simple.sql
+    mutable: true
+  -
+    hash: 4efbd70b5afb3934c8af6b606c7f749aee8876a5
+    path: funcs/spider_generate_pending_changes_multipart.sql
+    mutable: true
+  -
+    hash: 32a7a6fb8f66e1b199cb1eb24363191d916f8796
+    path: funcs/spider_store_document.sql
+    mutable: true
+  -
+    hash: 76181dcbf32f6348b149871e36a7a7d4b4084dbd
+    path: funcs/get_pending_changes_for.sql
+    mutable: true
+  -
+    hash: e989527b929d19f77fc7474af87907dfd9a709da
+    path: funcs/split_multipart.sql
+    mutable: true
+  -
+    hash: 4e144e697eb30da934447c7158500e8c9439f7ef
+    path: funcs/split_multipart.sql
+    mutable: true
+  -
+    hash: 1aaa44f214cc0dffd26f159079a01d655cbdad19
+    path: funcs/spider_store_document.sql
+    mutable: true
+  -
+    hash: 823862db5657de496c58b8da825be0929ea08db6
+    path: funcs/diff_multipart_by_content_id.sql
+    mutable: true
+  -
+    hash: 4f84a7f9f45ae0069143e823c65db4e670b4afb4
+    path: funcs/spider_generate_pending_changes_multipart.sql
+    mutable: true
+  -
+    hash: 4dd25644cef2b5259fba365347d7266402007140
+    path: funcs/split_multipart.sql
+    mutable: true
+  -
+    hash: c426623e9d3b0db431f7c6538038d7be6b2b9918
+    path: funcs/diff_multipart_by_content_id.sql
+    mutable: true
+  -
+    hash: efab75c2e5254e0ad172ea6656648fd0583c8695
+    path: schema/20170505_update_fkeys.sql
+  -
+    hash: d8c08473501fde3b8f2c8b6a8e07e6cb03e5494f
+    path: funcs/diff_multipart_by_content_id.sql
+    mutable: true
+  -
+    hash: 3d74f42a574db621b6294621efdddd24be9cc122
+    path: funcs/spider_generate_pending_changes_multipart.sql
+    mutable: true
+  -
+    hash: b20e1a0c6d88a64c5ebe1d9a16b79d31cca309f0
+    path: funcs/split_multipart.sql
+    mutable: true
+  -
+    hash: 18f4af23de1113bfd346c0ee2505ea7d4d2517ac
+    path: funcs/get_prev_documents.sql
+    mutable: true
+  -
+    hash: 57ec43bb2dd00df4b63d4c3a84bb698ef65bd0a2
+    path: funcs/spider_generate_pending_changes_multipart.sql
+    mutable: true
+  -
+    hash: 891d1a13a11e6071bf1e08064ed6bf7829a8da09
+    path: funcs/diff_multipart_by_content_id.sql
+    mutable: true
+  -
+    hash: 881c076b9bd420d13574ceebb2c9384d86e35ab7
+    path: funcs/diff_multipart_by_content_id.sql
+    mutable: true
+  -
+    hash: 2dc1422d4ccd24ea762225936cdf268d71a3a420
+    path: funcs/spider_generate_pending_changes_multipart.sql
+    mutable: true
+  -
+    hash: 0da71589b20fc9f3a0a268d86c2d328f4353228e
+    path: funcs/get_prev_documents.sql
+    mutable: true
+  -
+    hash: 2f66cc477ca4a78c92936cd133f1495262c8b765
+    path: funcs/spider_generate_pending_changes_multipart.sql
+    mutable: true
+  -
+    hash: 26f5b0844b4aeba342f28af4f2ee54ec6179aa6e
+    path: tracking/20180315_disable_daily_alerts.sql
+  -
+    hash: 2bef7fc34861733457eb21d4d0907af980e1f13c
+    path: schema/20180308_add_indices.sql
+  -
+    hash: bb87d032dcfb7ab726403f322b528b22554d822a
+    path: tracking/20180320_switch_to_hourly_alerts.sql

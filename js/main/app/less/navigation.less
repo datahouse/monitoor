@@ -1,0 +1,112 @@
+@import "data";
+
+& nav.main-navigation, & nav.developer-navigation {
+  font-size: @contentSize;
+  line-height: @contentLh;
+
+  & > div {
+    margin-bottom: 40px;
+
+    &.static-links {
+      padding-top: 10px;
+
+      ul {
+        border-top: 1px solid @colorIcon;
+        padding-top: 15px;
+      }
+    }
+
+    ul {
+      margin-bottom: 20px;
+
+      &.group-url-link {
+        li {
+          font-size: 0.8em;
+          margin-bottom: 0;
+        }
+      }
+
+      li {
+        margin-bottom: 10px;
+
+          i.icon {
+            color: @colorDefault;
+            font-size: 0.7em;
+          }
+
+        span {
+          color: @colorDefault;
+          font-weight: normal;
+          margin-right: 5px;
+
+          &.prefix {
+            bottom: 3px;
+            font-size: 0.6em;
+            position: relative;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media handhaeld, only screen and (min-width: @desktopMinWidth) {
+  & nav.main-navigation, & nav.developer-navigation {
+
+    & > div {
+
+      & > ul {
+        display: block !important;
+      }
+    }
+  }
+}
+
+@media handheld, only screen and (max-width: @mobileMaxWidth) {
+  & nav.main-navigation, & nav.developer-navigation {
+    padding-right: 0;
+
+    & > div {
+      position: relative;
+
+      div.mobile-menu-icon {
+        cursor: pointer;
+        font-size: 1.8em;
+        width: 100%;
+      }
+
+      ul {
+        left: 0;
+        position: absolute;
+        top: 60px;
+        width: 100%;
+        z-index: 75;
+
+        & > li {
+          &:first-child {
+            border-top: 1px solid @colorDefault;
+          }
+        }
+
+        li {
+          background-color: @colorBg;
+          border-bottom: 1px solid @colorDefault;
+          margin: 0;
+          padding: 10px;
+          width: 100%;
+
+          ul {
+            display: none;
+          }
+        }
+      }
+    }
+
+    & > div.static-links {
+      ul {
+        border-top-style: none;
+        position: static;
+      }
+    }
+  }
+}

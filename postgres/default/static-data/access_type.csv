@@ -1,0 +1,3 @@
+access_type_id,access_type_name,access_type_description
+1,r,read
+2,rw,read and write

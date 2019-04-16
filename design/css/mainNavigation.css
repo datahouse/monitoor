@@ -1,0 +1,71 @@
+.bookmarklet {
+  background-color: #c6c6c5;
+  color: #f2f2f0;
+  float: left;
+  font-size: 1.25em;
+  margin-left: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+}
+.bookmarklet:first-child {
+  margin-left: 0;
+}
+.bookmarklet a {
+  color: #f2f2f0;
+}
+.bookmarklet a:hover {
+  color: #444444;
+}
+.bookmarklet-top {
+  background-color: #c6c6c5;
+  color: #f2f2f0;
+  float: left;
+  font-size: 1.25em;
+  margin-left: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+  border-bottom-left-radius: 100% 1em;
+  border-bottom-right-radius: 100% 1em;
+}
+.bookmarklet-top:first-child {
+  margin-left: 0;
+}
+.bookmarklet-top a {
+  color: #f2f2f0;
+}
+.bookmarklet-top a:hover {
+  color: #444444;
+}
+.bookmarklet-bottom {
+  background-color: #c6c6c5;
+  color: #f2f2f0;
+  float: left;
+  font-size: 1.25em;
+  margin-left: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+  border-top-left-radius: 100% 1em;
+  border-top-right-radius: 100% 1em;
+}
+.bookmarklet-bottom:first-child {
+  margin-left: 0;
+}
+.bookmarklet-bottom a {
+  color: #f2f2f0;
+}
+.bookmarklet-bottom a:hover {
+  color: #444444;
+}
+ > nav {
+  font-size: 1.125em;
+  line-height: 1.375em;
+}
+ > nav ul li {
+  margin-bottom: 20px;
+}
+ > nav ul:last-child {
+  margin-top: 50px;
+}

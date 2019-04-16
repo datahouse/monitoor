@@ -1,0 +1,97 @@
+<mon-main-navigation></mon-main-navigation>
+<div class="{{ mainCss }}">
+  <h1 translate="urls.add.contentTitle"></h1>
+  <p class="description" translate="urls.add.description"></p>
+  <div class="clearfix description" ng-show="enableBookmarklet">
+    <div class="col-9-12">
+      <span translate="urls.add.description_bookmarklet"></span>
+    </div>
+    <div class="col-3-12 form-group">
+      <a href="javascript:if(location.protocol=='http:'||location.protocol=='https:')location.href='{{rootUrl}}#/urls/add/?url='+encodeURIComponent(location.href)" 
+        onclick="return false;" 
+        translate="urls.add.bookmarklet_link"
+        class="btn-style-main btn-full"
+        id="bookmarklet"></a>
+    </div>
+  </div>
+  <form name="urlForm" ng-submit="send()" ng-enter="send()" novalidate>
+    <div class="form">
+      <div class="error" ng-show="error.length > 0">
+        <ul>
+          <li ng-repeat="err in error track by $index" ng-bind="err"></li>
+        </ul>
+      </div>
+      <div ng-repeat="url in data.urls track by $index" ng-class="{ 'more-space': data.urls.length > 1 && $index == 0 }">
+        <div class="form-group">
+          <input placeholder="{{ 'urls.add.placeholderUrl' | translate }}" class="form-control" id="url" name="url" ng-model="data.urls[$index].url" required="" type="text" ng-pattern="/\(?(?:(http|https|ftp):\/\/)?(?:((?:[^\W\s]|\.|-|[:]{1})+)@{1})?((?:www.)?(?:[^\W\s]|\.|-)+[\.][^\W\s]{2,4}|localhost(?=\/)|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?::(\d*))?([\/]?[^\s\?]*[\/]{1})*(?:\/?([^\s\n\?\[\]\{\}\#]*(?:(?=\.)){1}|[^\s\n\?\[\]\{\}\.\#]*)?([\.]{1}[^\s\?\#]*)?)?(?:\?{1}([^\s\n\#\[\]]*))?([\#][^\s\n]*)?\)?/" />
+          <p ng-show="urlForm.url.$touched && urlForm.url.$dirty && urlForm.url.$invalid" class="error" translate="urls.add.errorUrl"></p>
+        </div>
+        <div class="form-group">
+          <input placeholder="{{ 'urls.add.placeholderUrlText' | translate }}" class="form-control" id="title" name="title" ng-model="data.urls[$index].title" type="text"/>
+          <p ng-show="urlForm.title.$touched && urlForm.title.$dirty && urlForm.title.$invalid" class="error" translate="urls.add.errorUrlText"></p>
+        </div>
+        <p ng-show="data.urls.length > 1 && $index != 0" class="link more-space" ng-click="removeUrlField($index)" translate="urls.add.remove"></p>
+      </div>
+      <div class="form-group">
+        <button type="button" ng-click="addUrlField()" ng-class="{ 'btn-full': true, 'btn-secondary': true }"><i class="fa fa-plus"></i></button>
+      </div>
+      <div ng-hide="data.urls.length > 1">
+        <p class="link more-space-t" ng-click="toggleAdvancedOption()" translate="urls.add.advancedOptions"></p>
+        <div ng-show="showAdvancedOption" class="form-group more-space-t">
+          <input placeholder="{{ 'urls.add.placeholderUrlXpath' | translate }}" class="form-control" id="xpath" name="xpath" ng-model="data.urls[0].xpath" type="text"/>
+          <p ng-show="urlForm.xpath.$touched && urlForm.xpath.$dirty && urlForm.xpath.$invalid" class="error" translate="urls.add.errorUrlXpath"></p>
+          <p class="more-space-t" translate="urls.add.xpathInfo1"></p>
+          <p class="more-space-t" translate="urls.add.xpathInfo2"></p>
+        </div>
+      </div>
+      <div class="clearfix">
+        <div class="col-6-12 col-alpha">
+          <section class="in-form">
+            <article class="clearfix">
+              <h2 translate="urls.add.contentTitleIntervall"></h2>
+              <div class="form-group">
+                <ui-select ng-model="data.frequency" theme="bootstrap" ng-disabled="disabled" search-enabled="false" required>
+                  <ui-select-match class="read-only" placeholder="{{ 'urls.add.selectPleaseChoose' | translate }}">
+                    <span>{{ $select.selected.title }}</span>
+                  </ui-select-match>
+                  <ui-select-choices ui-disable-choice="urlGroup.readOnly" repeat="frequency in frequencies" refresh="refreshResults($select)" refresh-delay="0">
+                    {{ frequency.title }}
+                  </ui-select-choices>
+                </ui-select>
+                <p ng-show="urlForm.frequency.$touched && urlForm.frequency.$dirty && urlForm.frequency.$invalid" class="error" translate="urls.add.errorFrequency"></p>
+              </div>
+            </article>
+          </section>
+        </div>
+        <div class="col-6-12 col-omega">
+          <section class="in-form">
+            <article class="clearfix">
+              <h2 translate="urls.add.contentTitleGroup"></h2>
+              <div class="form-group">
+                <ui-select ng-model="data.urlGroup" theme="bootstrap" ng-disabled="disabled" required reset-search-input="true">
+                  <ui-select-match placeholder="{{ 'urls.add.selectPleaseChoose' | translate }}">
+                    <span>{{ $select.selected.title || $select.search }}</span>
+                  </ui-select-match>
+                  <ui-select-choices ui-disable-choice="urlGroup.readOnly" repeat="urlGroup in (groups | filter: { title: $select.search })" refresh="refreshResults($select)" refresh-delay="0">
+                    {{ urlGroup.title }}
+                  </ui-select-choices>
+                </ui-select>
+                <p ng-show="urlForm.group.$touched && urlForm.group.$dirty && urlForm.group.$invalid" class="error" translate="urls.add.errorGroupSelect"></p>
+                <input ng-show="showAddGroupField()" ng-model="data.urlGroupName" class="form-control" type="text" name="urlGroupName" placeholder="Gruppenname" ng-required="showAddGroupField()">
+                <p ng-show="urlForm.urlGroupName.$touched && urlForm.urlGroupName.$dirty && urlForm.urlGroupName.$invalid" class="error" translate="urls.add.errorGroupInput"></p>
+              </div>
+            </article>
+          </section>
+        </div>
+      </div>
+      <div class="form-group clearfix separator">
+        <div class="col-6-12 col-alpha">
+          <button type="button" class="btn-full btn-secondary" ng-click="back()" translate="urls.add.btnAbort"></button>
+        </div>
+        <div class="col-6-12 col-omega">
+          <button class="btn-full" ng-disabled="urlForm.$invalid" translate="urls.add.btnSave"></button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

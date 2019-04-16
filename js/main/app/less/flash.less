@@ -1,0 +1,28 @@
+@import "data";
+
+div.flash-message {
+  left: 0;
+  margin: 0 auto;
+  max-width: 600px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 50%;
+  z-index: 100000000000;
+
+  & * {
+    text-align: center;
+  }
+
+  .alert {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top-style: none;
+  }
+}
+
+@media handheld, only screen and (max-width: @mobileMaxWidth) {
+  div.flash-message {
+
+  }
+}

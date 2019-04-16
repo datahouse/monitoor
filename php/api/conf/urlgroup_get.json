@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#urlgroup_get_api",
+  "title": "url group",
+  "method": "GET",
+  "url": "/v1/urlgroup/get/<id>/de/",
+  "type": "object",
+  "properties": {
+    "urlGroup": {
+      "id": "#urlGroup",
+      "stereotype": "struct",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "alertId": {
+          "type": "integer"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "subscribed": {
+          "type": "boolean"
+        },
+        "urls": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "id": "#url",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "title",
+                  "url"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title"
+      ]
+    }
+  }
+}

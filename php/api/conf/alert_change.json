@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#alert_result_api",
+  "title": "alert result",
+  "method": "GET",
+  "url": "/v1/alert/result/<id>/de/",
+  "type": "object",
+  "properties": {
+    "alertChange": {
+      "id": "#alertChange",
+      "stereotype": "struct",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "urlChangeList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "urlChange": {
+                "id": "#urlChange",
+                "stereotype": "struct",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "lastChange": {
+                    "type": "string"
+                  },
+                  "oldDoc": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "content": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "newDoc": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "content": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "diff": {
+                    "type": "string"
+                  },
+                  "diffHtml": {
+                    "type": "string"
+                  },
+                  "changeId": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "id",
+                  "title",
+                  "oldDoc",
+                  "newDoc",
+                  "diff"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "urlChangeList"
+      ]
+    }
+  }
+}

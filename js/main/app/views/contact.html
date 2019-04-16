@@ -1,0 +1,33 @@
+<section class="static-page">
+  <div class="col-5-12">
+    <p class="illustrations"><img src="images/png/contact.png" alt="contact icon" /></p>
+  </div>
+  <div class="col-7-12 col-omega">
+    <p class="more-space" translate="contact.description"></p>
+    <form class="clearfix" name="contactForm" ng-submit="send()" novalidate>
+      <div class="error" ng-show="error.length > 0">
+        <ul>
+          <li ng-repeat="err in error track by $index" ng-bind="err"></li>
+        </ul>
+      </div>
+      <div class="form">
+        <div class="form-group">
+          <input placeholder="{{ 'contact.placeholderName' | translate }}" maxlength="50" class="form-control" name="name" ng-model="data.name" auto-focus type="text"/>
+        </div>
+        <div class="form-group">
+          <input placeholder="{{ 'contact.placeholderEmail' | translate }}" class="form-control" name="email" ng-model="data.email" placeholder="Ihre E-Mail" required type="email"/>
+          <p ng-show="contactForm.email.$touched && contactForm.email.$dirty && contactForm.email.$invalid" class="error" translate="contact.errorEmail"></p>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" name="message" rows="12" ng-model="data.message" maxlength="1000" placeholder="{{ 'contact.placeholderMessage' | translate }}" required></textarea>
+          <p ng-show="contactForm.message.$touched && contactForm.message.$dirty && contactForm.message.$invalid" class="error" translate="contact.errorMessage"></p>
+        </div>
+        <div class="form-group clearfix">
+          <p class="push-2-12">
+            <button class="col-10-12 mobile-col-10-12" ng-disabled="contactForm.$invalid" translate="contact.btnSend"></button>
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

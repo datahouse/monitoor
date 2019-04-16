@@ -1,0 +1,4 @@
+alert_option_id,alert_option_name,alert_option_description
+1,Activity,Activity option - all changes
+2,Keywords,Keyword option
+3,Activity threshold,Activity option - with threshold

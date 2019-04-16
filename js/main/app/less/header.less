@@ -1,0 +1,148 @@
+@import "data";
+
+& > header {
+  nav.icon {
+    width: 100%;
+
+    & > ul {
+      & > li {
+       .bookmarklet-top;
+
+        & > div.btn-group {
+          ul.dropdown-menu {
+            li {
+
+              &.active {
+                a {
+                  background-color: transparent;
+                  color: @colorLink;
+                  cursor: default;
+                }
+              }
+
+              a {
+                color: @colorDefault;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .dropdown-menu.language-dropdown-menu {
+    left: auto;
+    right: -14px;
+  }
+
+  nav.horizontal-menu, div.logo {
+    padding-top: 20px;
+  }
+
+  nav.horizontal-menu {
+    float: right;
+    margin-top: 2.1em;
+
+    ul {
+      text-align: right;
+
+      li {
+        display: inline-block;
+        margin-left: 20px;
+
+        a.active {
+          color: @colorDefault;
+        }
+      }
+    }
+
+    div.mobile-menu-icon {
+      cursor: pointer;
+      font-size: 2em;
+    }
+  }
+
+  div.logo {
+    float: left;
+    font-size: @headingSize2;
+
+    a {
+      position: relative;
+
+      span.beta {
+        color: @colorLink;
+        font-weight: normal;
+        font-size: @contentSize - 0.375;
+        left: 10.1em;
+        position: absolute;
+        top: -1.2em;
+      }
+    }
+
+    span {
+      font-weight: bold;
+      font-size: @headingSize2;
+    }
+
+    i {
+      font-size: 1.1em;
+
+      &.mon-o1 {
+        margin-left: 0.09em;
+      }
+
+      &.mon-o2 {
+        margin-left: 0.112em;
+      }
+    }
+
+    a, a:link, a:visited, a:hover, a:active {
+      color: @colorDefault;
+    }
+  }
+}
+
+@media handheld, only screen and (max-width: @mobileMaxWidth) {
+  & > header {
+    div.logo {
+      div.beta {
+        margin-left: 7.5em;
+        margin-bottom: -0.4em;
+        margin-top: 0;
+      }
+    }
+
+    nav.horizontal-menu {
+      clear: both;
+      margin: 10px 0;
+      padding: 0;
+      position: relative;
+      width: 100%;
+
+      div.mobile-menu-icon {
+        width: 100%;
+      }
+
+      ul {
+        top: 60px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        z-index: 80;
+
+        li {
+          background-color: @colorBg;
+          border-top: 1px solid @colorDefault;
+          margin: 0;
+          padding: 10px;
+          text-align: left;
+          width: 100%;
+
+          &:last-child {
+            border-bottom: 1px solid @colorDefault;
+          }
+        }
+      }
+    }
+  }
+}

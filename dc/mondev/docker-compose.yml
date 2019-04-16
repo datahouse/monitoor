@@ -1,0 +1,35 @@
+---
+version: "2"
+volumes:
+  postgres-data:
+  backend-workdir:
+
+services:
+  postgres:
+    build:
+      context: ../../postgres/default
+      dockerfile: Dockerfile.postgres
+    env_file:
+      - postgres.env
+    volumes:
+      - "postgres-data:/var/lib/postgresql/data"
+
+  ddb:
+    build:
+      context: ../..
+      dockerfile: postgres/default/Dockerfile.ddb
+    env_file:
+      - postgres.env
+    command: ddb create default --wait --migrate
+    volumes:
+      - "../../:/srv"
+
+  backend:
+    build:
+      context: ../../python/backend
+      dockerfile: Dockerfile.dev
+    env_file:
+      - postgres.env
+    volumes:
+      - "backend-workdir:/srv/backend-workdir"
+      - "../../python/backend:/srv/backend-code"

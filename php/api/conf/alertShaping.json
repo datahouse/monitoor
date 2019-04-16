@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#user_get_api",
+  "title": "user detail",
+  "method": "GET",
+  "url": "/v1/user/get/<id>/de/",
+  "type": "object",
+  "properties": {
+    "alertShaping": {
+      "id": "#alertShaping",
+      "stereotype": "struct",
+      "type": "object",
+      "properties": {
+        "alertType": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "description"
+          ]
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "alertOption": {
+          "type": "object"
+        },
+        "alertThreshold": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "alertType",
+        "alertOption"
+      ]
+    }
+  }
+}

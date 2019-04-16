@@ -1,0 +1,55 @@
+FROM registry.datalan.ch/debian:jessie
+
+# use switch instead of httpredir
+RUN sed -i 's/deb.debian.org\/debian/mirror.switch.ch\/ftp\/mirror\/debian/' /etc/apt/sources.list
+
+# Add some necessary build tools and usefull shell tools
+RUN apt-get -qy update \
+  && apt-get -qy install --no-install-recommends \
+      apt-transport-https \
+      apt-utils \
+      ca-certificates \
+      nano less \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+# Prevent strange looking error messages and interactive configuration
+# dialogs with default arguments. With proper parameters for docker run,
+# these can be overriden.
+#
+# See https://github.com/docker/docker/issues/4032 for a lengthy
+# discussion of this topic.
+ARG TERM=linux
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Add some pythonic stuff required by the backend.
+RUN apt-get -qy update \
+  && apt-get -qy install --no-install-recommends \
+      python-twisted-core \
+      python-scrapy \
+      python-psycopg2 \
+      python-psutil \
+      html2text \
+      python-html2text \
+      xsltproc \
+      python-pdfminer \
+      python-lxml \
+      python-pyparsing \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN groupadd -r monitoor \
+  && useradd -r -g monitoor monitoor
+
+RUN mkdir /srv/backend-code /srv/backend-workdir \
+  && chown monitoor. /srv/backend-workdir
+
+COPY docker/entrypoint.sh /entrypoint.sh
+
+
+
+
+WORKDIR /srv/backend-workdir
+ENV PYTHONPATH="/srv/backend-code"
+
+CMD /bin/bash /entrypoint.sh

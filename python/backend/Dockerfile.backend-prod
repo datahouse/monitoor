@@ -1,0 +1,40 @@
+FROM debian:jessie
+
+# These firsts steps copied from it-docker-debian-php-apache...
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    apt-utils \
+  && apt-get install -y --no-install-recommends \
+    apt-transport-https ca-certificates curl \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN curl -o /tmp/datahouse-repo.deb https://repo.datahouse.ch/debian/datahouse-repo.deb && \
+  dpkg -i /tmp/datahouse-repo.deb && \
+  rm /tmp/datahouse-repo.deb
+
+# MON backend requirements
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    python-twisted-core python-scrapy python-psycopg2 python-psutil \
+    html2text python-html2text xsltproc python-pdfminer python-lxml \
+    python-pyparsing \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN groupadd -r monitoor \
+  && useradd -r -g monitoor monitoor
+
+RUN mkdir /srv/backend
+
+COPY txpostgres /srv/backend/txpostgres
+COPY docker/entrypoint.sh /entrypoint.sh
+COPY monitoor.tac /srv/backend/
+COPY datahouse /srv/backend/datahouse
+
+# drop priviledges
+USER monitoor
+
+WORKDIR /srv/backend/data
+ENV PYTHONPATH="/srv/backend"
+CMD /bin/bash /entrypoint.sh

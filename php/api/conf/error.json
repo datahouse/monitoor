@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#error_api",
+  "title": "error",
+  "type": "object",
+  "properties": {
+    "error": {
+      "id": "#error",
+      "stereotype": "struct",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "msg": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "code",
+        "level",
+        "msg"
+      ]
+    }
+  }
+}

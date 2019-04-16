@@ -1,0 +1,77 @@
+<mon-main-navigation></mon-main-navigation>
+<div class="{{ mainCss }}">
+  <h1 translate="urls.edit.contentTitle"></h1>
+  <p class="description" translate="urls.edit.description"></p>
+  <form name="urlForm" ng-submit="send()" ng-enter="send()" novalidate>
+    <div class="form">
+      <div class="error" ng-show="error.length > 0">
+        <ul>
+          <li ng-repeat="err in error track by $index" ng-bind="err"></li>
+        </ul>
+      </div>
+      <div class="form-group">
+        <input placeholder="{{ 'urls.edit.placeholderUrl' | translate }}" class="form-control" id="url" name="url" ng-model="url.url" required="" type="text" ng-pattern="/\(?(?:(http|https|ftp):\/\/)?(?:((?:[^\W\s]|\.|-|[:]{1})+)@{1})?((?:www.)?(?:[^\W\s]|\.|-)+[\.][^\W\s]{2,4}|localhost(?=\/)|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?::(\d*))?([\/]?[^\s\?]*[\/]{1})*(?:\/?([^\s\n\?\[\]\{\}\#]*(?:(?=\.)){1}|[^\s\n\?\[\]\{\}\.\#]*)?([\.]{1}[^\s\?\#]*)?)?(?:\?{1}([^\s\n\#\[\]]*))?([\#][^\s\n]*)?\)?/" />
+        <p ng-show="urlForm.url.$touched && urlForm.url.$dirty && urlForm.url.$invalid" class="error" translate="urls.edit.errorUrl"></p>
+      </div>
+      <div class="form-group">
+        <input placeholder="{{ 'urls.edit.placeholderUrlText' | translate }}" class="form-control" id="title" name="title" ng-model="url.title" type="text"/>
+        <p ng-show="urlForm.title.$touched && urlForm.title.$dirty && urlForm.title.$invalid" class="error" translate="urls.edit.errorUrlText"></p>
+      </div>
+      <p class="link" ng-click="toggleAdvancedOption()" translate="urls.edit.advancedOptions"></p>
+      <div ng-show="showAdvancedOption" class="form-group more-space-t">
+        <input placeholder="{{ 'urls.add.placeholderUrlXpath' | translate }}" class="form-control" id="xpath" name="xpath" ng-model="url.xpath" type="text"/>
+        <p ng-show="urlForm.xpath.$touched && urlForm.xpath.$dirty && urlForm.xpath.$invalid" class="error" translate="urls.add.errorUrlXpath"></p>
+        <p class="more-space-t" translate="urls.edit.xpathInfo1"></p>
+        <p class="more-space-t" translate="urls.edit.xpathInfo2"></p>
+      </div>
+      <div class="clearfix">
+        <div class="col-6-12 col-alpha">
+          <section class="in-form">
+            <article class="clearfix">
+              <h2 translate="urls.edit.contentTitleIntervall"></h2>
+              <div class="form-group">
+                <ui-select ng-model="url.frequency" theme="bootstrap" ng-disabled="disabled" search-enabled="false" required>
+                  <ui-select-match class="read-only" placeholder="{{ 'urls.edit.selectPleaseChoose' | translate }}">
+                    <span>{{ $select.selected.title }}</span>
+                  </ui-select-match>
+                  <ui-select-choices ui-disable-choice="urlGroup.readOnly" repeat="frequency in frequencies" refresh="refreshResults($select)" refresh-delay="0">
+                    {{ frequency.title }}
+                  </ui-select-choices>
+                </ui-select>
+                <p ng-show="urlForm.frequency.$touched && urlForm.frequency.$dirty && urlForm.frequency.$invalid" class="error" translate="urls.edit.errorFrequency"></p>
+              </div>
+            </article>
+          </section>
+        </div>
+        <div class="col-6-12 col-omega">
+          <section class="in-form">
+            <article class="clearfix">
+              <h2 translate="urls.edit.contentTitleGroup"></h2>
+              <div class="form-group">
+                <ui-select ng-model="url.urlGroup" theme="bootstrap" required reset-search-input="true">
+                  <ui-select-match placeholder="{{ 'urls.edit.selectPleaseChoose' | translate }}">
+                    <span>{{ $select.selected.title || $select.search }}</span>
+                  </ui-select-match>
+                  <ui-select-choices ui-disable-choice="urlGroup.readOnly" repeat="urlGroup in (groups | filter: { title: $select.search })" refresh="refreshResults($select)" refresh-delay="0">
+                    {{ urlGroup.title }}
+                  </ui-select-choices>
+                </ui-select>
+                <p ng-show="urlForm.group.$touched && urlForm.group.$dirty && urlForm.group.$invalid" class="error" translate="urls.edit.errorGroupSelect"></p>
+                <input ng-show="showAddGroupField()" ng-model="url.urlGroupName" class="form-control" type="text" name="urlGroupName" placeholder="Gruppenname" ng-required="showAddGroupField()">
+                <p ng-show="urlForm.urlGroupName.$touched && urlForm.urlGroupName.$dirty && urlForm.urlGroupName.$invalid" class="error" translate="urls.edit.errorGroupInput"></p>
+              </div>
+            </article>
+          </section>
+        </div>
+      </div>
+      <div class="form-group clearfix separator">
+        <div class="col-6-12 col-alpha">
+          <button type="button" class="btn-full btn-secondary" ng-click="back()" translate="urls.edit.btnAbort"></button>
+        </div>
+        <div class="col-6-12 col-omega">
+          <button class="btn-full" ng-disabled="urlForm.$invalid" translate="urls.edit.btnSave"></button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

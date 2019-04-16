@@ -1,0 +1,7 @@
+WARNING: deprecated directory, will be removed eventually.
+
+MON has been migrated to use the Datahouse dbtool, status and migration
+is now handled via ddb. Please manage your database migrations with ddb
+and maintain the files under postgres/default, instead.
+
+

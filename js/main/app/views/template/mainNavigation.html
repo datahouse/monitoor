@@ -1,0 +1,29 @@
+<nav class="col-3-12 main-navigation" role="navigation">
+  <div>
+    <div class="mobile-menu-icon hide-on-desktop" ng-click="hideMainNavigationToggle()"><i class="fa fa-bars"></i> Groups</div>
+    <ul ng-hide="hideMainNavigation">
+      <li ng-repeat="group in groups">
+        <a ng-if="!group.url" ng-class="{ active: isActiveGroup(group) }" ng-href="#/urlGroup/{{ group.id }}">{{ group.title }} <i ng-if="!group.id" class="icon fa fa-heart"></i><i ng-if="group.subscribed" class="icon fa fa-bookmark"></i></a>
+        <a ng-if="group.url" ng-class="{ active: isActiveGroup(group) }" ng-href="#/{{ group.url }}">{{ group.title }} <i ng-if="!group.id" class="icon fa fa-heart"></i><i ng-if="group.subscribed" class="icon fa fa-bookmark"></i></a>
+        <ul class="group-url-link" ng-if="group.urls.length > 0" ng-show="isActiveGroup(group)">
+          <li ng-repeat="url in group.urls">
+            <a ng-class="{ active: isActiveUrl(url.id) }" ng-href="#/url/{{ url.id }}" ng-bind="url.title"></a>
+          </li>
+        </ul>
+      </li>
+      <li ng-show="groups.length === 0 && dataLoaded"><a href="#/dashboard">Demo</a></li>
+    </ul>
+    <ul class="group-url-link">
+      <li ng-repeat="url in urls">
+        <a ng-class="{ active: isActiveUrl(url.id) }" ng-href="#/url/{{ url.id }}" ng-bind="url.title"></a>
+      </li>
+    </ul>
+  </div>
+  <div class="static-links">
+    <ul>
+      <li ng-repeat="link in links" ng-show="isAuth(link.auth)">
+        <a ng-class="{ active: isActiveLink(link.href) }" ng-href="{{ link.href }}"><span class="prefix" ng-if="link.icon"><i class="fa fa-{{ link.icon }}"></i></span>{{ link.name | translate }}</a>
+      </li>
+    </ul>
+  </div>
+</nav>

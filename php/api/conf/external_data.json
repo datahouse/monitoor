@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#data_push_api",
+  "title": "data push",
+  "method": "POST",
+  "url": "/v1/data/push/de/",
+  "type": "object",
+  "properties": {
+    "externalData": {
+      "id": "#externalData",
+      "stereotype": "struct",
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "data"
+        },
+        "addition": {
+          "type": "string"
+        },
+        "deletion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "timestamp"
+      ]
+    }
+  }
+}

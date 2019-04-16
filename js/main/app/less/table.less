@@ -1,0 +1,83 @@
+@import "data";
+
+table.table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin: 20px 0;
+  width: 100%;
+
+  [class*='col-'] {
+    float: none;
+    padding-right: 0; /* column-space */
+  }
+
+  th, td {
+    border-bottom: 1px solid @colorIcon;
+    padding: 15px 5px;
+  }
+
+  th {
+    border-bottom: 2px solid @colorIcon;
+    font-weight: bold;
+    padding-bottom: 5px;
+    text-align: left;
+    vertical-align: bottom;
+
+    i {
+      cursor: pointer;
+    }
+  }
+
+  td {
+    i {
+      color: @colorLink;
+      cursor: pointer;
+
+      &:hover {
+        color: @colorDefault;
+      }
+    }
+  }
+
+  tr:not(:first-child) {
+    &:hover {
+      background-color: lighten(@colorLink, 30%);
+    }
+  }
+
+  tr.filter {
+    .fa {
+      color: @colorLink;
+    }
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    th {
+      position: relative;
+
+      input {
+        font-weight: normal;
+        padding-right: 25px;
+        width: 100%;
+      }
+
+      i {
+        bottom: 17px;
+        cursor: pointer;
+        position: absolute;
+        right: 15px;
+      }
+    }
+
+    th.action {
+
+      i {
+        font-size: 1.3em;
+        margin-bottom: 11px;
+        position: static;
+      }
+    }
+  }
+}

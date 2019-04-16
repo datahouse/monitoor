@@ -1,0 +1,51 @@
+@mobileMaxWidth: 767px;
+@desktopMinWidth: 768px;
+
+@colorDefault: #444444;
+@colorLink: #81c6cb;
+@colorGra: #e1ae1b;
+@colorIcon: #c6c6c5;
+@colorBg: #f2f2f0;
+@colorInputBg: #ffffff;
+
+@headingSize1: 3.75em; // ~ 60px
+@headingSize2: 1.875em; // ~ 30px
+@headingSize3: 1.25em; // ~ 20px
+@heading3Lh: 1.5em; // line-height ~ 24px
+@contentSize: 1.125em; // ~ 18px
+@contentLh: 1.375em; // line-height ~ 22px
+
+.bookmarklet {
+  background-color: @colorIcon;
+  color: @colorBg;
+  float: left;
+  font-size: @headingSize3;
+  margin-left: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  a {
+    color: @colorBg;
+
+    &:hover {
+      color: @colorDefault;
+    }
+  }
+}
+
+.bookmarklet-top {
+  .bookmarklet;
+  border-bottom-left-radius: 100% 1em;
+  border-bottom-right-radius: 100% 1em;
+}
+
+.bookmarklet-bottom {
+  .bookmarklet;
+  border-top-left-radius: 100% 1em;
+  border-top-right-radius: 100% 1em;
+}

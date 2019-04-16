@@ -1,0 +1,6 @@
+RewriteEngine on
+Options +FollowSymlinks
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) /api/api.php?request=$1&%{QUERY_STRING} [L]

@@ -1,0 +1,27 @@
+The loadtest directory contains a couple scripts to generate and load
+random data to test the database and backend (maybe also parts of the
+frontend) with a reasonable amount of data.
+
+Source Data
+===========
+
+To gather a list of (hopefully) valid URLs, testcrap.py was used - a
+public domain script that repeatedly queries randomwebsite.com. It
+generated urls.txt. A list of random names was collected manually from
+a random name generation website (emitting 100 names at a time).
+
+Data Load Script
+================
+
+populate.py expects an empty database, initialized with just the bare
+structure, functions and static-data of the MON project. It reads URLs
+from urls.txt and user names from randomnames.txt. Assignment between
+users and URLs is entirely randomized, but tries to mimic an
+exponential distribution. Depending on how many URLs a user gets some
+url_groups get created as well.
+
+No real content is being fetched from the web, but artificial historic
+data gets generated for each job (documents and notifications).
+
+With the default settings and a local database, the script runs for
+approximately 30 minutes to load the database.

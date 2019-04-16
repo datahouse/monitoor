@@ -1,0 +1,5 @@
+check_frequency_id,check_frequency_text,check_frequency_interval
+0,n/a,0
+1,hourly,3600
+2,daily,86400
+3,weekly,604800

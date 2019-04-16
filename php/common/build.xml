@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<project name="MON:common" default="build">
+
+    <!-- MAKE YOUR CHANGES HERE - also change project short in the line above -->
+    <!-- also adapt the XML files in the build directory -->
+
+    <!-- DO NOT CHANGE ANYTHING BELOW THIS LINE (unless you are really sure what you are doing) -->
+    <property name="version" value="v2" />
+
+    <!-- make all of the environment variables accessible for
+         we-do-everything-a-tiny-differently-ant
+    -->
+    <property environment="env"/>
+
+    <!-- get the current user's uid and gid - didn't I already mention
+         I find ant pretty weird?
+    -->
+    <exec executable="id" failonerror="true" outputproperty="uid">
+      <arg value="--user"/>
+    </exec>
+    <exec executable="id" failonerror="true" outputproperty="gid">
+      <arg value="--group"/>
+    </exec>
+
+    <!-- list/generate support and helper variables -->
+    <property name="bindir" value="${basedir}/vendor/bin"/>
+
+    <!-- default targets -->
+    <target name="setup" depends="prepare,config" description="setting up project"/>
+    <target name="setup-ci" depends="prepare,config-ci" description="setting up project"/>
+    <target name="build" depends="lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox" description="building project"/>
+    <target name="build-ci" depends="setup-ci,build" description="default target for automated clean builds"/>
+
+    <import file="../../ant/builder-php-docker.xml"/>
+</project>

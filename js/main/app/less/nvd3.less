@@ -1,0 +1,48 @@
+@import "data";
+
+/* IE Edge and older modification. IE/Edge don't understand <svg height=""> from js setted
+   attribute 'height'. Set it with css again. If you changes 'height' attribute here
+   you have to change it to in js. CSS class prefix is controllername.
+*/
+@activity-height: 450px;
+.dashboard-activity-graph {
+  height: @activity-height;
+
+  svg.nvd3-svg {
+    height: @activity-height;
+  }
+}
+
+@changes-height: 250px;
+.urlGroup-changes-graph {
+  height: @changes-height;
+
+  svg.nvd3-svg {
+    height: @changes-height;
+  }
+}
+
+@keywords-height: 300px;
+.urlGroup-keywords-graph {
+  height: @keywords-height;
+
+  svg.nvd3-svg {
+    height: @keywords-height;
+  }
+}
+
+/* end IE modification */
+
+.nvd3.nv-stackedarea path.nv-area {
+  stroke: #ffffff !important;
+  stroke-width: 1px;
+  stroke-opacity: 1;
+}
+
+.tick line {
+  //opacity: 0 !important;
+}
+
+.nvd3.nv-pie .active path {
+	fill-opacity:.7
+}

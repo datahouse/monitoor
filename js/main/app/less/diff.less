@@ -1,0 +1,172 @@
+@import "data";
+
+
+main div.feed section h2.diff-title {
+  border-style: none;
+  padding: 0;
+}
+
+.diff-external-link {
+  color: @colorActionActive;
+  font-weight: normal;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;  
+
+  &:not(.nohover):hover {
+    color: @colorDefault;
+  }
+}
+
+.datediff {
+  display: inline-block;
+  margin: 3px 0;
+}
+
+section article.separator.separator-diff {
+  padding: 20px 0 20px;
+  position: relative;
+}
+
+span.diff-title {
+  color: @colorLink;
+  margin-right: 170px
+}
+
+span.diff-like {
+  color: @colorIcon;
+  cursor: pointer;
+
+  &.liked {
+    color: @colorFavorite;
+  }
+
+  &:hover {
+    color: @colorFavorite;
+  }
+}
+
+@toggleOldSize: 1.9em;
+button.toggle-old {
+  line-height: @toggleOldSize;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  height: @toggleOldSize;
+  right: 0;
+  top: 0;
+  width: @toggleOldSize;
+}
+
+.match, .textdiff span {
+  color: gray;
+}
+
+.ins, ins {
+  color: @colorDefault;
+
+  & > span {
+    color: #56d45a;
+    font-weight: bold;
+  }
+}
+
+.del, del {
+
+  & > span {
+    color: #dc3134;
+    font-weight: bold;
+    text-decoration: none !important;
+  }
+
+  color: darken(@colorBtnDisabled, 25%);
+}
+
+.mark, mark {
+  background-color: lighten(@colorActionActive, 35%);
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+.textdiff {
+  position: relative;
+  & > div {
+    font-size: 1em;
+  }
+
+  .disable-old {
+    .del, del {
+      display: none;
+    }
+  }
+
+  .ins, ins, .del, del, span {
+    word-wrap: break-word;
+  }
+
+  .left, .right, .styled {
+    background-color: @colorBtnDisabled;
+    border: 1px solid @colorBorder;
+    border-radius: 4px;
+    padding: 5px;
+  }
+
+  .left {
+    .ins, ins {
+      display: none;
+    }
+  }
+
+  .right {
+    .del, del {
+      display: none;
+    }
+  }
+}
+
+.social-media-share {
+  font-size: 1.6em;
+  margin-top: 20px;
+
+  span {
+    margin-right: 25px;
+
+    .fa-facebook-official {
+      color: #3b5998;
+    }
+
+    .fa-twitter {
+      color: #1dcaff;
+    }
+
+    .fa-whatsapp {
+      color: #68d251;
+    }
+
+    .fa-envelope-o {
+      color: #249ba7;
+    }
+  }
+}
+
+@media handheld, only screen and (max-width: @mobileMaxWidth) {
+  .diff-rating {
+    display: none !important;
+  }
+}
+
+@media handheld, only screen and (min-width: @desktopMinWidth) {
+  .diff-whatsapp {
+    display: none;
+  }
+}

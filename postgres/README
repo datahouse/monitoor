@@ -1,0 +1,83 @@
+Install the Database Tool
+=========================
+
+After an `ant setup` you will find the database tool in
+vendor/bin/ddb of your MON checkout. To ease working with the tool
+it's recommended to add it to the PATH. Alternatively, you might
+want to install in system-wide.
+
+On the live system (monitoor.com) the tool ddb is installed in
+/srv/dbtool/bin and has been added to the PATH already.
+
+
+Configure DDB
+=============
+
+Add a file db.conf.json in the top-level of your MON checkout and define
+a default connection you want to use for the MON project. The file might
+look something like:
+
+  {
+    "type": "postgres",
+    "host": "localhost",
+    "username": "mwanner",
+    "password": "secret thing comes here",
+    "database": "project_mon"
+  }
+
+You'll also need to have a superuser access configured for the database,
+
+On the live system, the root user has configured superuser access to both
+databases as 'demo' and 'live', but no default database (to avoid
+mistakes). You'll therefore have to specify one or the other.
+
+
+Initialize a fresh database
+===========================
+
+If configured properly, you can create and initialize a database with the
+following command:
+
+  ddb create
+
+Optionally add '--override' if the database already existists and you
+*really* want to get rid of it and start from scratch.
+
+
+ATTENTION: static data isn't initialized, yet.
+
+
+Management of an existing database
+==================================
+
+To check the status of your database, simply issue the following command
+from anywhere within your MON checkout:
+
+  ddb status
+
+On the live system, change to the directory /srv/dbschema (which has the
+essential parts of the MON checkout for ddb) and type:
+
+  cd /srv/dbschema
+  ddb status demo
+  ddb status live
+
+If the status mandates a migration, perform it with:
+
+  # on your local system, 'default' is the default
+  ddb migrate default
+
+  # on the live system, where there's no default database
+  cd /srv/dbschema
+  ddb migrate demo
+  ddb migrate live
+
+
+Upgrading the live system
+=========================
+
+The folder /srv/dbschema on the live system contains the entire schema
+definition required by ddb to work. It should be updated as part of a
+release. (Note that the effective migration can still be performed
+separately on demo and live, so we shouldn't need two copies.)
+

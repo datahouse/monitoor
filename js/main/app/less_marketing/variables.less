@@ -1,0 +1,44 @@
+// Variables
+
+@brand-primary: #2C3E50;
+@brand-success: #249BA7;
+@gray-lighter: lighten(#000, 93.5%);
+@brand-default: #FFFFFF;
+@brand-default-dark: #000000;
+@colorIcon: #c6c6c5;
+
+.bookmarklet {
+  background-color: @colorIcon;
+  color: @brand-default;
+  float: left;
+  font-size: 1.1em;
+  margin-left: 8px;
+  padding: 10px 10px 9px 10px;
+  text-align: center;
+  width: 40px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  a, span.action {
+    color: @brand-default;
+    cursor: pointer;
+
+    &:hover {
+      color: @brand-default-dark;
+    }
+  }
+}
+
+.bookmarklet-top {
+  .bookmarklet;
+  border-bottom-left-radius: 100% 1em;
+  border-bottom-right-radius: 100% 1em;
+}
+
+.bookmarklet-bottom {
+  .bookmarklet;
+  border-top-left-radius: 100% 1em;
+  border-top-right-radius: 100% 1em;
+}

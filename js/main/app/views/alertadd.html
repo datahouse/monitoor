@@ -1,0 +1,117 @@
+<mon-main-navigation></mon-main-navigation>
+<div class="{{ mainCss }}">
+  <h1 ng-bind="urlGroup.title"></h1>
+  <h2 class="standalone" translate="alerts.add.contentTitle"></h2>
+  <p class="description" translate="alerts.add.description"></p>
+  <form name="alertForm" ng-submit="send()" ng-enter="send()" novalidate>
+    <div class="form">
+        <section class="in-form">
+            <div class="type-selection">
+                <article class="clearfix">
+                    <h2 translate="alerts.add.alertOptionTitle"></h2>
+                    <select class="form-control" name="selectedAlertOption" ng-change="alertOptionChanged()" ng-model="selectedAlertOption"
+                            ng-options="option.title for option in availableAlertOptions track by option.id" required>
+                        <option value="" translate="alerts.add.dropdownFirst"></option>
+                    </select>
+                </article>
+            </div>
+        </section>
+        <div class="error" ng-show="error.length > 0">
+        <ul>
+          <li ng-repeat="err in error track by $index" ng-bind="err"></li>
+        </ul>
+      </div>
+      <div class="clearfix" ng-if="hasSelected && selectedAlertOption.id == 1">
+        <section class="in-form">
+          <article class="clearfix">
+            <div class="col-6-12 col-alpha centered">
+              <img src="images/png/alertDescription.png" alt="test img" />
+            </div>
+            <div class="col-6-12 col-omega">
+              <p class="description" translate="alerts.add.alertDescription"></p>
+            </div>
+          </article>
+        </section>
+      </div>
+      <div class="clearfix" ng-if="hasSelected && selectedAlertOption.id == 2">
+        <section class="in-form">
+          <article class="clearfix">
+            <div class="col-6-12 col-alpha centered">
+              <img src="images/png/alertTypes.png" alt="test img" />
+            </div>
+            <div class="col-6-12 col-omega">
+              <div class="form-group option">
+                <p class="description" translate="alerts.edit.keywordDescription"></p>
+                <p class="option-title" translate="alerts.edit.optionTitle"></p>
+                <ul class="option-list">
+                    <li class="option-item"><span class="option-item-title" translate="alerts.edit.optionTitle1"></span> <span translate="alerts.edit.option1"></span></li>
+                    <li class="option-item"><span class="option-item-title" translate="alerts.edit.optionTitle2"></span> <span translate="alerts.edit.option2"></span></li>
+                    <li class="option-item"><span class="option-item-title" translate="alerts.edit.optionTitle3"></span> <span translate="alerts.edit.option3"></span></li>
+                    <li class="option-item"><span class="option-item-title" translate="alerts.edit.optionTitle4"></span> <span translate="alerts.edit.option4"></span></li>
+                </ul>
+                <input class="form-control form-list" ng-repeat="keyword in keywords track by $index" ng-model="keywords[$index]" type="text" name="keyword" value="" placeholder="Keywords" ng-required="!isKeywordsValid()">
+              <div class="form-group">
+                <button type="button" ng-click="addKeyword()" class="btn-full btn-secondary"><i class="fa fa-plus"></i></button>
+              </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+      <div class="clearfix" ng-if="hasSelected && selectedAlertOption.id == 3">
+        <section class="in-form">
+          <article class="clearfix">
+            <div class="col-6-12 col-alpha centered">
+              <img src="images/png/alertThreshold.png" alt="test img" />
+            </div>
+            <div class="col-6-12 col-omega">
+              <p class="description" translate="alerts.add.thresholdDescription"></p>
+              <rzslider
+               rz-slider-model="thresholdSlider"
+               rz-slider-floor="0"
+               rz-slider-ceil="100"
+               rz-slider-translate="translateSlider"
+               ></rzslider>
+            </div>
+          </article>
+        </section>
+      </div>
+      <div class="clearfix" ng-show="hasSelected">
+            <div class="col-6-12 col-alpha">
+                <section class="in-form">
+                    <article class="clearfix">
+                        <h2 translate="alerts.add.contentAlertTitle"></h2>
+                        <div class="form-group">
+                            <select class="form-control" name="selectedAlertType" ng-change="alertTypeChanged()" ng-model="selectedAlertType" ng-options="type.title for type in availableAlertTypes track by type.id" required>
+                                <option value="" translate="alerts.add.dropdownFirst"></option>
+                            </select>
+                            <p ng-show="alertForm.selectedAlertType.$touched && alertForm.selectedAlertType.$dirty && alertForm.selectedAlertType.$invalid" class="error" translate="alerts.add.errorAlertType"></p>
+                        </div>
+                    </article>
+                </section>
+            </div>
+          <div class="col-6-12 col-omega">
+              <section class="in-form">
+                  <article class=Zeitpunkt>
+                      <h2 translate="alerts.add.contentTimeTitle"></h2>
+                      <div class="form-group">
+                          <select class="form-control" name="selectedCycle" ng-model="selectedCycle" ng-options="cycle.title for cycle in availableCycle track by cycle.id" required>
+                              <option value="" translate="alerts.add.dropdownFirst"></option>
+                          </select>
+                          <p ng-show="alertForm.selectedCycle.$touched && alertForm.selectedCycle.$dirty && alertForm.selectedCycle.$invalid" class="error" translate="alerts.add.errorCycle"></p>
+                      </div>
+                  </article>
+              </section>
+          </div>
+      </div>
+      <div class="form-group clearfix separator">
+        <div class="col-6-12 col-alpha">
+          <button type="button" class="btn-full btn-secondary" ng-click="back()" translate="alerts.add.btnAbort"></button>
+        </div>
+        <div class="col-6-12 col-omega">
+          <button class="btn-full" ng-disabled="alertForm.$invalid" translate="alerts.add.btnSend"></button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

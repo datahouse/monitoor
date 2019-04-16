@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="q9bCIaPNJeejsaNjMYAvE9vmIbrldBlW8wAWEqtOda8"/>
+  <meta name="description" content="">
+  <meta name="author" content="Datahouse AG">
+  <title>Monitoor</title>
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="css/mon-font.css" rel="stylesheet" type="text/css">
+  <link href="css/fonts.css" rel="stylesheet" type="text/css">
+  <link href="css/design.css" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="page-top" class="index">
+  <div class="gradient-bg">
+    <section>
+      <div class="container highlight">
+        <div class="row">
+          <div class="col-lg-8 title-width-br">
+            <h2>Monitoor keeps track of changes on <br> websites, so you don‘t have to.</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <p>Track websites for changes and immediately be informed about new content.</p>
+            <p class="highlight huge-space-top standard-space-bottom">Try it now for free.</p>
+            <div class="form-group large-space-bottom">
+              <div class="widget">
+                <form>
+                  <input id="widget-url" name="url" class="form-control" type="text" placeholder="http://www.example.ch" required>
+                  <div class="errors">
+                    <p class="error-empty text-danger">Please enter a URL.</p>
+                    <p class="error-invalid text-danger">Please enter a valid URL.</p>
+                  </div>
+                  <input id="widget-email" name="email" class="form-control" type="email" placeholder="mail@example.ch" required>
+                  <div class="errors">
+                    <p class="error-empty text-danger">Please enter your e-mail address.</p>
+                    <p class="error-invalid text-danger">Please enter a valid e-mail address.</p>
+                  </div>
+                  <div class="msg">
+                    <div class="success">
+                      <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Your URL is successfully being monitored. Thank you for your interest.</strong>
+                      </div>
+                    </div>
+                    <div class="error">
+                      <div class="alert alert-danger custom">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong></strong>
+                      </div>
+                      <div class="alert alert-danger default">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>An error has occurred. Please try again later or contact us.</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <input id="widget-submit" type="image" src="img/logo_white.svg" class="btn btn-success image-btn small-space-top">
+                </form>
+              </div>
+              <p class="highlight standard-space-top">You will receive an e-mail as soon as something has changed on the website.</p>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <img class="laptop" src="img/laptop.png" alt="Dashboard Illustration">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="products">
+      <div class="container highlight">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>Features</h2>
+          </div>
+        </div>
+        <div class="row feature">
+          <div class="col-lg-6">
+            <div class="feature-box">
+              <h3>Channels</h3>
+              <p>Channels are bundled data sources that you can subscribe to about specific subject areas.</p>
+              <h3 class="standard-space-top">Groups</h3>
+              <p>Keep track of your websites by sorting them into groups.</p>
+            </div>
+          </div>
+          <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+            <div class="feature-box">
+              <div class="icon">
+                <img src="img/channel.svg" alt="Icon Channels">
+                <img src="img/gruppen.svg" alt="Icon Groups">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row feature">
+          <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+            <div class="feature-box illustration">
+              <img src="img/tablet_handy.png" alt="Illustration mobile devices">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="feature-box">
+              <h3>Detect changes</h3>
+              <p>Track content changes on websites and be notified as soon as something changes.</p>
+              <h3 class="standard-space-top">Monitoor content areas</h3>
+              <p>You don‘t want to monitor the whole website? Select just the area you want to track.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row feature">
+          <div class="col-lg-6">
+            <div class="feature-box">
+              <h3>E-Mail alert</h3>
+              <p>Determine how often you wish to be notified about changes. The report can be sent at different times.</p>
+              <h3 class="standard-space-top">Push notifications</h3>
+              <p>Get notified immediately about changes with the Monitoor iOS or Android app..</p>
+            </div>
+          </div>
+          <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+            <div class="feature-box">
+              <div class="icon">
+                <img src="img/benachrichtigung_mail.svg" alt="Icon Mail">
+                <img src="img/benachrichtigung_push.svg" alt="Icon Push">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row feature">
+          <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+            <div class="feature-box illustration">
+              <img src="img/handy.png" alt="Illustration threshold">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="feature-box">
+              <h3>Keywords & phrases</h3>
+              <p>Refine your search with relevant keywords or phrases.</p>
+              <h3 class="standard-space-top">Threshold</h3>
+              <p>Use the threshold to determine how much a web page needs to change before you are notified.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row feature">
+          <div class="col-lg-6">
+            <div class="feature-box">
+              <h3>Sharing messages</h3>
+              <p>Share interesting news via social media, WhatsApp or e-mail.</p>
+              <h3 class="standard-space-top">Save messages</h3>
+              <p>Save valuable messages so you can find them at any time.</p>
+            </div>
+          </div>
+          <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+            <div class="feature-box">
+              <div class="icon">
+                <img src="img/share.svg" alt="Icon Share">
+                <img src="img/favoriten.svg" alt="Icon Favorite">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="channels">
+      <div class="container highlight">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2 class="no-space">Channels</h2>
+            <h3 class="large-space-bottom no-space-top">Compact bundled information</h3>
+          </div>
+        </div>
+        <div class="row large-space-bottom">
+          <div class="col-sm-2">
+            <img class="channel-icon only-desktop" src="img/channel_icon.svg" alt="Icon Channels">
+          </div>
+          <div class="col-sm-10">
+            <p>Would you like to be informed regularly about certain topics? Take advantage of our channel offer. Channels are bundled information sources on specific topics that you can subscribe to easily with just one click.</p>
+            <p class="large-space-top">Choose the appropriate channel from a variety of topics. The offer will continue to grow. If you want to create an individual channel, please contact us.</p>
+          </div>
+        </div>
+        <div class="row feature">
+          <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+            <div class="feature-box illustration">
+              <img src="img/Finanznachrichten.png" alt="Illustration financial information">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="feature-box channel-box">
+              <h3>Financial information</h3>
+              <p>Financial information from a single source. The finance-channel summarize news from various sources*.</p>
+              <p class="small-sized last-par-channel">* AWP, Bilanz, Bloomberg, CNBC, Cash, Financial Times, Finanzen.ch, Finews, FuW, Handelsblatt, Handelszeitung, NZZ, Reuters, Tagesanzeiger.</p>
+              <p class="price-channel">40.- CHF / month</p>
+              <img class="channel-icon-small" src="img/channel_icon_small.svg" alt="Icon Channel">
+            </div>
+          </div>
+        </div>
+        <div class="row feature">
+          <div class="col-lg-6">
+            <div class="feature-box channel-box">
+              <h3>Commercial register</h3>
+              <p class="last-par-channel">Get the new entries, mutations and deletions from the Swiss official gazette of commerce on a daily basis.</p>
+              <p class="price-channel">Free</p>
+              <img class="channel-icon-small" src="img/channel_icon_small.svg" alt="Icon Channel">
+            </div>
+          </div>
+          <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+            <div class="feature-box illustration">
+              <img src="img/Handelsregister.png" alt="Illustration commercial register">
+            </div>
+          </div>
+        </div>
+        <div class="row feature">
+          <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+            <div class="feature-box illustration">
+              <img src="img/Konkurse.png" alt="Illustration bankruptcies">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="feature-box channel-box">
+              <h3>Bankruptcies</h3>
+              <p class="last-par-channel">Daily messages of lang auctions by the bankruptcy office from the swiss official gazette of commerce.</p>
+              <p class="price-channel">Free</p>
+              <img class="channel-icon-small" src="img/channel_icon_small.svg" alt="Icon Channel">
+            </div>
+          </div>
+        </div>
+        <div class="row feature">
+          <div class="col-lg-6">
+            <div class="feature-box channel-box">
+              <h3>Debt enforcement</h3>
+              <p class="last-par-channel">Auctions of land by enforcement office, orders to pay, writ of garnishment and -deed and miscellaneous from the swiss official gazette of commerce.</p>
+              <p class="price-channel">Free</p>
+              <img class="channel-icon-small" src="img/channel_icon_small.svg" alt="Icon Channel">
+            </div>
+          </div>
+          <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+            <div class="feature-box illustration">
+              <img src="img/Schuldbetreibungen.png" alt="Illustration dept enforcement">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="prices">
+      <div class="container highlight">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>Prices</h2>
+          </div>
+        </div>
+        <div class="row large-space-bottom">
+          <div class="col-md-6">
+            <div class="middle-text">
+              <div>
+                <p>Have we piqued your interest? Click on the desired offer and register.</p>
+                <p>All subscriptions come with predefined channels to which you can subscribe easily (additional costs may incure).</p>
+                <p>You can <a href="#contact">contact us</a> for an individual offer. Additional information about our REST API can be found <a href="./#/developer">here</a>. Please also note our <a data-toggle="modal" href="#AgbModal">terms and conditions</a>.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="platform">
+              <h2>Download our iOS or Android app.</h2>
+              <p class="large-space-top mobile-platform"><a href="https://itunes.apple.com/us/app/monitoor/id1090348181"><img height="60" src="img/ios.svg" alt="iOS Appstore"></a> <a href="https://play.google.com/store/apps/details?id=ch.datahouse.monitoor"><img height="60" src="img/google.svg" alt="Google Play"></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2">
+            <div class="free price1">
+              <h2>Free</h2>
+              <p class="price"><span class="large-text">free</span></p>
+              <div class="hidden-lg">
+                <p>1 user</p>
+                <p>3 URLs</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="basic price2">
+              <h2>Basic</h2>
+              <p class="price"><span class="large-text">30.-</span> CHF / month plus VAT</p>
+              <div class="hidden-lg">
+                <p>3 users</p>
+                <p>50 URLs</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="pro price3">
+              <h2>Professional</h2>
+              <p class="price"><span class="large-text">on demand</span></p>
+              <div class="hidden-lg">
+                <p>3 users or more</p>
+                <p>50 URLs or more</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-2 hidden-md hidden-sm hidden-xs">
+            <div class="free-desc price1">
+              <p>1 user</p>
+              <p>10 URLs</p>
+            </div>
+          </div>
+          <div class="col-lg-4 hidden-md hidden-sm hidden-xs">
+            <div class="basic-desc price2">
+              <p>3 users</p>
+              <p>50 URLs</p>
+            </div>
+          </div>
+          <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+            <div class="pro-desc price3">
+              <p>from 3 users</p>
+              <p>from 50 URLs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2>Contact</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <form name="sentMessage" id="contactForm" novalidate>
+            <div class="row control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Name" id="name" required
+                       data-validation-required-message="Please enter your name.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="row control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>E-mail address</label>
+                <input type="email" class="form-control" placeholder="E-Mail adresse" id="email" required
+                       data-validation-required-message="Please enter your e-mail address."
+                       data-validation-email-message="Please enter a valid e-mail address.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="row control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Message</label>
+                <textarea rows="5" class="form-control" placeholder="Nachricht" id="message" required
+                          data-validation-required-message="Please enter a message."></textarea>
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <br>
+            <div id="success" class="hide">
+              <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Your message has been sent successfully.</strong>
+              </div>
+            </div>
+            <div id="error" class="hide">
+              <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>An error has occurred. Please try again later.</strong>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-xs-12">
+                <button type="submit" class="btn btn-default btn-lg">Send</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="text-center">
+      <div class="footer-above">
+        <div class="container">
+          <div class="row">
+            <div class="footer-col col-md-4 text-list">
+              <h3>About us</h3>
+              <p>Datahouse AG</p>
+              <p>Bleicherweg 5</p>
+              <p>CH-8001 Zürich</p>
+              <p>+41 44 289 92 00</p>
+            </div>
+            <div class="footer-col col-md-4 text-list">
+              <h3>Information</h3>
+              <p><a href="#AgbModal" data-toggle="modal">Terms and Conditions</a></p>
+              <p><a href="http://www.datahouse.ch/">Datahouse AG</a></p>
+              <p><a href="./#/developer">Developer API</a></p>
+              <p><a href="#disclaimerModal" data-toggle="modal">Disclaimer</a></p>
+            </div>
+            <div class="footer-col col-md-4">
+              <h3>Social Media</h3>
+              <ul class="list-inline">
+                <li><a href="https://twitter.com/DatahouseAG" class="btn-social btn-outline"><i
+                    class="fa fa-fw fa-twitter"></i></a></li>
+                <li><a href="https://www.linkedin.com/company/datahouse-ag-z%C3%BCrich"
+                       class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a></li>
+                <li><a href="https://www.xing.com/companies/datahouseag" class="btn-social btn-outline"><i
+                    class="fa fa-fw fa-xing"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-below">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">Copyright &copy; Datahouse AG
+              <script>document.write(new Date().getFullYear());</script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="scroll-top page-scroll visible-xs visible-sm">
+    <a class="btn btn-primary" href="#page-top">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+  <div class="modal-modal modal fade" id="AgbModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+      <div class="close-modal" data-dismiss="modal">
+        <div class="lr">
+          <div class="rl"></div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="modal-body agb">
+              <h2 class="no-space">AGB</h2>
+              <h3 class="first">1 Geltungsbereich</h3>
+              <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für Angebote der Datahouse AG sowie für Verträge
+                zwischen der Datahouse AG und ihren Auftraggebern (Kunden), sofern im Angebot, in der
+                Auftragsbestätigung oder in einer Vertragsurkunde auf diese AGB verwiesen wird. Sie bilden einen
+                integralen Bestandteil der Verträge und Angebote. Bei Widersprüchen gehen die Bestimmungen im
+                Vertragstext diesen AGB vor. Allgemeine Geschäftsbedingungen des Kunden werden nicht
+                Vertragsbestandteil. Die einzelnen Dienstleistungen/Tools werden nachfolgend als „Vertragssoftware“
+                bezeichnet.</p>
+              <h3>2 Gültigkeit von Offerten</h3>
+              <p>Offerten sind, wenn nicht anders vereinbart, 60 Tage ab dem Ausstellungsdatum gültig.</p>
+              <h3>3 Form</h3>
+              <p>Alle Vereinbarungen (inkl. nachträgliche Änderungen, Nebenabreden und Zusicherungen) der
+                Vertragsparteien bedürfen zu ihrer Gültigkeit der Schriftform. Der Schriftform gleichgestellt sind
+                andere Formen der Übermittlung, die den Nachweis durch Text ermöglichen (Telefax, E-Mail).</p>
+              <h3>4 Leistungen</h3>
+              <h4>4.1 Im Allgemeinen</h4>
+              <p>Die Datahouse AG verpflichtet sich zu einer sachkundigen und sorgfältigen Auftragserfüllung. Sie
+                informiert den Kunden regelmässig über den Fortschritt der Arbeiten und zeigt ihm schriftlich alle
+                Umstände an, welche die vertragsgemässe Erfüllung beeinträchtigen können. Dem Kunden steht jederzeit ein
+                Auskunftsrecht über alle Teile des Auftrags zu.</p>
+              <h4>4.2 Mitarbeiter</h4>
+              <p>Die Datahouse AG setzt nur sorgfältig ausgewählte und gut ausgebildete Mitarbeiter und Mitarbeiterinnen
+                ein. Personen, die in das Erbringen der Dienstleistungen der Datahouse AG involviert sind, bilden das
+                Projektteam. Werden in der Vereinbarung im Hinblick auf das Erbringen der Dienstleistungen Personen
+                namentlich benannt, sorgt die Datahouse AG dafür, dass diese so weit als möglich einbezogen werden. Die
+                Datahouse AG ist berechtigt, diese Personen durch andere Mitarbeiter mit gleichwertigen Fähigkeiten zu
+                ersetzen.</p>
+              <h4>4.3 Kunde</h4>
+              <p>Der Kunde stellt der Datahouse AG zeitgerecht und ohne besondere Aufforderung alle für das Erbringen
+                der Dienstleistungen erforderlichen Unterlagen und Informationen zur Verfügung. Die Datahouse AG geht
+                davon aus, dass die zur Verfügung gestellten Informationen und Unterlagen vollständig und die darin
+                enthaltenen Informationen korrekt sind. Sofern nichts Gegenteiliges vereinbart, ist die Datahouse AG
+                nicht verpflichtet, diese Informationen auf ihre Richtigkeit, Vollständigkeit oder auf allfällige
+                Widersprüche zu überprüfen. Zudem geht die Datahouse AG davon aus, dass die gelieferten Daten,
+                Informationen und Unterlagen im Eigentum des Auftraggebers stehen oder die Lizenzbestimmungen und
+                datenschutzrechtlichen oder gesetzlichen Anforderung zur Nutzung der Daten eingehalten werden. Der Kunde
+                verpflichtet sich, die Datahouse AG über die Lizenzbestimmungen zu informieren. Datahouse lehnt
+                sämtliche Haftungsansprüche Dritter ab.</p>
+              <h4>4.4 Fristen</h4>
+              <p>Die Einhaltung der vereinbarten Frist durch die Datahouse AG setzt die termingerechte Erfüllung aller
+                Leistungen des Kunden voraus, insbesondere die Zustellung der notwendigen Unterlagen.</p>
+              <h3>5 Vergütung</h3>
+              <h4>5.1 Fälligkeiten</h4>
+              <p>Wiederkehrende Vergütungen sind jeweils jährlich im Voraus fällig und werden am Anfang vom Jahr in
+                Rechnung gestellt. Andere Leistungen werden nach Erbringungen der Leistung oder nach Vereinbarung
+                fällig.</p>
+              <h4>5.2 Mehrwertsteuer</h4>
+              <p>Alle angegebenen Preise verstehen sich exkl. der gesetzlich gültigen Mehrwertsteuer. Sollte für unsere
+                Leistungen irrtüm­licherweise keine Mehrwertsteuer in Rechnung gestellt worden sein, obwohl die
+                Leistungen gemäss Schweizer Mehrwertsteuergesetz beziehungsweise unterschiedlicher Interpretation der
+                Eidgenössischen Steuerverwal­tung der Mehrwertsteuer unterliegen, so behält sich Datahouse AG das Recht
+                vor, die Mehrwertsteuer nachträglich zu fakturieren.</p>
+              <h4>5.3 Preisänderungen</h4>
+              <p>Datahouse hat das Recht, Preise für Leistungen und Lizenzen zu ändern. Alle Preisänderungen haben
+                allerdings keinen Einfluss auf laufende Verträge sondern treten erst bei der nächsten
+                Vertragsverlängerung oder einer Änderung des Vertragsumfanges in Kraft.</p>
+              <h4>5.4 Verfall / Verzug</h4>
+              <p>Mit ungenutztem Ablauf der auf der Rechnung angegebenen Zahlungsfrist gerät der Kunde ohne Mahnung in
+                Verzug und schuldet der Datahouse AG nebst dem Rechnungsbetrag den gesetzlichen Verzugszins.</p>
+              <h4>5.5 Verrechnungsverbot</h4>
+              <p>Der Kunde ist nicht berechtigt, fällige Zahlungen zurückzuhalten oder mit Gegenforderungen zu
+                verrechnen, es sei denn, diese Gegenforderungen sind von der Datahouse AG schriftlich und ausdrücklich
+                anerkannt oder in einem rechtskräftigen Urteil festgestellt worden.</p>
+              <h4>5.6 Zusatzleistungen</h4>
+              <p>Leistungen, die über den vereinbarten Leistungsumfang hinausgehen und die mit der Wahrung der
+                Interessen des Kunden und sorgfältiger Auftragserfüllung zusammenhängen, sind durch den Auftraggeber
+                zusätzlich zu bezahlen. Die Datahouse AG informiert den Kunden umgehend über den erweiterten
+                Leistungsumfang und die dadurch anfallenden Kosten.</p>
+              <h3>6 Prüfungs- und Rügepflicht des Kunden</h3>
+              <p>Der Kunde hat die Arbeitsergebnisse unverzüglich zu prüfen und innert 60 Tagen nach deren Erhalt
+                allfällige Beanstandungen der Datahouse AG schriftlich bekannt zu geben. Unterlässt er dies, gelten die
+                Auftragsergebnisse als genehmigt. Im Falle einer berechtigten Rüge bessert die Datahouse AG, sofern
+                angemessen und zweckmässig, das Arbeitsergebnis auf eigene Kosten nach.</p>
+              <h3>7 Eigentumsverhältnisse</h3>
+              <p>Die Datahouse AG ist Eigentümerin des Produkts, Quellcodes sowie des angeeigneten Wissens aus dem
+                Auftrag und darf ohne Einschränkungen frei darüber verfügen.</p>
+              <h3>8 Verfügbarkeit</h3>
+              <p>Die Vertragssoftware steht, sofern nicht anders Vereinbart, an sieben Tagen die Woche, 24 Stunden zur
+                Verfügung. Die durchschnittliche Verfügbarkeit beträgt 99% im Jahresmittel. Während Wartungszeiten
+                besteht keine Verfügbarkeitsgarantie und kein vertraglicher Anspruch auf Nutzung.</p>
+              <h3>9 Datenübermittlung/Datensicherung/Datenaufbewahrung</h3>
+              <p>Die Datahouse AG stellt die sichere Übermittlung der Daten zu Verfügung und übernimmt die Sicherung der
+                übertragenen Daten. Die Datensicherung beinhaltet, sofern nicht anders vereinbart, ein monatliches
+                vollständiges Off-Site-Backup (sofern kleiner als 100GB) und wöchentliche inkrementelle
+                Off-Site-Backups. Datahouse wird seine Server nach branchenüblichen Standards gegen unbefugte Eingriffe
+                schützen. Sobald der Kunde Anzeichen von unrechtmässiger Nutzung feststellt, ist er zur
+                Schadensminderung verpflichtet, die Datahouse AG zu informieren. Für die Einhaltung der gesetzlichen
+                Aufbewahrungsfristen ist allein der Kunde verantwortlich. </p>
+              <h3>10 Instandhaltung der Software</h3>
+              <p>Datahouse übernimmt die Instandhaltung der Vertragsleistung. Dies beinhaltet die Beseitigung von
+                Mängeln, welche wesentlich von der festgelegten Spezifikation abweichen. Weitere, nicht in der
+                Spezifikation aufgeführten, Leistungen können gegen eine gesonderte Vergütung erbracht werden.</p>
+              <h3>11 Support</h3>
+              <p>Für Supportanfragen stellt Datahouse eine Reaktionszeit von einem Werktag ab Zeitpunkt der Feststellung
+                eines Problems oder Eingang einer entsprechenden Meldung.</p>
+              <h3>12 Verwendung der Arbeitsergebnisse / Datenschutz</h3>
+              <p>Die Arbeitsergebnisse sind ausschliesslich für den Gebrauch und zur allgemeinen Information des Kunden
+                bestimmt und dürfen ohne gegenteilige Vereinbarung nicht an Dritte weitergegeben oder zu einem anderen
+                als im Auftrag vereinbarten Zweck verwendet werden. Der Kunde wird darüber hinaus die erforderliche
+                Einwilligung des jeweils Betroffenen einholen, soweit er im Rahmen der Nutzung der Vertragssoftware
+                personenbezogene Daten erhebt, verarbeitet oder nutzt und kein gesetzlicher Erlaubnistatbestand
+                eingreift. Auch im Übrigen wird der Kunde sämtliche datenschutzrechtlichen und sonstigen gesetzlichen
+                Anforderungen beachten. Die Parteien verpflichten sich, die Bestimmungen der schweizerischen
+                Datenschutzgesetzgebung einzuhalten. Sie verpflichten sich, die wirtschaftlich zumutbaren sowie
+                technisch und organisatorisch möglichen Vorkehrungen zu treffen, damit die im Rahmen der
+                Vertragsabwicklung anfallenden Daten gegen unbefugte Kenntnisnahme Dritter wirksam geschützt sind.</p>
+              <h3>13 Abtretungs- / Übertragungsverbot</h3>
+              <p>Weder der Kunde noch die Datahouse AG können die Rechte aus der Vereinbarung ohne Zustimmung der
+                Gegenpartei an einen Dritten abtreten und/oder die Vereinbarung auf einen Dritten übertragen. Wird die
+                Vereinbarung oder die Vergütungsverpflichtung mit Zustimmung aller Beteiligten vom Kunden auf einen
+                Dritten übertragen, so haftet der Kunde gegenüber Datahouse zusätzlich für sämtliche bestehenden und
+                künftigen Ansprüche aus der Vergütung gegenüber dem Dritten selbständig, solidarisch und
+                unbeschränkt.</p>
+              <h3>14 Kündigung des Vertragsverhältnisses</h3>
+              <p>Falls vertraglich nicht anders geregelt, kann das Vertragsverhältnis von beiden Parteien unter
+                Einhaltung einer Kündigungsfrist von drei Monaten jeweils auf Ende Jahr gekündigt werden.</p>
+              <h3>15 Haftung</h3>
+              <h4>15.1 Vertragssoftware</h4>
+              <p>Die Vertragssoftware und insbesondere der darin enthaltene Quellcode werden von der Datahouse AG im
+                Rahmen des Auftrages unter Berücksichtigung geltender Berufsnormen nach bestem Wissen sorgfältig
+                erarbeitet und entwickelt. Obwohl die Datahouse AG die Vertragsleistung sorgfältig entwickelt und
+                aufbereitet, kann sie für ihre Korrektheit nicht garantieren.</p>
+              <h4>15.2 Haftung bei Datenverlust</h4>
+              <p>Datahouse kann für allfällige Datenverluste nicht haftbar gemacht werden.</p>
+              <h4>15.3 Haftungsausschlüsse</h4>
+              <p>Die Datahouse AG haftet nicht für reine Vermögensschäden, insbesondere nicht für entgangenen Gewinn.
+                Die Haftung für leichte Fahrlässigkeit wird wegbedungen.</p>
+              <h4>15.4 Haftungsbegrenzung</h4>
+              <p>Die Haftung der Datahouse AG wird insgesamt begrenzt auf die Höhe des nach Massgabe der Vereinbarung
+                geschuldeten Honorars. Diese Begrenzung gilt für jede Art von Schaden, gestützt auf welchen Rechtsgrund
+                auch immer.</p>
+              <h3>16 Abwerbeverbot</h3>
+              <p>Der Kunde verpflichtet sich, keine Mitarbeiter der Datahouse AG in keiner wie auch immer gearteten Form
+                abzuwerben. Dieses Abwerbeverbot gilt für die Dauer des zwischen der Datahouse AG und dem Kunden
+                bestehenden Vertragsverhältnisses sowie bis ein Jahr nach dessen Beendigung. Für den Fall einer
+                Verletzung dieses Abwerbeverbots verpflichtet sich der Kunde zur Zahlung einer Konventionalstrafe in der
+                Höhe eines Jahresgehalts des abgeworbenen Mitarbeiters. Die Bezahlung der Konventionalstrafe befreit
+                nicht vom Abwerbeverbot. Weiterer Schadenersatz bleibt vorbehalten.</p>
+              <h3>17 Diskretion und Geheimhaltung</h3>
+              <p>Die Datahouse AG verpflichtet sich und damit auch ihre Mitarbeiter sowie beigezogene Dritte, alle nicht
+                allgemein bekannten Daten, Informationen, Dokumente und Unterlagen, die sie im Rahmen der
+                Vertragsbeziehung über den Kunden oder über dessen Geschäftsbeziehungen erfahren hat und die zur
+                Geheimsphäre des Kunden gehören und weder offenkundig noch allgemein zugänglich sind, streng vertraulich
+                zu behandeln und ohne das Einverständnis des Kunden nicht Dritten zugänglich zu machen. Im Weiteren ist
+                die Datahouse AG darauf angewiesen und behält sich vor, die im Rahmen des Auftrages vom Kunden zur
+                Verfügung gestellten Daten für eigene Zwecke frei zu verwenden, sofern für Dritte keine Rückschlüsse auf
+                den Kunden oder seine Vertragspartner möglich sind.</p>
+              <h3>18 Salvatorische Klausel</h3>
+              <p>Sollte eine Bestimmung der zwischen dem Kunden und der Datahouse AG abgeschlossenen Vereinbarung
+                unwirksam oder nichtig werden, so bleibt die Rechtswirksamkeit der übrigen Bestimmungen hiervon
+                unberührt. Stattdessen ist die betreffende Bestimmung durch eine Regelung zu ersetzen, welche die
+                Parteien in guten Treuen gewählt hätten, wäre ihnen die Ungültigkeit der betreffenden Bestimmung bewusst
+                gewesen. Dasselbe gilt im Falle einer Lücke sinngemäss.</p>
+              <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times"></i> Schliessen
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-modal modal fade" id="disclaimerModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+      <div class="close-modal" data-dismiss="modal">
+        <div class="lr">
+          <div class="rl"></div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="modal-body">
+              <h2 class="large-space-bottom">Disclaimer</h2>
+              <p>Die auf dieser Website enthaltenen Daten und Fakten sind ausschliesslich zur Information bestimmt. Der
+                Nutzer trägt das Risiko für deren weitere Verwendung. Die Datahouse AG übernimmt keine Gewähr für die
+                Daten und Informationen auf dieser Website, insbesondere nicht für ihre Verfügbarkeit, Richtigkeit,
+                Kontinuität, Vollständigkeit und Aktualität. Die Datahouse AG behält sich jederzeit das Recht vor, die
+                Daten und Fakten ohne vorherige Ankündigung zurückzunehmen oder zu ändern.</p>
+              <p>Das Urheberrecht für sämtliche auf dieser Website angebotene Produkte, Muster, Publikationen etc. steht
+                ohne ausdrücklichen anderweitigen Vermerk ausschliesslich der Datahouse AG zu. Die Umverteilung oder
+                jede andere Form der Vervielfältigung oder die Übermittlung der Daten von der Website ohne die vorherige
+                schriftliche Zustimmung der Datahouse AG ist verboten. Die Daten und Informationen sind geistiges
+                Eigentum der Datahouse AG und dürfen ohne vorherige schriftliche Erlaubnis der Datahouse AG nicht
+                weiterverwendet werden.</p>
+              <p>Die Weitergabe der Zugangsdaten für die Website an nicht autorisierte Dritte ist untersagt.</p>
+              <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times"></i> Schliessen
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="config.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/jqBootstrapValidation.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/widget.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

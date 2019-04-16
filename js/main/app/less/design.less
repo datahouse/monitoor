@@ -1,0 +1,127 @@
+@import "reset";
+@import "simplegrid";
+@import "mon-font";
+@import "data";
+
+html, body {
+  background-color: @colorBg;
+  color: @colorDefault;
+  line-height: 1.2;
+}
+
+body {
+  font-family: "FranklinGothic", Arial, Helvetica, sans-serif;
+  overflow-y: scroll;
+}
+
+li {
+  list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: @headingSize1;
+}
+
+h2 {
+  font-size: @headingSize2;
+}
+
+h3 {
+  font-size: @headingSize3;
+  line-height: @heading3Lh;
+}
+
+h4 {
+  font-size: @contentSize;
+  line-height: @contentLh;
+}
+
+a, a:link, a:visited, a:hover, a:active, .link {
+  color: @colorLink;
+  cursor: pointer;
+  font-weight: bold;
+  overflow-wrap: break-word;
+  text-decoration: none;
+
+  &.active {
+    color: @colorDefault;
+  }
+
+  &:hover {
+    color: @colorDefault;
+  }
+}
+
+.centered {
+  text-align: center;
+}
+
+.dropdown-menu.modified {
+  top: auto;
+  left: auto;
+}
+
+p.illustrations {
+  text-align: left;
+
+  img {
+    width: 300px;
+  }
+}
+
+.modal-open, .modal-backdrop {
+  overflow-y: scroll;
+}
+
+.browsehappy, .no-javascript {
+  font-size: 2em;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 3000;
+  height: 100%;
+  width: 100%;
+  background-color: #FFFFFF;
+
+  p {
+    color: #000000;
+    margin-left: 10px;
+  }
+}
+
+@import "splash";
+
+div#app {
+  padding: 0 5px;
+
+  @import "form";
+  @import "table";
+  @import "pagination";
+  @import "developer";
+
+  @import "header";
+  @import "navigation";
+  @import "main";
+  @import "footer";
+  @import "diff";
+  @import "flash";
+  @import "animation";
+  @import "slider";
+}
+
+@import "modal";
+@import "nvd3";
+
+@media handheld, only screen and (max-width: @mobileMaxWidth) {
+  p.illustrations {
+    text-align: center;
+
+    img {
+      width: 200px;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+alert_type_id,alert_type_name,alert_type_description,sort_order
+1,SMS,SMS alert,4
+2,Email,Email alert,1
+3,none,no notification,5
+4,Push,Push alert,2
+5,Email_Push,Email and Push alert,3

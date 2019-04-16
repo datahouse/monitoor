@@ -1,0 +1,40 @@
+<section class="static-page">
+  <div class="col-5-12">
+    <p class="illustrations"><img src="images/png/login.png" alt="login icon" /></p>
+  </div>
+  <div class="col-7-12 col-omega">
+    <form class="clearfix" name="loginForm" ng-submit="send()" novalidate>
+      <div class="error" ng-show="error.length > 0">
+        <ul>
+          <li ng-repeat="err in error track by $index" ng-bind="err"></li>
+        </ul>
+      </div>
+      <div class="form">
+        <div class="form-group">
+          <input placeholder="{{ 'login.placeholderEmail' | translate }}" auto-focus class="form-control" id="username" name="username" ng-model="data.username" required="" type="email"/>
+          <p ng-show="loginForm.username.$touched && loginForm.username.$dirty && loginForm.username.$invalid" class="error" translate="login.errorEmail"></p>
+        </div>
+        <div class="form-group">
+          <input class="form-control" id="password" name="password" ng-model="data.password" placeholder="{{ 'login.placeholderPassword' | translate }}" required="" type="password"/>
+          <p ng-show="loginForm.password.$touched && loginForm.password.$dirty && loginForm.password.$invalid" class="error" translate="login.errorPassword"></p>
+        </div>
+        <div class="form-group centered">
+          <label for="stayLoggedIn">
+            <input id="stayLoggedIn" name="stayLoggedIn" ng-model="data.stayLoggedIn" type="checkbox"/> {{ 'login.stayLoggedIn' | translate }}
+          </label>
+        </div>
+        <div class="form-group clearfix">
+          <p class="push-2-12">
+            <button class="col-10-12 mobile-col-10-12" ng-disabled="loginForm.$invalid" translate="login.btnSend"></button>
+          </p>
+        </div>
+      </div>
+    </form>
+    <nav class="vertical-nav centered">
+      <ul>
+        <li><a ng-href="#/passwordRecovery" translate="login.forgotPw"></a></li>
+        <li>{{ 'login.noAccount' | translate }} <a ng-href="#/registration" translate="login.signup"></a></li>
+      </ul>
+    </nav>
+  </div>
+</section>

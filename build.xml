@@ -1,0 +1,89 @@
+<project name="MON" default="build" xmlns:ac="antlib:net.sf.antcontrib">
+  <!-- MAKE YOUR CHANGES HERE - also change project short in the line above -->
+  <!-- also adapt the XML files in the build directory -->
+  <!-- CHANGE HERE - comma separated list of PHP tools in this repository -->
+  <property name="tools" value="php/common,php/job,php/api,python/backend"/>
+  <!-- DO NOT CHANGE ANYTHING BELOW THIS LINE (unless you are really sure what you are doing) -->
+  <property name="version" value="v2"/>
+  <target name="setup" description="">
+    <ac:for list="${tools}" param="tool">
+      <sequential>
+        <ant antfile="build.xml" dir="${basedir}/@{tool}/" target="setup"/>
+      </sequential>
+    </ac:for>
+  </target>
+  <target name="build" description="">
+    <ac:for list="${tools}" param="tool">
+      <sequential>
+        <ant antfile="build.xml" dir="${basedir}/@{tool}/" target="build"/>
+      </sequential>
+    </ac:for>
+  </target>
+  <target name="depend" description="Get libraries and other dependencies">
+    <exec executable="composer">
+      <arg value="install"/>
+      <arg value="--working-dir"/>
+      <arg path="${basedir}/"/>
+    </exec>
+  </target>
+  <target name="update" description="Update libraries and other dependencies">
+    <exec executable="composer">
+      <arg value="update"/>
+      <arg value="--working-dir"/>
+      <arg path="${basedir}/"/>
+    </exec>
+  </target>
+  <target name="build-ci" depends="prepare,depend" description="">
+    <ac:for list="${tools}" param="tool">
+      <sequential>
+        <ant antfile="build.xml" dir="${basedir}/@{tool}/" target="build-ci"/>
+      </sequential>
+    </ac:for>
+    <antcall target="collecthtml">
+      <param name="from" value="php"/>
+      <param name="what" value="build/api"/>
+      <param name="index" value="index.html"/>
+    </antcall>
+    <antcall target="collecthtml">
+      <param name="from" value="php"/>
+      <param name="what" value="build/coverage"/>
+      <param name="index" value="index.html"/>
+    </antcall>
+    <antcall target="collectxml">
+      <param name="from" value="php"/>
+      <param name="what" value="build/logs"/>
+      <param name="file" value="clover.xml"/>
+    </antcall>
+  </target>
+  <target name="clean" description="Cleanup build artifacts">
+    <delete dir="${basedir}/build/api"/>
+    <delete dir="${basedir}/build/coverage"/>
+    <delete dir="${basedir}/build/logs"/>
+  </target>
+  <target name="prepare" depends="clean" description="Prepare for build">
+    <mkdir dir="${basedir}/build/api"/>
+    <mkdir dir="${basedir}/build/coverage"/>
+    <mkdir dir="${basedir}/build/logs"/>
+  </target>
+  <target name="collecthtml" description="collect html">
+    <exec executable="${basedir}/vendor/bin/dhbhtmlcollector">
+      <arg value="${from}"/>
+      <arg value="${what}"/>
+      <arg value="${index}"/>
+    </exec>
+  </target>
+  <target name="collectxml" description="collect xml">
+    <exec executable="${basedir}/vendor/bin/dhbxmlcollector">
+      <arg value="${from}"/>
+      <arg value="${what}"/>
+      <arg value="${file}"/>
+    </exec>
+  </target>
+  <!-- run PHPUnit using configuration from ./build/phpunit.xml -->
+  <target name="phpunit" depends="prepare" description="Run unit tests with PHPUnit">
+    <exec executable="${basedir}/php/api/vendor/bin/phpunit" failonerror="true">
+      <arg value="--configuration"/>
+      <arg path="${basedir}/build/phpunit.xml"/>
+    </exec>
+  </target>
+</project>

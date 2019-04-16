@@ -1,0 +1,17 @@
+{
+  "default": {
+    "type": "postgres",
+    "host": "postgres",
+    "username": "project_mon",
+    "password": "${PROJECT_MON_USER_PASSWORD}",
+    "database": "${POSTGRES_DB}"
+  },
+  "superuser": {
+    "superuser": true,
+    "type": "postgres",
+    "host": "postgres",
+    "username": "postgres",
+    "password": "${POSTGRES_PASSWORD}",
+    "database": "postgres"
+  }
+}

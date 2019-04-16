@@ -1,0 +1,657 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "9ae694dac8ef093b27895bfb23e7d8af",
+    "content-hash": "97a705468956900b98a8a741dafcfcac",
+    "packages": [],
+    "packages-dev": [
+        {
+            "name": "clue/graph",
+            "version": "v0.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/clue/graph.git",
+                "reference": "0336a4d5229fa61a20ccceaeab25e52ac9542700"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.datalan.ch/composer//dist/clue/graph/clue-graph-0336a4d5229fa61a20ccceaeab25e52ac9542700-zip-49b5e0.zip",
+                "reference": "0336a4d5229fa61a20ccceaeab25e52ac9542700",
+                "shasum": "073d19f574d0a28d6847d645458b5419a9095da5"
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "graphp/algorithms": "Common graph algorithms, such as Dijkstra and Moore-Bellman-Ford (shortest path), minimum spanning tree (MST), Kruskal, Prim and many more..",
+                "graphp/graphviz": "GraphViz graph drawing / DOT output"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fhaculty\\Graph\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A mathematical graph/network library written in PHP",
+            "homepage": "https://github.com/clue/graph",
+            "keywords": [
+                "edge",
+                "graph",
+                "mathematical",
+                "network",
+                "vertex"
+            ],
+            "time": "2015-03-07 18:11:31"
+        },
+        {
+            "name": "datahouse/buildcollectors",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "git:lib-dh-php-buildcollectors",
+                "reference": "0c523c981274b47a062fbe23c5e60f19be1ce590"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.datalan.ch/composer//dist/datahouse-buildcollectors-v0.1.0-848130.zip",
+                "reference": "0c523c981274b47a062fbe23c5e60f19be1ce590",
+                "shasum": "0e28e5f0f335291c606637b5beb612a846f70acf"
+            },
+            "bin": [
+                "bin/dhbhtmlcollector",
+                "bin/dhbxmlcollector"
+            ],
+            "type": "library",
+            "license": [
+                "proprietary"
+            ],
+            "description": "build file collector tools",
+            "time": "2015-03-09 12:24:43"
+        },
+        {
+            "name": "datahouse/database",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "git:lib-dh-php-database",
+                "reference": "b2d8b10d4128d3e4b83182364ba0255799933458"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.datalan.ch/composer//dist/datahouse/database/datahouse-database-v1.4.1-47fef6.zip",
+                "reference": "b2d8b10d4128d3e4b83182364ba0255799933458",
+                "shasum": "6c65301be9dd31e058dd462a38a3ff421777061e"
+            },
+            "require": {
+                "clue/graph": "~0.9.0",
+                "datahouse/dice": "1.3.*",
+                "datahouse/json": "0.*",
+                "graphp/graphviz": "~0.2.0",
+                "php": ">=5.5.9",
+                "symfony/console": "3.*",
+                "symfony/filesystem": "3.*",
+                "symfony/yaml": "3.*"
+            },
+            "require-dev": {
+                "datahouse/standards": "2.*",
+                "nikic/php-parser": "1.1.*",
+                "pdepend/pdepend": "2.*",
+                "phploc/phploc": "2.*",
+                "phpmd/phpmd": "2.*",
+                "phpunit/phpunit": "4.*",
+                "sebastian/phpcpd": "2.*",
+                "squizlabs/php_codesniffer": "2.*",
+                "theseer/phpdox": "0.*"
+            },
+            "bin": [
+                "bin/ddb"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Datahouse\\Libraries\\Database\\": "src/",
+                    "Datahouse\\Libraries\\Database\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Datahouse Database Library",
+            "time": "2017-05-10 08:36:15"
+        },
+        {
+            "name": "datahouse/dice",
+            "version": "v1.3.6",
+            "source": {
+                "type": "git",
+                "url": "git:lib-ext-php-dice",
+                "reference": "ac10250353169a4558cfb0661b7221ccf98b0e39"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.datalan.ch/composer//dist/datahouse-dice-v1.3.6-31d37e.zip",
+                "reference": "ac10250353169a4558cfb0661b7221ccf98b0e39",
+                "shasum": "43aa5a2d2416741fbcb9cd37ecf6e5425ea76e60"
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "loader/",
+                    "dice.php"
+                ]
+            },
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Butler",
+                    "email": "tom@r.je"
+                },
+                {
+                    "name": "Daniel Meister (dam)",
+                    "email": "daniel.meister@datahouse.ch"
+                }
+            ],
+            "description": "A minimalist Dependency injection container (DIC) for PHP. Private additions are more tests and a more responsible release cycle.",
+            "homepage": "http://r.je/dice.html",
+            "keywords": [
+                "DI",
+                "Dependency injection",
+                "Dependency injection container",
+                "ioc"
+            ],
+            "time": "2015-03-27 13:51:05"
+        },
+        {
+            "name": "datahouse/json",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "git:lib-dh-php-json",
+                "reference": "fc599c16e1412128694c525d27118f972813fa96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.datalan.ch/composer//dist/datahouse-json-v0.1.0-e583ba.zip",
+                "reference": "fc599c16e1412128694c525d27118f972813fa96",
+                "shasum": "2a00ae39a207870a19c2d4381eef2fcb50146050"
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "datahouse/standards": "2.*",
+                "nikic/php-parser": "1.1.*",
+                "pdepend/pdepend": "2.*",
+                "phploc/phploc": "2.*",
+                "phpmd/phpmd": "2.*",
+                "phpunit/phpunit": "4.*",
+                "sebastian/phpcpd": "2.*",
+                "squizlabs/php_codesniffer": "2.*",
+                "theseer/phpdox": "0.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Datahouse\\Libraries\\JSON\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Datahouse JSON PHP Library",
+            "time": "2015-03-23 22:53:32"
+        },
+        {
+            "name": "graphp/algorithms",
+            "version": "v0.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/graphp/algorithms.git",
+                "reference": "81db4049c35730767ec8f97fb5c4844234b86cef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.datalan.ch/composer//dist/graphp/algorithms/graphp-algorithms-81db4049c35730767ec8f97fb5c4844234b86cef-zip-91a879.zip",
+                "reference": "81db4049c35730767ec8f97fb5c4844234b86cef",
+                "shasum": "1a5a2ac17741371e4460dc0a88e726c9dc15c0c0"
+            },
+            "require": {
+                "clue/graph": "~0.9.0|~0.8.0",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Graphp\\Algorithms\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@lueck.tv"
+                }
+            ],
+            "description": "Common mathematical graph algorithms",
+            "homepage": "https://github.com/graphp/algorithms",
+            "keywords": [
+                "Graph algorithms",
+                "dijkstra",
+                "kruskal",
+                "minimum spanning tree",
+                "moore-bellman-ford",
+                "prim",
+                "shortest path"
+            ],
+            "time": "2015-03-08 10:12:01"
+        },
+        {
+            "name": "graphp/graphviz",
+            "version": "v0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/graphp/graphviz.git",
+                "reference": "2676522dfcd907fd3cb52891ea64a052c4ac4c2a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.datalan.ch/composer//dist/graphp/graphviz/graphp-graphviz-2676522dfcd907fd3cb52891ea64a052c4ac4c2a-zip-d81583.zip",
+                "reference": "2676522dfcd907fd3cb52891ea64a052c4ac4c2a",
+                "shasum": "e6d2baa5e16d9ca14ded5ec62107ded77c3136da"
+            },
+            "require": {
+                "clue/graph": "~0.9.0|~0.8.0",
+                "graphp/algorithms": "~0.8.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Graphp\\GraphViz\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "GraphViz graph drawing for mathematical graph/network",
+            "homepage": "https://github.com/graphp/graphviz",
+            "keywords": [
+                "dot output",
+                "graph drawing",
+                "graph image",
+                "graphviz"
+            ],
+            "time": "2015-03-08 10:30:28"
+        },
+        {
+            "name": "psr/log",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.datalan.ch/composer//dist/psr-log-4ebe3a8bf773a19edfe0a84b6585ba3d401b724d-zip-6434e8.zip",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "shasum": "2cfe5f2b0c811eaf6aa209b12ea49f04c5cb3fdc"
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2016-10-10 12:19:37"
+        },
+        {
+            "name": "symfony/console",
+            "version": "v3.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/console.git",
+                "reference": "8394c8ef121949e8f858f13bc1e34f05169e4e7d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.datalan.ch/composer//dist/symfony/console/symfony-console-8394c8ef121949e8f858f13bc1e34f05169e4e7d-zip-958942.zip",
+                "reference": "8394c8ef121949e8f858f13bc1e34f05169e4e7d",
+                "shasum": "8a75621aa221a970876da3bd1d3819917066f61f"
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/debug": "~2.8|~3.0|~4.0",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "conflict": {
+                "symfony/dependency-injection": "<3.4",
+                "symfony/process": "<3.3"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "~3.3|~4.0",
+                "symfony/dependency-injection": "~3.4|~4.0",
+                "symfony/event-dispatcher": "~2.8|~3.0|~4.0",
+                "symfony/lock": "~3.4|~4.0",
+                "symfony/process": "~3.3|~4.0"
+            },
+            "suggest": {
+                "psr/log": "For using the console logger",
+                "symfony/event-dispatcher": "",
+                "symfony/lock": "",
+                "symfony/process": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Console\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Console Component",
+            "homepage": "https://symfony.com",
+            "time": "2018-01-03 07:37:34"
+        },
+        {
+            "name": "symfony/debug",
+            "version": "v3.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/debug.git",
+                "reference": "603b95dda8b00020e4e6e60dc906e7b715b1c245"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.datalan.ch/composer//dist/symfony/debug/symfony-debug-603b95dda8b00020e4e6e60dc906e7b715b1c245-zip-1d63e9.zip",
+                "reference": "603b95dda8b00020e4e6e60dc906e7b715b1c245",
+                "shasum": "6d2f381e0ba571e2621113cbac379785e89a546f"
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8",
+                "psr/log": "~1.0"
+            },
+            "conflict": {
+                "symfony/http-kernel": ">=2.3,<2.3.24|~2.4.0|>=2.5,<2.5.9|>=2.6,<2.6.2"
+            },
+            "require-dev": {
+                "symfony/http-kernel": "~2.8|~3.0|~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Debug\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Debug Component",
+            "homepage": "https://symfony.com",
+            "time": "2018-01-03 17:14:19"
+        },
+        {
+            "name": "symfony/filesystem",
+            "version": "v3.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/filesystem.git",
+                "reference": "e078773ad6354af38169faf31c21df0f18ace03d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.datalan.ch/composer//dist/symfony/filesystem/symfony-filesystem-e078773ad6354af38169faf31c21df0f18ace03d-zip-9ad921.zip",
+                "reference": "e078773ad6354af38169faf31c21df0f18ace03d",
+                "shasum": "8494da44ae152507c82341cdd2feaf44cee99c2e"
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Filesystem Component",
+            "homepage": "https://symfony.com",
+            "time": "2018-01-03 07:37:34"
+        },
+        {
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "2ec8b39c38cb16674bbf3fea2b6ce5bf117e1296"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.datalan.ch/composer//dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-2ec8b39c38cb16674bbf3fea2b6ce5bf117e1296-zip-60db19.zip",
+                "reference": "2ec8b39c38cb16674bbf3fea2b6ce5bf117e1296",
+                "shasum": "a006845e02e87be7dd5ebe6500c7110475f63fbd"
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2017-10-11 12:05:26"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v3.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "25c192f25721a74084272671f658797d9e0e0146"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.datalan.ch/composer//dist/symfony/yaml/symfony-yaml-25c192f25721a74084272671f658797d9e0e0146-zip-cdb56f.zip",
+                "reference": "25c192f25721a74084272671f658797d9e0e0146",
+                "shasum": "dd0706d7ab1b8258569062d162d9d28860ad29e9"
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8"
+            },
+            "conflict": {
+                "symfony/console": "<3.4"
+            },
+            "require-dev": {
+                "symfony/console": "~3.4|~4.0"
+            },
+            "suggest": {
+                "symfony/console": "For validating YAML files using the lint command"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "https://symfony.com",
+            "time": "2018-01-03 07:37:34"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

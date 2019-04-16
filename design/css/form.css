@@ -1,0 +1,131 @@
+.bookmarklet {
+  background-color: #c6c6c5;
+  color: #f2f2f0;
+  float: left;
+  font-size: 1.25em;
+  margin-left: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+}
+.bookmarklet:first-child {
+  margin-left: 0;
+}
+.bookmarklet a {
+  color: #f2f2f0;
+}
+.bookmarklet a:hover {
+  color: #444444;
+}
+.bookmarklet-top {
+  background-color: #c6c6c5;
+  color: #f2f2f0;
+  float: left;
+  font-size: 1.25em;
+  margin-left: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+  border-bottom-left-radius: 100% 1em;
+  border-bottom-right-radius: 100% 1em;
+}
+.bookmarklet-top:first-child {
+  margin-left: 0;
+}
+.bookmarklet-top a {
+  color: #f2f2f0;
+}
+.bookmarklet-top a:hover {
+  color: #444444;
+}
+.bookmarklet-bottom {
+  background-color: #c6c6c5;
+  color: #f2f2f0;
+  float: left;
+  font-size: 1.25em;
+  margin-left: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+  border-top-left-radius: 100% 1em;
+  border-top-right-radius: 100% 1em;
+}
+.bookmarklet-bottom:first-child {
+  margin-left: 0;
+}
+.bookmarklet-bottom a {
+  color: #f2f2f0;
+}
+.bookmarklet-bottom a:hover {
+  color: #444444;
+}
+.input-style {
+  background-color: #ffffff;
+  border: 1px solid #c6c6c5;
+  border-radius: 4px;
+  font-weight: normal;
+  padding: 5px 3px;
+}
+.btn-hover:hover {
+  background-color: #c6c6c5;
+}
+.btn-style {
+  display: inline-block;
+  margin: 5px 5px 0 0;
+  background-color: #ffffff;
+  border: 1px solid #c6c6c5;
+  border-radius: 4px;
+  font-weight: normal;
+  padding: 5px 3px;
+}
+.btn-style:hover {
+  background-color: #c6c6c5;
+}
+div.form div.form-group {
+  margin-bottom: 25px;
+}
+div.form div.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+div.form div.form-group input,
+div.form div.form-group textarea,
+div.form div.form-group select,
+div.form div.form-group button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+div.form div.form-group .form-control {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #c6c6c5;
+  border-radius: 4px;
+  font-weight: normal;
+  padding: 5px 3px;
+}
+div.form div.form-group .form-control:focus {
+  border: 1px solid #81c6cb;
+}
+div.form div.form-group .btn-style {
+  background-color: #c9e7e9;
+  border-color: #81c6cb;
+}
+div.form div.form-group .btn-style i {
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-left: 5px;
+}
+div.form div.form-group button,
+div.form div.form-group input[type="button"] {
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #c6c6c5;
+  border-radius: 4px;
+  font-weight: normal;
+  padding: 5px 3px;
+}
+div.form div.form-group button:hover,
+div.form div.form-group input[type="button"]:hover {
+  background-color: #c6c6c5;
+}

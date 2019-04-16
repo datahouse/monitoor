@@ -1,0 +1,56 @@
+@import "reset";
+@import "simplegrid";
+
+html, body {
+  background-color: @colorBg;
+  color: @colorDefault;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+h1, h2, h3, h4 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: @headingSize1;
+}
+
+h2 {
+  font-size: @headingSize2;
+}
+
+h3 {
+  font-size: @headingSize3;
+  line-height: @heading3Lh;
+}
+
+h4 {
+  font-size: @contentSize;
+  line-height: @contentLh;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+  color: @colorLink;
+  font-weight: bold;
+  text-decoration: none;
+
+  &.active {
+    color: @colorDefault;
+  }
+
+  &:hover {
+    color: @colorDefault;
+  }
+}
+
+div#app {
+  @import "form";
+  @import "table";
+
+  @import "header";
+  @import "main";
+}

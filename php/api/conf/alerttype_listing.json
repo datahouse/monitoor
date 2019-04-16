@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#alert_list_api",
+  "title": "alerttype list",
+  "method": "GET",
+  "url": "/v1/alerttype/listing/de/",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "alertType": {
+        "id": "#alertType",
+        "stereotype": "struct",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "cycle": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "selected": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "id",
+                "title",
+                "selected"
+              ]
+            }
+          }
+        },
+        "required": [
+          "id",
+          "title"
+        ]
+      }
+    }
+  }
+}

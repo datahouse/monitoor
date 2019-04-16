@@ -1,0 +1,330 @@
+<?xml version="1.0"?>
+<project name="builder-php-docker">
+
+    <dirname property="included.basedir" file="${ant.file.builder-php-docker}"/>
+
+    <property name="docker.basedir" value="${included.basedir}"/>
+    <property name="dockerfile" value="${included.basedir}/Dockerfile.builder"/>
+
+    <script language="javascript">
+      var value = project.getProperty("ant.project.name")
+        .toLowerCase()
+        .replaceAll(":", "-");
+      project.setProperty("project_name_escaped", value);
+    </script>
+    <property name="docker.tag" value="builder-${project_name_escaped}"/>
+  
+    <!-- clean temporary build directories -->
+    <target name="clean" unless="clean.done" description="Cleanup build artifacts">
+        <delete dir="${basedir}/build/api"/>
+        <delete dir="${basedir}/build/coverage"/>
+        <delete dir="${basedir}/build/logs"/>
+        <delete dir="${basedir}/build/pdepend"/>
+        <delete dir="${basedir}/build/phpdox"/>
+        <property name="clean.done" value="true"/>
+    </target>
+
+    <!-- really delete all build artifacts -->
+    <target name="distclean" depends="clean"
+            description="Really cleanup all build artifacts">
+        <!-- delete auto-generated files -->
+        <delete dir="${basedir}/src/Types/Gen"/>
+
+        <!-- delete the vendor directory created by composer-install -->
+        <delete dir="${basedir}/vendor" />
+
+        <!-- delete the various stamp files -->
+        <delete file=".stamp.docker-image"/>
+        <delete file=".stamp.composer-install"/>
+
+        <property name="clean.done" value="true"/>
+    </target>
+
+    <condition property="docker-build-image.skip">
+      <uptodate targetfile=".stamp.docker-image">
+        <srcfiles dir="${docker.basedir}">
+          <include name="${dockerfile}"/>
+          <include name="docker/krb5.conf"/>
+        </srcfiles>
+      </uptodate>
+    </condition>
+
+    <target name="docker-build-image"
+            description="Creates the docker build image"
+            unless="docker-build-image.skip">
+      <echo>${docker.basedir}</echo>
+      <exec executable="docker" failonerror="true">
+        <arg value="build"/>
+        <arg value="--file=${dockerfile}"/>
+        <arg value="--tag=${docker.tag}"/>
+        <arg line="--build-arg username=${user.name}"/>
+        <arg line="--build-arg uid=${uid}"/>
+        <arg line="--build-arg gid=${gid}"/>
+        <arg path="${docker.basedir}"/>
+      </exec>
+      <touch file=".stamp.docker-image"/>
+    </target>
+
+    <target name="run-within-docker"
+            depends="docker-build-image"
+            description="A parameterizable task to run a command within the
+                         docker build container">
+      <!-- Note: this sets this propety only if it's not already
+           defined. -->
+      <property name="failonerror" value="false"/>
+      <exec executable="docker" failonerror="${failonerror}">
+        <arg value="run"/>
+        <!-- remove image after termination -->
+        <arg value="--rm"/>
+        <!-- mount the ssh keys and config of the local user .. -->
+        <arg value="--volume"/>
+        <arg value="${env.HOME}/.ssh:${env.HOME}/.ssh"/>
+        <!-- .. and the current kerberos tickets -->
+        <arg value="--volume"/>
+        <arg value="/tmp/krb5cc_${uid}:/tmp/krb5cc_${uid}"/>
+        <!-- the entire home directory -->
+        <arg value="--volume"/>
+        <arg value="${env.HOME}:${env.HOME}"/>
+        <!-- run as the 'me' user with the same UID as the user invoking ant -->
+        <arg value="--user"/>
+        <arg value="${user.name}"/>
+        <!-- the image to use, created in the target above -->
+        <arg value="${docker.tag}"/>
+        <!-- the actual command to run within the container -->
+        <arg line="${command}"/>
+      </exec>
+    </target>
+
+    <!-- install/update dependencies and generate autoload via composer -->
+    <condition property="composer-install.skip">
+      <uptodate targetfile=".stamp.composer-install" srcfile="composer.json" />
+    </condition>
+
+    <target name="composer-install"
+            unless="composer-install.skip">
+      <antcall target="run-within-docker">
+        <param name="failonerror" value="true"/>
+        <param name="command"
+               value="composer install --working-dir ${basedir}"/>
+      </antcall>
+      <touch file=".stamp.composer-install"/>
+    </target>
+
+    <target name="composer-update">
+      <antcall target="run-within-docker">
+        <param name="failonerror" value="true"/>
+        <param name="command"
+               value="composer update --working-dir ${basedir}"/>
+      </antcall>
+    </target>
+
+    <target name="generate"
+            depends="composer-install">
+      <antcall target="run-within-docker">
+        <param name="command"
+               value="${bindir}/phpunit
+                      --exclude=vendor
+                      ${basedir}/tests/GeneratorTest.php"/>
+      </antcall>
+    </target>
+
+    <target name="config"
+            depends="generate, composer-install"
+            description="configure project instance">
+    </target>
+    <target name="config-ci"
+            depends="generate, composer-install"
+            description="configure project instance (default instance name)">
+    </target>
+
+    <!-- create temporary build directores -->
+    <target name="prepare" unless="prepare.done" depends="clean" description="Prepare for build">
+        <mkdir dir="${basedir}/build/api"/>
+        <mkdir dir="${basedir}/build/coverage"/>
+        <mkdir dir="${basedir}/build/logs"/>
+        <mkdir dir="${basedir}/build/pdepend"/>
+        <mkdir dir="${basedir}/build/phpdox"/>
+        <mkdir dir="${basedir}/src/Types/Gen"/>
+        <property name="prepare.done" value="true"/>
+    </target>
+
+    <!-- check all files for PHP syntax errors -->
+    <target name="lint"
+            depends="docker-build-image"
+            description="Perform syntax check of sourcecode files">
+      <!--
+          The wrapper here is ugly, but I couldn't figure how to
+          invoke a sub-task for N files in parallel.
+
+          We still want ant to check for modified files. There must be
+          a better way.  Maybe there's a better way
+      -->
+      <apply executable="${included.basedir}/ant-php-lint-wrapper.sh"
+             failonerror="true" relative="true"
+             parallel="true" maxparallel="500">
+        <arg path="${basedir}"/>
+        <arg value="${docker.tag}"/>
+        <fileset dir="${basedir}">
+          <include name="**/*.php"/>
+          <exclude name="vendor/**"/>
+          <modified/>
+        </fileset>
+      </apply>
+    </target>
+
+    <!-- run PHPLOC calculating lines of code -->
+    <target name="phploc" depends="composer-install"
+            description="Measure project size using PHPLOC and print human
+                         readable output. Intended for usage on the command
+                         line.">
+      <antcall target="run-within-docker">
+        <param name="command"
+               value="${bindir}/phploc
+                      --count-tests
+                      --exclude=vendor
+                      ${basedir}"/>
+      </antcall>
+    </target>
+    <target name="phploc-ci" depends="prepare, composer-install"
+            description="Measure project size using PHPLOC and log result in
+                         CSV and XML format. Intended for usage within a
+                         continuous integration environment.">
+      <antcall target="run-within-docker">
+        <param name="command"
+               value="${bindir}/phploc
+                      --count-tests
+                      --log-csv=${basedir}/build/logs/phploc.csv
+                      --log-xml=${basedir}/build/logs/phploc.xml
+                      --exclude=vendor
+                      ${basedir}"/>
+      </antcall>
+    </target>
+    
+    <!-- run PDEPEND to generate the dependency graph -->
+    <target name="pdepend" depends="composer-install"
+            description="Calculate software metrics using PHP_Depend and log
+                         result in XML format. Intended for usage within a
+                         continuous integration environment.">
+      <antcall target="run-within-docker">
+        <param name="command"
+               value="${bindir}/pdepend
+                      --jdepend-xml=${basedir}/build/logs/jdepend.xml
+                      --jdepend-chart=${basedir}/build/pdepend/dependencies.svg
+                      --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg
+                      --ignore=vendor
+                      ${basedir}"/>
+      </antcall>
+    </target>
+    
+    <!-- run PHPMD for PHP mess detection -->
+    <target name="phpmd"
+            description="Perform project mess detection using PHPMD and print
+                         human readable output. Intended for usage on the
+                         command line before committing.">
+      <antcall target="run-within-docker">
+        <param name="command"
+               value="${bindir}/phpmd
+                      ${basedir}
+                      text
+                      ${basedir}/vendor/datahouse/standards/phpmd.xml
+                      --exclude vendor"/>
+      </antcall>
+    </target>
+    <target name="phpmd-ci" depends="prepare, composer-install"
+            description="Perform project mess detection using PHPMD and log
+                         result in XML format. Intended for usage within a
+                         continuous integration environment.">
+      <antcall target="run-within-docker">
+        <param name="command"
+               value="${bindir}/phpmd
+                      ${basedir}
+                      xml
+                      ${basedir}/vendor/datahouse/standards/phpmd.xml
+                      --reportfile
+                      ${basedir}/build/logs/pmd.xml
+                      --exclude vendor"/>
+      </antcall>
+    </target>
+    
+    <!-- run PHPCS the PHP CodeSniffer to ensure compatibility with the PSR-2 standard -->
+    <target name="phpcs"
+            description="Find coding standard violations using PHP_CodeSniffer
+                         and print human readable output. Intended for usage
+                         on the command line before committing.">
+      <antcall target="run-within-docker">
+        <param name="command"
+               value="${bindir}/phpcs
+                      --standard=${basedir}/vendor/datahouse/standards/phpcs.xml
+                      --extensions=php
+                      --ignore=vendor
+                      ${basedir}"/>
+      </antcall>
+    </target>
+    <target name="phpcs-ci" depends="prepare, composer-install"
+            description="Find coding standard violations using PHP_CodeSniffer
+                         and log result in XML format. Intended for usage
+                         within a continuous integration environment.">
+      <antcall target="run-within-docker">
+        <param name="command"
+               value="${bindir}/phpcs
+                      --standard=${basedir}/vendor/datahouse/standards/phpcs.xml
+                      --report=checkstyle
+                      --report-file=${basedir}/build/logs/checkstyle.xml
+                      --extensions=php
+                      --ignore=vendor
+                      ${basedir}"/>
+      </antcall>
+    </target>
+    
+    <!-- run PHPCPD to find duplicate code -->
+    <target name="phpcpd" depends="composer-install"
+            description="Find duplicate code using PHPCPD and print human
+                         readable output. Intended for usage on the command
+                         line before committing.">
+
+      <antcall target="run-within-docker">
+        <param name="command"
+               value="${bindir}/phpcpd
+                      ${basedir}
+                      --exclude=vendor"/>
+      </antcall>
+    </target>
+    <target name="phpcpd-ci" depends="prepare, composer-install"
+            description="Find duplicate code using PHPCPD and log result in
+                         XML format. Intended for usage within a continuous
+                         integration environment.">
+      <antcall target="run-within-docker">
+        <param name="command"
+               value="${bindir}/phpcpd
+                      --log-pmd
+                      ${basedir}/build/logs/pmd-cpd.xml
+                      ${basedir}
+                      --exclude=vendor"/>
+      </antcall>
+    </target>
+    
+    <!-- run PHPUnit using configuration from ./build/phpunit.xml -->
+    <target name="phpunit" depends="prepare, composer-install"
+            description="Run unit tests with PHPUnit">
+      <antcall target="run-within-docker">
+        <param name="failonerror" value="true"/>
+        <param name="command"
+               value="/bin/bash -c '(cd ${basedir};
+                      ${bindir}/phpunit
+                      --configuration
+                      build/phpunit.xml)'"/>
+      </antcall>
+    </target>
+    
+    <!-- run PHPdox using configuration from ./build/phpdox.xml -->
+    <target name="phpdox"
+            depends="composer-install, phploc-ci, phpcs-ci, phpmd-ci"
+            description="Generate project documentation using phpDox">
+      <antcall target="run-within-docker">
+        <param name="failonerror" value="true"/>
+        <param name="command"
+               value="/bin/bash -c '(cd ${basedir}/build;
+                       ${bindir}/phpdox)'"/>
+      </antcall>
+    </target>
+</project>

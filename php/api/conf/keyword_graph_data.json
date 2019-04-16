@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#keyword_graph_data",
+  "title": "data for keyword graph",
+  "method": "GET",
+  "url": "/api/v1/report/keywords?urlGroupId=<id>",
+  "type": "object",
+  "properties": {
+    "keywordGraphData": {
+      "id": "#keywordGraphData",
+      "stereotype": "struct",
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "y": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "y"
+      ]
+    }
+  }
+}

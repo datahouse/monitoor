@@ -1,0 +1,107 @@
+<mon-main-navigation></mon-main-navigation>
+<div class="{{ mainCss }}">
+  <h1 translate="urlGroups.contentTitle"></h1>
+  <p class="description" translate="urlGroups.description"></p>
+  <div class="clearfix form form-group">
+    <!--<div class="col-6-12 col-alpha">
+      <select class="form-control" name="actions">
+        <option value="" translate="urlGroups.selectDefaultAction"></option>
+      </select>
+    </div>-->
+    <div class="btn-full col-omega">
+      <button type="button" ng-click="closeAll()" class="btn-full btn-secondary" translate="urlGroups.btnCloseAll"></button>
+    </div>
+  </div>
+  <accordion close-others="false" class="clearfix">
+    <accordion-group ng-repeat="group in groups track by $index" id="group{{ group.id }}" is-open="open[group.id]" is-disabled="editMode[group.id]">
+      <accordion-heading>
+        <div class="form-inline clearfix">
+          <div class="col-alpha col-8-12 mobile-col-8-12">
+            <div class="url-group" ng-hide="editMode[group.id]" dnd-list="group.urls" dnd-drop="drop(group, item)"><i  ng-class="{'fa': true, 'fa-chevron-right': !open[group.id], 'fa-chevron-down': open[group.id]}" aria-hidden="true"></i> {{ group.title }}</div>
+            <div ng-show="editMode[group.id]" class="form-inline-group">
+              <input ng-init="edit[group.id].title = group.title" onmousedown="return false" onmouseup="this.focus()" ng-model="edit[group.id].title" class="nodrag-dnd form-control" type="text" required/><button ng-disabled="!edit[group.id].title.length" ng-click="editSend(group.id, $index)" translate="urlGroups.btnGroupSave"></button>
+            </div>
+          </div>
+          <div class="col-4-12 mobile-col-4-12 col-omega actions no-wrap">
+            <span ng-if="group.favorites"><i class="fa fa-heart"></i></span>
+            <span ng-if="group.alertId == null && !group.favorites" ng-click="goto('/alerts/add/' + group.id)" tooltip-enable="enableTooltip" tooltip="{{ 'urlGroups.btnAddAlert' | translate }}"><i class="fa fa-bell-slash"></i></span>
+            <span ng-if="group.alertId != null && !group.favorites" ng-click="goto('/alerts/edit/' + group.alertId)" tooltip-enable="enableTooltip" tooltip="{{ 'urlGroups.tooltipEditAlert' | translate }}"><i class="active fa fa-bell"></i></span>
+            <i ng-if="group.subscribed" ng-click="goto('/subscribe')" tooltip-enable="enableTooltip" tooltip="{{ 'urlGroups.tooltipEditSubscribe' | translate }}" class="fa fa-bookmark"></i>
+            <i ng-show="!group.readOnly" ng-click="toggleEdit(group.id, $event)" class="fa fa-pencil" tooltip-enable="enableTooltip" tooltip="{{ 'urlGroups.tooltipEditGroup' | translate }}"></i>
+            <i ng-show="!group.readOnly" ng-hide="group.urls.length > 0" ng-click="confirmRemoveGroup(group, $index, $event)" class="remove-action fa fa-close" tooltip-enable="enableTooltip" tooltip="{{ 'urlGroups.tooltipRemoveGroup' | translate }}"></i>
+          </div>
+        </div>
+      </accordion-heading>
+      <p class="no-item" ng-hide="group.urls.length > 0" translate="urlGroups.noEntries"></p>
+      <ul dnd-list="group.urls" dnd-disable-if="group.readOnly" class="dragable" dnd-drop="drop(group, item)">
+        <li class="clearfix" ng-repeat="item in group.urls track by $index"
+            dnd-draggable="item"
+            dnd-dragstart="draggstart(group)"
+            dnd-moved="moved(group.urls, $index)"
+            dnd-disable-if="group.readOnly"
+            dnd-effect-allowed="move">
+            <span class="col-5-12 mobile-col-5-12 col-alpha"><!--<input ng-disabled="group.readOnly" type="checkbox" name="toggle" value=""/>--> {{ item.title }}</span>
+            <span class="col-5-12 mobile-col-4-12 compact-text"><a ng-show="!item.external" ng-href="{{ item.url }}">{{ item.url }}</a></span>
+            <div class="col-2-12 mobile-col-3-12 col-omega actions no-wrap" ng-show="!group.readOnly && !item.external">
+              <span dropdown ng-init="dropDownOpen[item.id] = false" is-open="dropDownOpen[item.id]">
+                <a href id="item{{ item.id }}" dropdown-toggle tooltip-enable="enableTooltip" tooltip="{{ 'urlGroups.tooltipMoveTo' | translate }}"><i class="fa fa-ellipsis-v"></i></a>
+                <ul class="dropdown-menu modified" aria-labelledby="item{{ item.id }}">
+                  <li ng-repeat="groupList in groups" ng-if="groupList.id != group.id && !groupList.readOnly"><a ng-bind="groupList.title" ng-click="moveTo(group.id, groupList.id, item)" href></a></li>
+                </ul>
+              </span>
+              <a href="#/urls/edit/{{ item.id }}"><i class="fa fa-pencil" tooltip-enable="enableTooltip" tooltip="{{ 'urlGroups.tooltipEditUrl' | translate }}"></i></a>
+              <span class="link" ng-click="confirmRemoveUrl(item.id, $parent.$index, $index, $event)" tooltip-enable="enableTooltip" tooltip="{{ 'urlGroups.tooltipRemoveUrl' | translate }}"><i class="remove-action fa fa-close"></i></span>
+            </div>
+        </li>
+      </ul>
+    </accordion-group>
+    <accordion-group is-disabled="true" ng-show="addNewGroup">
+      <accordion-heading>
+        <div class="form-inline clearfix">
+          <div class="dragable col-alpha col-8-12">
+            <div class="form-inline-group">
+              <label class="new-group" translate="urlGroups.newGroup"></label> <input onmousedown="return false" onmouseup="this.focus()" ng-model="data.title" class="form-control" type="text" required/><button type="button" ng-disabled="!data.title.length" ng-click="addSend()" translate="urlGroups.btnNewGroup"></button>
+            </div>
+          </div>
+        </div>
+      </accordion-heading>
+    </accordion-group>
+  </accordion>
+  <div class="clearfix form form-group">
+    <!--<div class="col-6-12 col-alpha">
+      <select class="form-control" name="actions">
+        <option value="" translate="urlGroups.selectDefaultAction"></option>
+      </select>
+    </div>-->
+    <div class="btn-full col-omega">
+      <button type="button" ng-click="closeAll()" class="btn-full btn-secondary" translate="urlGroups.btnCloseAll"></button>
+    </div>
+  </div>
+  <div class="clearfix form form-group">
+    <div>
+      <a class="btn-style-main btn-full" href="#/urls/add" translate="urlGroups.btnAddUrl"></a>
+    </div>
+  </div>
+</div>
+<script type="text/ng-template" id="urlGroupsRemoveUrlConfirm.html">
+  <div class="modal-header">
+    <h3 class="modal-title" translate="urlGroups.confirmRemoveUrl"><h3>
+  </div>
+  <!--<div class="modal-body">
+  </div>-->
+  <div class="modal-footer">
+    <button class="btn btn-default" ng-click="cancel()" translate="init.confirmCancel"></button>
+    <button class="btn-style-main" ng-click="ok()" translate="init.confirmYes"></button>
+  </div>
+</script>
+<script type="text/ng-template" id="urlGroupsRemoveGroupConfirm.html">
+  <div class="modal-header">
+    <h3 class="modal-title" translate="urlGroups.confirmRemoveGroup"><h3>
+  </div>
+  <!--<div class="modal-body">
+  </div>-->
+  <div class="modal-footer">
+    <button class="btn btn-default" ng-click="cancel()" translate="init.confirmCancel"></button>
+    <button class="btn-style-main" ng-click="ok()" translate="init.confirmYes"></button>
+  </div>
+</script>

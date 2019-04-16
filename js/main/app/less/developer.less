@@ -1,0 +1,101 @@
+@import "data";
+
+section.developer {
+
+  article {
+    border-top: 1px solid @colorBorder;
+    padding: 20px 0;
+
+    h2, h3 {
+      margin: 50px 0 15px;
+
+      &:first-child {
+        margin-top: 20px;
+      }
+    }
+
+    h2 {
+      color: @colorLink;
+    }
+
+    p {
+      margin-top: 5px;
+    }
+
+    table.table {
+      border-style: none;
+      margin: 5px 0;
+
+      th {
+        border-top-style: none;
+        font-weight: normal;
+        padding-top: 5px;
+      }
+
+      &.t3 {
+        th, td {
+          &:nth-child(n) {
+            width: 15%;
+          }
+          &:nth-child(3) {
+            width: 70%;
+          }
+        }
+      }
+
+      &.t6 {
+        th, td {
+          &:nth-child(n) {
+            width: 15%;
+          }
+          &:nth-child(6) {
+            width: 25%;
+          }
+        }
+      }
+    }
+
+    table.info {
+      width: 80%;
+
+      td {
+        border-bottom: 1px solid @colorBorder;
+        padding: 20px 0;
+        width: 50%;
+      }
+    }
+
+    pre {
+      background-color: @colorInputBg;
+      border: 1px solid @colorBorder;
+      border-radius: 4px;
+      outline: none;
+      margin: 15px 0;
+      padding: 10px;
+    }
+
+    div.code {
+      background-color: @colorInputBg;
+      border: 1px solid @colorBorder;
+      border-radius: 4px;
+      margin: 15px 0;
+      padding: 10px;
+
+      code {
+        background-color: @colorInputBg;
+        color: @colorDefault;
+
+        &.highlight {
+          color: @colorLink;
+        }
+      }
+    }
+  }
+
+  pre.pretty-json span.string,
+  pre.pretty-json span.number,
+  pre.pretty-json span.boolean,
+  pre.pretty-json span.null { color: @colorGradiantStart; }
+  pre.pretty-json span.key { color: @colorGradiantStop; }
+  pre.pretty-json span.sep { color: @colorDefault; }
+}

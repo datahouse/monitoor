@@ -1,0 +1,8 @@
+{
+    "type": "postgres",
+    "host": "$DB_HOST",
+	"port": 5432,
+    "username": "$DB_USERNAME",
+    "password": "$DB_PASSWORD",
+	"database": "project_mon"
+}

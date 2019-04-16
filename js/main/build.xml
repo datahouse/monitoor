@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<project name="MON:main" default="build">
+
+    <!-- MAKE YOUR CHANGES HERE - also change project short in the line above -->
+    <!-- also adapt the XML files in the build directory -->
+
+    <!-- DO NOT CHANGE ANYTHING BELOW THIS LINE (unless you are really sure what you are doing) -->
+    <property name="version" value="v2" />
+
+    <!-- list/generate support and helper variables -->
+    <property name="bindir" value="${basedir}/node_modules/"/>
+
+    <!-- default targets -->
+    <target name="build" depends="build:all" description="building project"/>
+    <target name="build-ci" depends="build:all" description="building project"/>
+    <target name="cleanBuild" depends="clean, build:all" description="clean building project"/>
+
+    <target name="setup" description="download all dependencies">
+        <exec executable="npm" failonerror="true">
+            <arg value="install"/>
+        </exec>
+        <exec executable="${bindir}bower/bin/bower" failonerror="true">
+            <arg value="install"/>
+        </exec>
+    </target>
+
+    <!-- clean temporary build directories -->
+    <target name="clean" unless="clean.done" description="Cleanup build artifacts">
+        <exec executable="${bindir}gulp/bin/gulp.js" failonerror="true">
+            <arg value="clean"/>
+        </exec>
+        <property name="clean.done" value="true"/>
+    </target>
+
+    <target name="purge" unless="purge.done" description="Remove vendor">
+        <exec executable="${bindir}gulp/bin/gulp.js" failonerror="true">
+            <arg value="clean:vendor"/>
+        </exec>
+        <property name="purge.done" value="true"/>
+    </target>
+
+    <target name="update" description="Update libraries and other dependencies">
+      <exec executable="npm" failonerror="true">
+        <arg value="update"/>
+      </exec>
+        <exec executable="${bindir}bower/bin/bower" failonerror="true">
+            <arg value="update"/>
+        </exec>
+    </target>
+    <target name="config" description="configure project instance">
+    </target>
+    <target name="config-ci" description="configure project instance (default instance name)">
+    </target>
+
+    <!-- check all files for PHP syntax errors -->
+    <target name="lint" description="Perform syntax check of sourcecode files">
+        <exec executable="${bindir}gulp/bin/gulp.js" failonerror="true">
+            <arg value="checkstyle"/>
+        </exec>
+        <exec executable="npm" failonerror="true">
+            <arg value="install"/>
+        </exec>
+    </target>
+
+    <target name="css" description="compile less to css and minified">
+        <exec executable="${bindir}gulp/bin/gulp.js" failonerror="true">
+            <arg value="css"/>
+        </exec>
+        <exec executable="npm" failonerror="true">
+            <arg value="install"/>
+        </exec>
+    </target>
+
+    <target name="build:all" description="build project">
+        <exec executable="${bindir}gulp/bin/gulp.js" failonerror="true">
+            <arg value="build:all"/>
+        </exec>
+        <exec executable="npm" failonerror="true">
+            <arg value="install"/>
+        </exec>
+    </target>
+
+    <target name="test" description="start unit tests">
+        <exec executable="${bindir}gulp/bin/gulp.js" failonerror="true">
+            <arg value="test"/>
+        </exec>
+        <exec executable="npm" failonerror="true">
+            <arg value="install"/>
+        </exec>
+    </target>
+
+    <target name="watch:css" description="watch only css">
+        <exec executable="${bindir}gulp/bin/gulp.js" failonerror="true">
+            <arg value="watch:css"/>
+        </exec>
+        <exec executable="npm" failonerror="true">
+            <arg value="install"/>
+        </exec>
+    </target>
+
+    <target name="watch:js" description="watch only javascript">
+        <exec executable="${bindir}gulp/bin/gulp.js" failonerror="true">
+            <arg value="watch:app"/>
+        </exec>
+        <exec executable="npm" failonerror="true">
+            <arg value="install"/>
+        </exec>
+    </target>
+
+    <target name="watch" description="css and javascript watcher">
+        <exec executable="${bindir}gulp/bin/gulp.js" failonerror="true">
+            <arg value="watch"/>
+        </exec>
+        <exec executable="npm" failonerror="true">
+            <arg value="install"/>
+        </exec>
+    </target>
+
+</project>

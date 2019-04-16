@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#frequency_list_api",
+  "title": "frequency list",
+  "method": "GET",
+  "url": "/v1/frequency/listing/de/",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "frequency": {
+        "id": "#frequency",
+        "stereotype": "struct",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+<mon-main-navigation></mon-main-navigation>
+<div class="{{ mainCss }}">
+  <h1 translate="dashboard.title" ng-show="showDashboardHead"></h1>
+  <section ng-show="showDashboardHead">
+    <article class="clearfix separator">
+      <header>
+        <h2 translate="dashboard.add.title"></h2>
+      </header>
+      <form class="form" ng-enter="urlSend()" ng-submit="urlSend()" name="quickUrl" novalidate>
+        <div class="form-group">
+          <div class="col-5-12 mobile-col-6-12">
+            <input class="form-control" type="text" name="quickUrl" id="quickUrl" ng-model="quickUrlData.url" required placeholder="{{ 'dashboard.placeholderUrl' | translate }}" ng-pattern="/\(?(?:(http|https|ftp):\/\/)?(?:((?:[^\W\s]|\.|-|[:]{1})+)@{1})?((?:www.)?(?:[^\W\s]|\.|-)+[\.][^\W\s]{2,4}|localhost(?=\/)|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?::(\d*))?([\/]?[^\s\?]*[\/]{1})*(?:\/?([^\s\n\?\[\]\{\}\#]*(?:(?=\.)){1}|[^\s\n\?\[\]\{\}\.\#]*)?([\.]{1}[^\s\?\#]*)?)?(?:\?{1}([^\s\n\#\[\]]*))?([\#][^\s\n]*)?\)?/">
+            <p ng-show="quickUrl.quickUrl.$touched && quickUrl.quickUrl.$dirty && quickUrl.quickUrl.$invalid" class="error" translate="dashboard.quickUrl.errorUrl"></p>
+          </div>
+          <div class="input-with-icon col-5-12 mobile-col-6-12 mobile-col-omega">
+            <ui-select ng-model="quickUrlData.group" theme="bootstrap" required reset-search-input="true">
+              <ui-select-match placeholder="{{ 'dashboard.placehoderGroup' | translate }}">
+                <span>{{ $select.selected.title || $select.search }}</span>
+              </ui-select-match>
+              <ui-select-choices ui-disable-choice="urlGroup.readOnly" repeat="urlGroup in (urlGroups | filter: { title: $select.search })" refresh="refreshResults($select)" refresh-delay="0">
+                {{ urlGroup.title }}
+              </ui-select-choices>
+            </ui-select>
+            <p ng-show="quickUrl.quickGroup.$touched && quickUrl.quickGroup.$dirty && quickUrl.quickGroup.$invalid" class="error" translate="dashboard.quickUrl.errorGroup"></p>
+          </div>
+          <div class="col-2-12 col-omega m-col-omega"><button ng-disabled="quickUrl.$invalid" class="btn-full" name="button">Hinzufügen</button></div>
+        </div>
+      </form>
+    </article>
+  </section>
+  <section ng-show="isDemo">
+    <header>
+      <h2 translate="dashboard.demoTitle"></h2>
+    </header>
+    <p translate="dashboard.demoDescription"></p>
+  </section>
+  <p ng-show="dataLoaded && alerts.length < 1" translate="dashboard.noChanges"></p>
+  <div ng-show="dataLoaded && alerts.length > 0">
+    <section ng-show="showGraph">
+      <article class="clearfix separator">
+        <header>
+          <h2 translate="dashboard.contentTitleActivity"></h2>
+        </header>
+        <nvd3 class="dashboard-activity-graph" options="optionsActivity" data="dataActivity" api="apiActivity" config="configActivity"></nvd3>
+      </article>
+    </section>
+    <h2 class="underline" translate="dashboard.contentTitleChanges"></h2>
+    <p ng-show="alerts.length == 0" translate="dashboard.noChanges"></p>
+    <section infinite-scroll='nextPage()' infinite-scroll-distance='0'>
+      <article class="clearfix separator separator-diff" ng-repeat="item in alerts">
+        <header>
+          <h2 class="diff-title">
+            <a ng-if="!item.url.external && !isDemo" ng-href="{{ item.alternativeUrl || item.url.url }}" ng-bind="item.url.title"></a>
+            <span class="diff-title" ng-if="item.url.external && !isDemo" ng-bind="item.url.title"></span>
+            <button class="btn btn-style-main toggle-old" ng-init="toggleOldValue[$index] = true" type="text" ng-click="toggleOld($index, $event)" tooltip-enable="enableTooltip" tooltip="{{ toggleOldValue[$index]?'dashboard.tooltipShowRemovedText':'dashboard.tooltipHideRemovedText' | translate }}"><i ng-class="{ 'fa': true, 'fa-plus': toggleOldValue[$index], 'fa-minus': !toggleOldValue[$index] }"></i></button>
+          </h2>
+          <p>
+            <span ng-if="isDemo" ng-bind="item.urlGroup.title"></span>
+            <span class="diff-external-link nohover" ng-if="!item.url.external" ng-href="{{ item.alternativeUrl || item.url.url }}" ng-bind="item.url.url"></span>
+          </p>
+        </header>
+        <div>
+          <div class="textdiff">
+            <span class="datediff" ng-bind="item.change.changeDate"></span>
+            <div ng-show="toggleOldValue[$index]" ng-bind-html="item.change.diffPreview"></div>
+            <div ng-hide="toggleOldValue[$index]" ng-bind-html="item.change.diffHtml"></div>
+            <span class="datediff" ng-show="item.change.matchedKeywords.length > 0">Keywords: <span ng-repeat="keyword in item.change.matchedKeywords">{{ keyword }}<span ng-if="!$last">,</span> </span></span>
+          </div>
+          <div class="social-media-share">
+            <div class="rating diff-rating">
+            <span ng-class="{ unrated: true }">
+              <i ng-repeat="index in [5, 4, 3, 2, 1]" ng-class="{ fa: true, 'fa-star': true, colorized: index <= item.rating, 'link': true }" ng-click="rate(item, item.alert.id, item.change.id, index)" tooltip-enable="enableTooltip" tooltip="{{ 'dashboard.rate' + index | translate }}"></i>
+            </span>
+            </div>
+            <span ng-class="{'diff-like': true, 'liked': item.change.favorite}" tooltip-enable="enableTooltip" ng-click="toggleFavorite($index, item.change.id)" tooltip="{{ item.change.favorite?'dashboard.tooltipRemoveFavorite':'dashboard.tooltipAddFavorite' | translate }}"><i class="fa fa-heart"></i></span>
+            <span class="diff-fb" tooltip="{{ 'dashboard.tooltipShareFb' | translate }}"><a href ng-click="social.share(item.change.id, 'fb', $event)"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></span>
+            <span class="diff-twitter" tooltip="{{ 'dashboard.tooltipShareTwitter' | translate }}"><a href ng-click="social.share(item.change.id, 'twitter', $event)"><i class="fa fa-twitter" aria-hidden="true"></i></a></span>
+            <span class="diff-whatsapp" tooltip="{{ 'dashboard.tooltipShareWhatsapp' | translate }}"><a href ng-click="social.share(item.change.id, 'whatsapp', $event)"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></span>
+            <span ng-if="enableMail" class="diff-email" tooltip="{{ 'dashboard.tooltipShareEmail' | translate }}"><a href ng-click="social.share(item.change.id, 'email', $event)"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></span>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+</div>

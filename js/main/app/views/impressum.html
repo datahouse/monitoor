@@ -1,0 +1,24 @@
+<mon-main-navigation ng-if="isLoggedIn"></mon-main-navigation>
+<div ng-if="!isLoggedIn" class="col-5-12">
+  <p class="illustrations"><img src="images/png/impressum.png" alt="contact icon"/></p>
+</div>
+<div ng-class="{ 'col-omega': true, 'col-7-12': !isLoggedIn, 'col-9-12': isLoggedIn }">
+  <section class="static-page impressum">
+    <h1 translate="impressum.contentTitle">Impressum</h1>
+    <div>
+      <p>Datahouse AG</p>
+      <p>Alte Börse</p>
+      <p>Bleicherweg 5</p>
+      <p>CH-8001 Zürich</p>
+    </div>
+    <div>
+      <p>+41 44 289 92 00</p>
+    </div>
+    <div>
+      <p>info@datahouse.ch</p>
+    </div>
+    <div>
+      <p>UID: CHE-112.235.088</p>
+    </div>
+  </section>
+</div>

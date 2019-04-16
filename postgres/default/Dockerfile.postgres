@@ -1,0 +1,9 @@
+FROM postgres:10
+
+RUN apt-get -qy update \
+  && apt-get -qy install \
+    postgresql-contrib-10 \
+    postgresql-10-pgtap \
+    postgresql-plpython3-10 \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*

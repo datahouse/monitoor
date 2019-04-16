@@ -1,0 +1,4 @@
+src/Types/Gen/*.php
+vendor/
+.htaccess
+.stamp.*

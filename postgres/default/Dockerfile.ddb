@@ -1,0 +1,9 @@
+FROM registry.datalan.ch/datahouse/it-docker-php-ddb:v0.4.2
+
+RUN mkdir -p /srv/postgres/default
+
+COPY python/backend/conf/db.docker.conf.json     /srv/db.conf.json
+COPY .ddb/               /srv/.ddb/
+COPY postgres/default/   /srv/postgres/default/
+
+WORKDIR /srv

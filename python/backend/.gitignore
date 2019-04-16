@@ -1,0 +1,6 @@
+*.pyc
+monitoor.uuid
+_trial_temp
+*.pid
+logs
+data

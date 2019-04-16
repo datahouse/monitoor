@@ -1,0 +1,209 @@
+.bookmarklet {
+  background-color: #c6c6c5;
+  color: #f2f2f0;
+  float: left;
+  font-size: 1.25em;
+  margin-left: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+}
+.bookmarklet:first-child {
+  margin-left: 0;
+}
+.bookmarklet a {
+  color: #f2f2f0;
+}
+.bookmarklet a:hover {
+  color: #444444;
+}
+.bookmarklet-top {
+  background-color: #c6c6c5;
+  color: #f2f2f0;
+  float: left;
+  font-size: 1.25em;
+  margin-left: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+  border-bottom-left-radius: 100% 1em;
+  border-bottom-right-radius: 100% 1em;
+}
+.bookmarklet-top:first-child {
+  margin-left: 0;
+}
+.bookmarklet-top a {
+  color: #f2f2f0;
+}
+.bookmarklet-top a:hover {
+  color: #444444;
+}
+.bookmarklet-bottom {
+  background-color: #c6c6c5;
+  color: #f2f2f0;
+  float: left;
+  font-size: 1.25em;
+  margin-left: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+  border-top-left-radius: 100% 1em;
+  border-top-right-radius: 100% 1em;
+}
+.bookmarklet-bottom:first-child {
+  margin-left: 0;
+}
+.bookmarklet-bottom a {
+  color: #f2f2f0;
+}
+.bookmarklet-bottom a:hover {
+  color: #444444;
+}
+ > main {
+  margin-top: 30px;
+}
+ > main > nav {
+  font-size: 1.125em;
+  line-height: 1.375em;
+}
+ > main > nav ul li {
+  margin-bottom: 20px;
+}
+ > main > nav ul:last-child {
+  margin-top: 50px;
+}
+ > main h1 {
+  margin-bottom: 30px;
+}
+ > main div.feed section {
+  margin-bottom: 50px;
+}
+ > main div.feed section article {
+  padding: 10px 0;
+}
+ > main div.feed section article.separator {
+  border-bottom: 1px solid #c6c6c5;
+}
+ > main div.feed section article div {
+  font-size: 1.125em;
+  line-height: 1.375em;
+}
+ > main div.feed section article div.visualisation {
+  padding-top: 9px;
+}
+ > main div.feed section header {
+  position: relative;
+}
+ > main div.feed section header ul {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+ > main div.feed section header ul li {
+  background-color: #c6c6c5;
+  color: #f2f2f0;
+  float: left;
+  font-size: 1.25em;
+  margin-left: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+  border-top-left-radius: 100% 1em;
+  border-top-right-radius: 100% 1em;
+}
+ > main div.feed section header ul li:first-child {
+  margin-left: 0;
+}
+ > main div.feed section header ul li a {
+  color: #f2f2f0;
+}
+ > main div.feed section header ul li a:hover {
+  color: #444444;
+}
+ > main div.feed section h2 {
+  border-bottom: 1px solid #c6c6c5;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+ > main div.feed section h3 {
+  color: #81c6cb;
+}
+ > main div.quick-feed h5 {
+  margin: 20px 0 10px;
+}
+ > main div.quick-feed article {
+  padding: 0;
+}
+ > main div.quick-feed ul li {
+  line-height: 1.375em;
+  margin-bottom: 30px;
+}
+ > main div.quick-feed ul li a {
+  font-weight: normal;
+}
+ > main div.quick-feed ul li a.active {
+  text-decoration: underline;
+}
+ > main div.quick-feed-content div.action-bar {
+  border-bottom: 1px solid #c6c6c5;
+  margin: 50px 0 30px;
+  padding-top: 50px;
+  position: relative;
+}
+ > main div.quick-feed-content div.action-bar ul {
+  position: absolute;
+  top: 10px;
+}
+ > main div.quick-feed-content div.action-bar ul.feed-action {
+  left: 0;
+}
+ > main div.quick-feed-content div.action-bar ul.social-action {
+  right: 0;
+}
+ > main div.quick-feed-content div.action-bar ul li {
+  background-color: #c6c6c5;
+  color: #f2f2f0;
+  float: left;
+  font-size: 1.25em;
+  margin-left: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+  border-top-left-radius: 100% 1em;
+  border-top-right-radius: 100% 1em;
+}
+ > main div.quick-feed-content div.action-bar ul li:first-child {
+  margin-left: 0;
+}
+ > main div.quick-feed-content div.action-bar ul li a {
+  color: #f2f2f0;
+}
+ > main div.quick-feed-content div.action-bar ul li a:hover {
+  color: #444444;
+}
+ > main div.quick-feed-content div.action-bar ul li.text {
+  background-color: transparent;
+  color: #c6c6c5;
+  width: auto;
+  border-radius: 0;
+}
+ > main div.quick-feed-content h2 {
+  margin-bottom: 20px;
+}
+ > main div.quick-feed-content h6 {
+  margin: 100px 0 30px;
+}
+ > main div.quick-feed-content h6:first-child {
+  margin-top: 0;
+}
+ > main div.quick-feed-content p {
+  line-height: 1.375em;
+  margin-bottom: 10px;
+}
+ > main div.pagination {
+  text-align: center;
+  margin-bottom: 30px;
+}
+ > main div.pagination span {
+  padding: 10px 15px;
+}

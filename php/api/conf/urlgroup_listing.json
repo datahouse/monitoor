@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#urlgroup_list_api",
+  "title": "url group list",
+  "method": "GET",
+  "url": "/v1/urlGroup/listing/de/",
+  "type": "object",
+  "properties": {
+    "urlGroupList": {
+      "id": "#urlGroupList",
+      "stereotype": "struct",
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "urlGroupItems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "urlGroup": {
+                "id": "#urlGroupItem",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "subscribed": {
+                    "type": "boolean"
+                  },
+                  "urls": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "id": "#url",
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "title",
+                            "url"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "id",
+                  "title"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "count"
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+@import "data";
+
+.input-style {
+  background-color: @colorInputBg;
+  border: 1px solid @colorIcon;
+  border-radius: 4px;
+  font-weight: normal;
+  padding: 5px 3px;
+}
+
+.btn-hover {
+  &:hover {
+    background-color: @colorIcon;
+  }
+}
+
+.btn-style {
+  display: inline-block;
+  margin: 5px 5px 0 0;
+  .input-style;
+  .btn-hover;
+}
+
+div.form {
+  div.form-group {
+    margin-bottom: 25px;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, textarea, select, button {
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    .form-control {
+      width: 100%;
+      .input-style;
+
+      &:focus {
+        border: 1px solid @colorLink;
+      }
+    }
+
+    .btn-style {
+      background-color: lighten(@colorLink, 20%);
+      border-color: @colorLink;
+
+      i {
+        cursor: pointer;
+        font-size: 0.9em;
+        margin-left: 5px;
+      }
+    }
+
+    button, input[type="button"] {
+      cursor: pointer;
+      .input-style;
+      .btn-hover;
+    }
+  }
+}

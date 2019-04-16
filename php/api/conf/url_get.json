@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#url_get_api",
+  "title": "url detail",
+  "method": "GET",
+  "url": "/v1/url/get/<id>/de/",
+  "type": "object",
+  "properties": {
+    "url": {
+      "id": "#url",
+      "stereotype": "struct",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "urlGroupId": {
+          "type": "integer"
+        },
+        "frequency": {
+          "type": "integer"
+        },
+        "lastChange": {
+          "type": "string"
+        },
+        "xpath": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "external": {
+          "type": "boolean"
+        },
+        "subscribed": {
+          "type": "boolean"
+        },
+        "frequencyOptions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "id": "#frequency",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "title": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "title"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "url"
+      ]
+    }
+  }
+}

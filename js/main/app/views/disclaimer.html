@@ -1,0 +1,15 @@
+<mon-main-navigation ng-if="isLoggedIn"></mon-main-navigation>
+<div ng-if="!isLoggedIn" class="col-5-12">
+    <p class="illustrations"><img src="images/png/disclaimer.png" alt="contact icon"/></p>
+</div>
+<div ng-class="{ 'col-omega': true, 'col-7-12': !isLoggedIn, 'col-9-12': isLoggedIn }">
+    <section class="static-page disclaimer">
+        <h1 translate="disclaimer.contentTitle"></h1>
+        <p translate="disclaimer.text1"></p>
+        <p translate="disclaimer.text2"></p>
+        <p translate="disclaimer.text3"></p>
+        <h2 translate="disclaimer.contentSubTitle"></h2>
+        <p translate="disclaimer.text4"></p>
+        <p translate="disclaimer.text5"></p>
+    </section>
+</div>

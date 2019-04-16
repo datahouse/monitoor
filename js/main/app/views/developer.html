@@ -1,0 +1,909 @@
+<section class="static-page" ng-show="showIntro">
+  <div class="col-5-12" ng-show="showImages">
+    <p class="illustrations"><img src="images/png/developer.png" alt="developer icon" /></p>
+  </div>
+  <div class="{{ mainCss }}">
+    <h1 translate="developer.title"></h1>
+    <p class="more-space" translate="developer.text"></p>
+    <p class="more-space" translate="developer.doc"></p>
+    <p class="more-space"><a href="#/developer/overview" translate="developer.docLink"></a></p>
+  </div>
+</section>
+<section class="clearfix developer" ng-show="showApi">
+  <nav class="col-3-12 developer-navigation" role="navigation">
+    <div>
+      <div class="mobile-menu-icon hide-on-desktop" ng-click="hideSubNavigationToggle()"><i class="fa fa-bars"></i> Details</div>
+      <ul ng-hide="hideSubNavigation">
+        <li ng-repeat="link in links"><a ng-class="{ active: isActive(link.href) }" ng-href="#/developer/{{link.href}}" ng-bind="link.name"></a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="col-9-12 col-omega">
+    <h1>Developer API</h1>
+    <article ng-show="api == 'overview'">
+      <p>This service is a JSON based REST API. You can access our API with the following Base-URL:</p>
+      <div class="code">
+        <code>GET </code><code class="highlight">https://www.monitoor.com/api/</code>
+      </div>
+      <h2>Authentication</h2>
+      <p>User specific requests have to contain a parameter auth-token in the request header. This token can be retrieved by logging into your account. See the <a href="#/developer/user_login">login documentation</a> for details.</p>
+        <pre>auth-token: xy10...EDW </pre>
+      <h2>Status Code and Error Handling</h2>
+      <p>Any successfull call to the API will return status code 200. Any failed request will return a status code other than 200 and an error object in JSON format describing the error.</p>
+        <pre pretty-json="errorExample" />
+    </article>
+    <article ng-show="api == 'url_add'">
+          <h2>url/add</h2>
+            <p>Adds a new Url to an existing or a new group.</p>
+          <h3>Resource Information</h3>
+        <div class="code">
+            <code>POST </code><code class="highlight">https://www.monitoor.com/api/v1/url/add</code>
+        </div>
+          <table class="info">
+              <tr>
+                  <td>Request Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Response Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Body Parameters</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>urls</td><td>list</td><td>yes</td><td>-</td><td>-</td><td>List of url objects</td>
+              </tr>
+              <tr>
+                  <td>url</td><td>object</td><td>yes</td><td>-</td><td>-</td><td>Url object element of urls</td>
+              </tr>
+              <tr>
+                  <td>url.url</td><td>string</td><td>yes</td><td>-</td><td>-</td><td>valid url</td>
+              </tr>
+              <tr>
+                  <td>url.title</td><td>string</td><td>no</td><td>-</td><td>-</td><td>The url title</td>
+              </tr>
+              <tr>
+                  <td>url.xpath</td><td>string</td><td>no</td><td>-</td><td>-</td><td>defines a specific part of the website to be monitored</td>
+              </tr>
+              <tr>
+                  <td>urlGroupId</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The group id in which the url has to be put.</td>
+              </tr>
+              <tr>
+                  <td>urlGroupName</td><td>string</td><td>no</td><td>-</td><td>-</td><td>A group with this name will be created and the url will be put into that.</td>
+              </tr>
+              <tr>
+                  <td>frequency</td><td>int</td><td>no</td><td>2</td><td>1 = hourly<br/>2 = daily<br/>3 = weekly</td></td><td>The frequency</td>
+              </tr>
+          </table>
+        <h3>Request Body Example</h3>
+        <pre pretty-json="urlAddRequestExample" />
+        <h3>Response Parameters</h3>
+        <table class="table t3">
+            <tr>
+                <th>Name</th><th>Type</th><th>Notes</th>
+            </tr>
+            <tr>
+                <td>urlId</td><td>int</td><td>The created url id</td>
+            </tr>
+            <tr>
+                <td>urlGroupId</td><td>int</td><td>The url group id</td>
+            </tr>
+        </table>
+        <h3>Response Example</h3>
+        <pre pretty-json="urlAddResponseExample" />
+      </article>
+      <article ng-show="api == 'url_delete'">
+          <h2>url/delete</h2>
+          <p>Deletes an Url.</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>DELETE </code><code class="highlight">https://www.monitoor.com/api/v1/url/delete</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Url Parameter</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url id</td>
+              </tr>
+
+          </table>
+          <h3>Example Url request</h3>
+          <div class="code">
+              <code>DELETE </code><code class="highlight">https://www.monitoor.com/api/v1/url/delete/5</code>
+          </div>
+      </article>
+      <article ng-show="api == 'url_get'">
+          <h2>url/get</h2>
+          <p>Gets an Url and its properties.</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>GET </code><code class="highlight">https://www.monitoor.com/api/v1/url/get</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Url Parameter</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url id</td>
+              </tr>
+          </table>
+          <h3>Response Parameters</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url id</td>
+              </tr>
+              <tr>
+                  <td>url</td><td>string</td><td>yes</td><td>-</td><td>-</td><td>The url</td>
+              </tr>
+              <tr>
+                  <td>title</td><td>string</td><td>yes</td><td>-</td><td>-</td><td>The url title</td>
+              </tr>
+              <tr>
+                  <td>urlGroupId</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The group id in which the url has to be put.</td>
+              </tr>
+              <tr>
+                  <td>frequency</td><td>int</td><td>no</td><td>-</td><td>1 = hourly<br/>2 = daily<br/>3 = weekly</td></td><td>The frequency</td>
+              </tr>
+              <tr>
+                  <td>xpath</td><td>string</td><td>no</td><td>-</td><td>-</td><td>defines a specific part of the website to be monitored</td>
+              </tr>
+          </table>
+          <h3>Request Url Example</h3>
+          <div class="code">
+              <code>GET </code><code class="highlight">https://www.monitoor.com/api/v1/url/get/1</code>
+          </div>
+          <h3>Response Example</h3>
+          <pre pretty-json="urlGetResponseExample" />
+      </article>
+      <article ng-show="api == 'url_update'">
+          <h2>url/update</h2>
+          <p>Updates an existing Url.</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>PUT </code><code class="highlight">https://www.monitoor.com/api/v1/url/update</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Request Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Response Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Url Parameter</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url id</td>
+              </tr>
+          </table>
+          <h3>Body parameters</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>url</td><td>string</td><td>yes</td><td>-</td><td>-</td><td>The url</td>
+              </tr>
+              <tr>
+                  <td>title</td><td>string</td><td>yes</td><td>-</td><td>-</td><td>The url title</td>
+              </tr>
+              <tr>
+                  <td>urlGroupId</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The group id in which the url has to be put.</td>
+              </tr>
+              <tr>
+                  <td>urlGroupName</td><td>string</td><td>no</td><td>-</td><td>-</td><td>A group with this name will be created and the url will be put into that.</td>
+              </tr>
+              <tr>
+                  <td>frequency</td><td>int</td><td>no</td><td>2</td><td>1 = hourly<br/>2 = daily<br/>3 = weekly</td></td><td>The frequency</td>
+              </tr>
+              <tr>
+                  <td>xpath</td><td>string</td><td>no</td><td>-</td><td>-</td><td>defines a specific part of the website to be monitored</td>
+              </tr>
+          </table>
+          <h3>Request Url Example</h3>
+          <div class="code">
+              <code>POST </code><code class="highlight">https://www.monitoor.com/api/v1/url/update/1</code>
+          </div>
+          <h3>Request Body Example</h3>
+          <pre pretty-json="urlUpdateRequestExample" />
+      </article>
+      <article ng-show="api == 'user_login'">
+          <h2>user/login</h2>
+          <p>Login and retrieve a token for any further request.</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>POST </code><code class="highlight">https://www.monitoor.com/api/v1/user/login</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Request Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Response Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>NO</td>
+              </tr>
+          </table>
+          <h3>Body Parameters</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>username</td><td>string</td><td>yes</td><td>-</td><td>-</td><td>The email address</td>
+              </tr>
+              <tr>
+                  <td>password</td><td>string</td><td>yes</td><td>-</td><td>-</td><td>The password</td>
+              </tr>
+          </table>
+          <h3>Request Body Example</h3>
+          <pre pretty-json="userLoginRequestExample" />
+          <h3>Response Parameters</h3>
+          <table class="table t3">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>token</td><td>object</td><td>The token object</td>
+              </tr>
+              <tr>
+                  <td>token.id</td><td>string</td><td>The token id. To be used in further request</td>
+              </tr>
+          </table>
+          <h3>Response Example</h3>
+          <pre pretty-json="userLoginResponseExample" />
+      </article>
+      <article ng-show="api == 'alert_add'">
+          <h2>alert/add</h2>
+          <p>Adds a new alert to an existing url group.</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>POST </code><code class="highlight">https://www.monitoor.com/api/v1/alert/add</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Request Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Response Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Body Parameters</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>urlGroup</td><td>object</td><td>yes</td><td>-</td><td>-</td><td>The url group object</td>
+              </tr>
+              <tr>
+                  <td>urlGroup.id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url group id</td>
+              </tr>
+              <tr>
+                  <td>alertShapingList</td><td>list</td><td>yes</td><td>-</td><td>-</td><td>The list of different alert shapings. In v1 only one alert shaping is allowed.</td>
+              </tr>
+              <tr>
+                  <td>alertType</td><td>object</td><td>yes</td><td>-</td><td></td><td>The alert type object</td>
+              </tr>
+              <tr>
+                  <td>alertType.id</td><td>int</td><td>yes</td><td>-</td><td>1 = SMS<br/>2 = email<br/>3 = none</td><td>notification type</td>
+              </tr>
+              <tr>
+                  <td>alertType.cycleId</td><td>int</td><td>yes</td><td>-</td><td>1 = daily<br/>2 = immediate<br/>3 = never</td></td><td>The frequency of notification</td>
+              </tr>
+              <tr>
+                  <td>alertOption</td><td>object</td><td>yes</td><td>-</td><td></td><td>The alert option object</td>
+              </tr>
+              <tr>
+                  <td>alertOption.id</td><td>int</td><td>yes</td><td>-</td><td>1 = activity<br/>2 = keywords</td><td>notification type</td>
+              </tr>
+              <tr>
+                  <td>keywords</td><td>list</td><td>no</td><td>-</td><td>-</td><td>The list of keywords. Considered only when option id is 2</td>
+              </tr>
+          </table>
+          <h3>Request Body Example</h3>
+          <pre pretty-json="alertAddRequestExample" />
+          <h3>Response Parameters</h3>
+          <table class="table t3">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>The created alert id</td>
+              </tr>
+          </table>
+      </article>
+      <article ng-show="api == 'alert_delete'">
+          <h2>alert/delete</h2>
+          <p>Deletes an alert.</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>DELETE </code><code class="highlight">https://www.monitoor.com/api/v1/alert/delete</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Url Parameter</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The alert id</td>
+              </tr>
+
+          </table>
+          <h3>Example Url request</h3>
+          <div class="code">
+              <code>DELETE </code><code class="highlight">https://www.monitoor.com/api/v1/alert/delete/1</code>
+          </div>
+      </article>
+      <article ng-show="api == 'alert_get'">
+          <h2>alert/get</h2>
+          <p>Gets an alert and its properties.</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>GET </code><code class="highlight">https://www.monitoor.com/api/v1/alert/get</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Url Parameter</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The alert id</td>
+              </tr>
+          </table>
+          <h3>Response Parameters</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The alert id</td>
+              </tr>
+              <tr>
+                  <td>urlGroup</td><td>object</td><td>yes</td><td>-</td><td>-</td><td>The url group object</td>
+              </tr>
+              <tr>
+                  <td>urlGroup.id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url group id</td>
+              </tr>
+              <tr>
+                  <td>urlGroup.title</td><td>string</td><td>yes</td><td>-</td><td>-</td><td>The url group title</td>
+              </tr>
+              <tr>
+                  <td>alertShapingList</td><td>list</td><td>yes</td><td>-</td><td>-</td><td>The list of different alert shapings. In v1 only one alert shaping is allowed.</td>
+              </tr>
+              <tr>
+                  <td>alertType</td><td>object</td><td>yes</td><td>-</td><td></td><td>The alert type object</td>
+              </tr>
+              <tr>
+                  <td>alertType.id</td><td>int</td><td>yes</td><td>-</td><td>1 = SMS<br/>2 = email<br/>3 = none</td><td>notification type</td>
+              </tr>
+              <tr>
+                  <td>alertType.cycleId</td><td>int</td><td>yes</td><td>-</td><td>1 = daily<br/>2 = immediate<br/>3 = never</td></td><td>The frequency of notification</td>
+              </tr>
+              <tr>
+                  <td>alertOption</td><td>object</td><td>yes</td><td>-</td><td></td><td>The alert option object</td>
+              </tr>
+              <tr>
+                  <td>alertOption.id</td><td>int</td><td>yes</td><td>-</td><td>1 = activity<br/>2 = keywords</td><td>notification type</td>
+              </tr>
+              <tr>
+                  <td>alertOption.title</td><td>string</td><td>yes</td><td>-</td><td></td><td>notification title</td>
+              </tr>
+              <tr>
+                  <td>keywords</td><td>list</td><td>no</td><td>-</td><td>-</td><td>The list of keywords. Considered only when option id is 2</td>
+              </tr>
+          </table>
+          <h3>Request Url Example</h3>
+          <div class="code">
+              <code>GET </code><code class="highlight">https://www.monitoor.com/api/v1/alert/get/1</code>
+          </div>
+          <h3>Response Example</h3>
+          <pre pretty-json="alertGetResponseExample" />
+      </article>
+      <article ng-show="api == 'alert_update'">
+          <h2>alert/update</h2>
+          <p>Updates an existing alert.</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>PUT </code><code class="highlight">https://www.monitoor.com/api/v1/alert/update</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Request Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Response Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Url Parameter</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url id</td>
+              </tr>
+          </table>
+          <h3>Body parameters</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>urlGroup</td><td>object</td><td>yes</td><td>-</td><td>-</td><td>The url group object</td>
+              </tr>
+              <tr>
+                  <td>urlGroup.id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url group id</td>
+              </tr>
+              <tr>
+                  <td>alertShapingList</td><td>list</td><td>yes</td><td>-</td><td>-</td><td>The list of different alert shapings. In v1 only one alert shaping is allowed.</td>
+              </tr>
+              <tr>
+                  <td>alertType</td><td>object</td><td>yes</td><td>-</td><td></td><td>The alert type object</td>
+              </tr>
+              <tr>
+                  <td>alertType.id</td><td>int</td><td>yes</td><td>-</td><td>1 = SMS<br/>2 = email<br/>3 = none</td><td>notification type</td>
+              </tr>
+              <tr>
+                  <td>alertType.cycleId</td><td>int</td><td>yes</td><td>-</td><td>1 = daily<br/>2 = immediate<br/>3 = never</td></td><td>The frequency of notification</td>
+              </tr>
+              <tr>
+                  <td>alertOption</td><td>object</td><td>yes</td><td>-</td><td></td><td>The alert option object</td>
+              </tr>
+              <tr>
+                  <td>alertOption.id</td><td>int</td><td>yes</td><td>-</td><td>1 = activity<br/>2 = keywords</td><td>notification type</td>
+              </tr>
+              <tr>
+                  <td>keywords</td><td>list</td><td>no</td><td>-</td><td>-</td><td>The list of keywords. Considered only when option id is 2</td>
+              </tr>
+          </table>
+          <h3>Request Url Example</h3>
+          <div class="code">
+              <code>PUT </code><code class="highlight">https://www.monitoor.com/api/v1/alert/update/1</code>
+          </div>
+          <h3>Request Body Example</h3>
+          <pre pretty-json="alertUpdateRequestExample" />
+      </article>
+      <article ng-show="api == 'urlgroup_add'">
+          <h2>urlgroup/add</h2>
+          <p>Creates a new url group.</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>POST </code><code class="highlight">https://www.monitoor.com/api/v1/urlgroup/add</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Request Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Response Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Body Parameters</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>title</td><td>string</td><td>yes</td><td>-</td><td>-</td><td>The url group title</td>
+              </tr>
+          </table>
+          <h3>Request Body Example</h3>
+          <pre pretty-json="urlgroupAddRequestExample" />
+          <h3>Response Parameters</h3>
+          <table class="table t3">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>The created alert id</td>
+              </tr>
+              <tr>
+                  <td>title</td><td>string</td><td>The url group name</td>
+              </tr>
+          </table>
+          <h3>Response Example</h3>
+          <pre pretty-json="urlgroupAddResponseExample" />
+      </article>
+      <article ng-show="api == 'urlgroup_delete'">
+          <h2>urlgroup/delete</h2>
+          <p>Deletes an an url group. the group mustn't contain any urls</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>DELETE </code><code class="highlight">https://www.monitoor.com/api/v1/urlgroup/delete</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Url Parameter</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The urlgroup id</td>
+              </tr>
+          </table>
+          <h3>Example Url request</h3>
+          <div class="code">
+              <code>DELETE </code><code class="highlight">https://www.monitoor.com/api/v1/urlgroup/delete/1</code>
+          </div>
+      </article>
+      <article ng-show="api == 'urlgroup_get'">
+          <h2>alert/get</h2>
+          <p>Gets an urlgroup and its properties.</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>GET </code><code class="highlight">https://www.monitoor.com/api/v1/urlgroup/get</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Url Parameter</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url group id</td>
+              </tr>
+          </table>
+          <h3>Response Parameters</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url group id</td>
+              </tr>
+              <tr>
+                  <td>title</td><td>string</td><td>yes</td><td>-</td><td>-</td><td>The url group title</td>
+              </tr>
+              <tr>
+                  <td>alertId</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The alert id if an alert exists for this group</td>
+              </tr>
+              <tr>
+                  <td>urls</td><td>list</td><td>no</td><td>-</td><td>-</td><td>The list of urls in this group</td>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url id</td>
+              </tr>
+              <tr>
+                  <td>title</td><td>string</td><td>yes</td><td>-</td><td></td><td>the url title</td>
+              </tr>
+              <tr>
+                  <td>url</td><td>string</td><td>yes</td><td>-</td><td></td><td>the url</td>
+              </tr>
+          </table>
+          <h3>Request Url Example</h3>
+          <div class="code">
+              <code>GET </code><code class="highlight">https://www.monitoor.com/api/v1/urlgroup/get/1</code>
+          </div>
+          <h3>Response Example</h3>
+          <pre pretty-json="urlgroupGetResponseExample" />
+      </article>
+      <article ng-show="api == 'urlgroup_update'">
+          <h2>urlgroup/update</h2>
+          <p>Updates an existing urlgroup.</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>PUT </code><code class="highlight">https://www.monitoor.com/api/v1/urlgroup/update</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Request Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Response Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Url Parameter</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url group id</td>
+              </tr>
+          </table>
+          <h3>Body parameters</h3>
+          <table class="table t6">
+              <tr>
+                  <td>title</td><td>string</td><td>yes</td><td>-</td><td>-</td><td>The url group title</td>
+              </tr>
+          </table>
+          <h3>Request Url Example</h3>
+          <div class="code">
+              <code>PUT </code><code class="highlight">https://www.monitoor.com/api/v1/urlgroup/update/1</code>
+          </div>
+          <h3>Request Body Example</h3>
+          <pre pretty-json="urlgroupUpdateRequestExample" />
+      </article>
+      <article ng-show="api == 'urlgroup_listing'">
+          <h2>alert/get</h2>
+          <p>Gets the list of all urlgroups</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>GET </code><code class="highlight">https://www.monitoor.com/api/v1/urlgroup/listing</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Response Parameters</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>count</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The number of url groups</td>
+              </tr>
+              <tr>
+                  <td>urlGroupItems</td><td>list</td><td>yes</td><td>-</td><td>-</td><td>The list of url group objects</td>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url group id</td>
+              </tr>
+              <tr>
+                  <td>title</td><td>string</td><td>yes</td><td>-</td><td>-</td><td>The url group title</td>
+              </tr>
+              <tr>
+                  <td>alertId</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The alert id if an alert exists for this group</td>
+              </tr>
+              <tr>
+                  <td>urls</td><td>list</td><td>no</td><td>-</td><td>-</td><td>The list of url object in this group</td>
+              </tr>
+              <tr>
+                  <td>id</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url id</td>
+              </tr>
+              <tr>
+                  <td>title</td><td>string</td><td>yes</td><td>-</td><td></td><td>the url title</td>
+              </tr>
+              <tr>
+                  <td>url</td><td>string</td><td>yes</td><td>-</td><td></td><td>the url</td>
+              </tr>
+          </table>
+          <h3>Response Example</h3>
+          <pre pretty-json="urlgroupListingResponseExample" />
+      </article>
+      <article ng-show="api == 'urlgroup_put'">
+          <h2>urlgroup/put</h2>
+          <p>Moves an url from one group to another.</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>PUT </code><code class="highlight">https://www.monitoor.com/api/v1/urlgroup/put</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Request Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Response Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Body Parameters</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>oldGroupId</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The old url group id</td>
+              </tr>
+              <tr>
+                  <td>newGroupId</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The new url group title</td>
+              </tr>
+              <tr>
+                  <td>urlId</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The url id to move</td>
+              </tr>
+          </table>
+          <h3>Request Body Example</h3>
+          <pre pretty-json="urlgroupPutRequestExample" />
+      </article>
+      <article ng-show="api == 'change_listing'">
+          <h2>change/listing</h2>
+          <p>Gets a list of changes according to filter parameters. At least one of the following filter criteria has to be set: url id, url group id, alert id or start date.</p>
+          <h3>Resource Information</h3>
+          <div class="code">
+              <code>GET </code><code class="highlight">https://www.monitoor.com/api/v1/change/listing</code>
+          </div>
+          <table class="info">
+              <tr>
+                  <td>Response Format</td>
+                  <td>JSON</td>
+              </tr>
+              <tr>
+                  <td>Requires authentication?</td>
+                  <td>YES</td>
+              </tr>
+          </table>
+          <h3>Url Parameter</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>url_id</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The url id</td>
+              </tr>
+              <tr>
+                  <td>url_group_id</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The url group id</td>
+              </tr>
+              <tr>
+                  <td>alert_id</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The alert id</td>
+              </tr>
+              <tr>
+                  <td>start_date</td><td>int</td><td>no</td><td>-</td><td>-</td><td>start date of change selection (dd.mm.yyyy)</td>
+              </tr>
+              <tr>
+                  <td>size</td><td>int</td><td>no</td><td>all</td><td>-</td><td>The number of results that should be returned in maximum</td>
+              </tr>
+              <tr>
+                  <td>sort</td><td>int</td><td>no</td><td>start_date descending</td><td>url_id</br>url</br>url_title</br>alert_id</br>url_group_id</br>url_group_title</br>start_date</td><td>the sorting of the result set. Commaseparated list. A - in front of the word means sorting in descending order</td>
+              </tr>
+              <tr>
+                  <td>offset</td><td>int</td><td>no</td><td>0</td><td>-</td><td>position to start returning result. Meant for paging</td>
+              </tr>
+          </table>
+          <h3>Request Url Example</h3>
+          <div class="code">
+              <code>GET </code><code class="highlight">https://www.monitoor.com/api/v1/change/listing?offset=0&size=2&sort=-start_date&url_group_id=1</code>
+          </div>
+          <h3>Response Parameter</h3>
+          <table class="table t6">
+              <tr>
+                  <th>Name</th><th>Type</th><th>Required</th><th>Default</th><th>Options</th><th>Notes</th>
+              </tr>
+              <tr>
+                  <td>count</td><td>int</td><td>yes</td><td>-</td><td>-</td><td>The number of total results</td>
+              </tr>
+              <tr>
+                  <td>changeItems</td><td>list</td><td>no</td><td>-</td><td>-</td><td>The list of changes</td>
+              </tr>
+              <tr>
+                  <td>url</td><td>object</td><td>no</td><td>-</td><td>-</td><td>The url object of this change item</td>
+              </tr>
+              <tr>
+                  <td>url.id</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The url id</td>
+              </tr>
+              <tr>
+                  <td>url.title</td><td>string</td><td>no</td><td>-</td><td>-</td><td>The url title</td>
+              </tr>
+              <tr>
+                  <td>url.url</td><td>string</td><td>no</td><td>-</td><td>-</td><td>The url</td>
+              </tr>
+              <tr>
+                  <td>urlGroup</td><td>object</td><td>no</td><td>-</td><td>-</td><td>The url group object of this change item</td>
+              </tr>
+              <tr>
+                  <td>urlGroup.id</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The url group id</td>
+              </tr>
+              <tr>
+                  <td>urlGroup.title</td><td>string</td><td>no</td><td>-</td><td>-</td><td>The url group title</td>
+              </tr>
+              <tr>
+                  <td>alert</td><td>object</td><td>no</td><td>-</td><td>-</td><td>The alert object of this change item</td>
+              </tr>
+              <tr>
+                  <td>alert.id</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The alert id</td>
+              </tr>
+              <tr>
+                  <td>change</td><td>object</td><td>no</td><td>-</td><td>-</td><td>The change object of this change item</td>
+              </tr>
+              <tr>
+                  <td>change.id</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The unique id of the change</td>
+              </tr>
+              <tr>
+                  <td>change.changeDate</td><td>date</td><td>no</td><td>-</td><td>-</td><td>The date of the change</td>
+              </tr>
+              <tr>
+                  <td>change.newDoc.id</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The new document id</td>
+              </tr>
+              <tr>
+                  <td>change.oldDoc.id</td><td>int</td><td>no</td><td>-</td><td>-</td><td>The old document id</td>
+              </tr>
+              <tr>
+                  <td>change.diff</td><td>string</td><td>no</td><td>-</td><td>-</td><td>The difference of the two documents. + stands for added content and - stands for removed content</td>
+              </tr>
+              <tr>
+                  <td>change.diffHtml</td><td>string</td><td>no</td><td>-</td><td>-</td><td>The difference of the two documents with html tags div class="ins" and div class="del"</td>
+              </tr>
+              <tr>
+                  <td>change.matchedKeywords</td><td>list</td><td>no</td><td>-</td><td>-</td><td>Matching Keywords</td>
+              </tr>
+              <tr>
+                  <td>rating</td><td>int</td><td>no</td><td>-</td><td>1 - 5</td><td>The rating of the relevance of the change</td>
+              </tr>
+          </table>
+          <h3>Response Example</h3>
+          <pre pretty-json="changeListingResponseExample" />
+      </article>
+  </div>
+</section>

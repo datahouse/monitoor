@@ -1,0 +1,113 @@
+<!doctype html>
+<html ng-app="monApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
+    <meta name="google-site-verification" content="q9bCIaPNJeejsaNjMYAvE9vmIbrldBlW8wAWEqtOda8" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles/fonts.css">
+    <!-- inject:css -->
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/ng-prettyjson.min.css">
+    <link rel="stylesheet" href="styles/nv.d3.min.css">
+    <link rel="stylesheet" href="styles/rzslider.min.css">
+    <link rel="stylesheet" href="styles/select.min.css">
+    <link rel="stylesheet" href="styles/design.css">
+    <!-- endinject -->
+
+    <!--[if lt IE 9]>
+    <!-- inject:ie:js-->
+    <script src="javascripts/ie/html5shiv.min.js"></script>
+    <script src="javascripts/ie/respond.min.js"></script>
+    <!-- endinject -->
+    <![endif]-->
+
+    <script src="config.js"></script>
+    <script src="js/boot.js"></script>
+    <!-- inject:js-->
+    <script src="javascripts/core.js"></script>
+    <!-- endinject -->
+
+    <meta property="description" content="Beobachten Sie Webseiten auf Veränderungen und werden Sie unverzüglich über neue Inhalte informiert." />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@DatahouseAG" />
+    <meta name="twitter:title" content="Dieser Inhalt wurde mit Monitoor entdeckt" />
+    <meta name="twitter:description" content="Beobachten Sie Webseiten auf Veränderungen und werden Sie unverzüglich über neue Inhalte informiert." />
+    <meta name="twitter:image" content="https://monitoor.com/images/png/monitoor_social_logo.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Dieser Inhalt wurde mit Monitoor entdeckt" />
+    <meta property="og:description" content="Beobachten Sie Webseiten auf Veränderungen und werden Sie unverzüglich über neue Inhalte informiert." />
+    <meta property="og:image" content="https://monitoor.com/images/png/monitoor_social_logo.png" />
+    <title ng-bind="(headerTitle | translate) + ' | monitoor'">Monitoor</title>
+  </head>
+  <body>
+    <!--[if lt IE 9]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <noscript>
+      <div class="no-javascript">
+        <p>Javascript is not enabled. This Page works only with Javascript. Please activate Javascript and reload.</p>
+      </div>
+    </noscript>
+    <div ng-controller="SpinnerCtrl" ng-cloak ng-show="spinner" class="splash">
+      <div ng-class="{ 'bg-overlay': true, 'app-overlay': isApp }"></div>
+      <div class="animation-wrapper">
+        <!--[if lte IE 9]>
+        <span style="font-size: 6em; font-weight: bold;">Loading...</span>
+        <style> .la-ball-triangle-path { display: none !important; }</style>
+        <![endif]-->
+        <div class="la-ball-triangle-path">
+          <div><i class="mon mon-o3"></i></div>
+          <div><i class="mon mon-o1"></i></div>
+          <div><i class="mon mon-o2"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="grid" id="app" ng-cloak>
+      <header class="clearfix" ng-show="showRootHeader">
+        <nav ng-controller="IconNavigationCtrl" class="clearfix icon">
+          <ul class="push-right">
+            <li tooltip="{{ 'init.navTop.tooltipSwitchLang' | translate }}" tooltip-placement="left">
+              <div class="btn-group" dropdown><a href dropdown-toggle id="languageToggle"><i class="fa fa-language"></i></a>
+               <ul class="dropdown-menu language-dropdown-menu" role="menu" aria-labelledby="languageToggle">
+                 <li ng-repeat="language in languages" ng-class="{ active: isActive(language.lang) }" role="menuitem"><a href ng-click="setLanguage(language.lang)" translate="{{ language.name }}"></a></li>
+               </ul>
+             </div>
+            </li>
+            <li ng-show="auth.isLoggedIn()" tooltip="{{ 'init.navTop.tooltipEditProfile' | translate }}" tooltip-placement="right"><a href="#/profile"><i class="fa fa-user"></i></a></li>
+          </ul>
+        </nav>
+        <div class="logo col-alpha col-5-12">
+          <p>
+            <a ng-controller="LogoCtrl" href ng-click="logoLink()">
+              <img height="43" src="images/svg/logo.svg" alt="Logo">
+            </a>
+          </p>
+        </div>
+        <nav class="horizontal-menu clearfix col-omega col-7-12 push-right" ng-controller="TopnavigationCtrl" ng-show="showNavigation()">
+          <div class="mobile-menu-icon hide-on-desktop" ng-click="hideTopNavigationToggle()"><i class="fa fa-bars"></i> Menu</div>
+          <ul ng-class="{ 'hide-on-mobile': hideTopNavigation }">
+            <li ng-repeat="link in links" ng-show="isAuth(link.auth)"><a ng-class="{ active: isActive(link.href) }" ng-href="{{ link.href }}" translate="{{ link.name }}"></a></li>
+          </ul>
+        </nav>
+      </header>
+      <main role="main" class="clearfix" ng-view=""></main>
+      <footer ng-controller="FooternavigationCtrl" ng-show="showRootFooter">
+        <nav class="push-right inline-nav">
+          <ul>
+            <li ng-repeat="link in links"><a ng-href="{{ link.href }}" translate="{{ link.name }}"></a></li>
+          </ul>
+        </nav>
+        <div ng-bind="copyRight"></div>
+      </footer>
+      <div class="flash-message">
+        <div flash-alert active-class="in alert" class="fade">
+          <span class="alert-message" translate="{{ flash.message }}"></span>
+        </div>
+      </div>
+    </div>
+    <div ng-include="'piwik.html'"></div>
+</body>
+</html>

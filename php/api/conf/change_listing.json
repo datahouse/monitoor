@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "#change_list_api",
+  "title": "change list",
+  "method": "GET",
+  "url": "/v1/change/listing/de/",
+  "type": "object",
+  "properties": {
+    "changeList": {
+      "id": "#changeList",
+      "stereotype": "struct",
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "changeItems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "changeItem": {
+                "id": "#changeItem",
+                "stereotype": "struct",
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "alternativeUrl": {
+                    "type": "string"
+                  },
+                  "urlGroup": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "title": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "alert": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "change": {
+                    "type": "object",
+                    "properties": {
+                      "change": {
+                        "id": "#change",
+                        "stereotype": "struct",
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "changeDate": {
+                            "type": "datetime"
+                          },
+                          "newDoc": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "content": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "oldDoc": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "content": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "diff": {
+                            "type": "string"
+                          },
+                          "diffHtml": {
+                            "type": "string"
+                          },
+                          "diffPreview": {
+                            "type": "string"
+                          },
+                          "favorite": {
+                            "type": "boolean"
+                          },
+                          "matchedKeywords": {
+                          "type": "array"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rating": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "url",
+                  "alert"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "count"
+    ]
+  }
+}

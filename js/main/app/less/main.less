@@ -1,0 +1,582 @@
+@import "data";
+
+& > main {
+  margin-top: 30px;
+
+  .cursor {
+    cursor: pointer;
+  }
+
+  .marker {
+    font-size: 0.7em;
+  }
+
+  .url-edit {
+    font-size: .9em;
+    margin-left: 10px;
+  }
+
+  .url-group {
+
+    .fa {
+      font-size: .8em;
+    }
+
+    &:hover {
+      color: @colorDefault;
+    }
+  }
+
+  .abo {
+
+    .active {
+      color: @colorDefault;
+      opacity: 1;
+    }
+
+    div {
+      color: @colorSecoundaryBtn;
+      cursor: pointer;
+      margin: 30px 0;
+      opacity: 0.5;
+      text-align: center;
+
+      &:hover {
+        .active;
+      }
+    }
+
+    p {
+      margin-top: 10px;
+
+      &.type {
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      &.special-info {
+        color: @colorLink;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .option {
+    .option-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .option-list {
+      margin-bottom: 20px;
+
+      .option-item {
+        margin-bottom: 10px;
+
+        .option-item-title {
+          color: @colorLink;
+          font-weight: bold;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .toggle {
+    i {
+      font-size: 1.8em;
+    }
+  }
+
+  .acc-toggle {
+    i {
+      font-size: 0.8em;
+    }
+  }
+
+  a.accordion-toggle, a, a:active, a:hover, a:link, a:visited, a:focus {
+    outline: 0;
+  }
+
+  .subscribe {
+    a.accordion-toggle {
+      line-height: 1.8em;
+    }
+
+    .title {
+      &:hover {
+        color: @colorDefault;
+      }
+    }
+
+    .description, .description span {
+      color: @colorDefault;
+      font-weight: normal;
+      min-height: 1px;
+      margin-bottom: 0;
+    }
+
+    .price {
+      display: inline-block;
+      text-align: right;
+    }
+
+    a.accordion-toggle, a, a:active, a:hover, a:link, a:visited {
+      outline: 0;
+
+      i, &:hover, i:focus {
+        outline: 0;
+      }
+    }
+  }
+
+  .compact-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  article.product {
+    border-top: 1px solid @colorBorder;
+    padding: 50px;
+
+    &:first-child {
+      border-style: none;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+  }
+
+  ul.bullet {
+    margin: 20px 0;
+    padding-left: 20px;
+
+    li {
+      list-style-type: disc;
+      margin-bottom: 5px;
+    }
+  }
+
+  section.static-page {
+    margin-top: 30px;
+    div.spinner {
+      margin-left: 49%;
+      font-size: 2em;
+    }
+
+    .btn-prices {
+      margin: 20px 0 50px;
+    }
+
+    ul.matrix {
+      li {
+        padding: 8px 0;
+
+        .hide-on-desktop {
+          display: block;
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    .special-info {
+      color: @colorLink;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    div.fixed-height {
+      height: 330px;
+    }
+  }
+
+  section.disclaimer {
+    h2 {
+      margin: 50px 0 10px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
+  section.impressum {
+    h3 {
+      margin-bottom: 20px;
+    }
+    div {
+      margin-bottom: 10px;
+    }
+  }
+
+  nav.vertical-nav {
+    margin-top: 20px;
+
+    ul {
+      li {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  nav.content-nav, nav.inline-nav {
+    margin-bottom: 10px;
+
+    ul {
+      li {
+        display: inline-block;
+        margin-right: 50px;
+      }
+    }
+  }
+
+  nav.inline-nav {
+    font-size: 0.8em;
+  }
+
+  nav.content-nav {
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    margin-bottom: 30px;
+
+    a {
+      color: @colorDefault;
+    }
+  }
+
+  .no-result {
+    margin-top: 40px;
+  }
+
+  div.panel {
+    margin-bottom: 5px;
+  }
+
+  accordion {
+    div.panel-body {
+      padding: 0;
+    }
+  }
+
+  .no-wrap {
+    white-space: nowrap;
+  }
+
+  .actions {
+    text-align: right;
+
+    a.active, i.active {
+      color: @colorActionActive;
+    }
+
+    a {
+      &:hover {
+        color: @colorDefault;
+      }
+
+      i {
+        &:hover {
+          color: @colorDefault;
+        }
+      }
+    }
+
+    i {
+      margin-left: 10px;
+    }
+  }
+
+  a.accordion-toggle {
+
+    &:hover {
+      color: @colorLink;
+    }
+
+    div.dragable, span, i {
+      color: @colorLink;
+      cursor: pointer;
+
+      i:hover {
+        color: @colorDefault;
+      }
+
+      &:hover {
+        color: @colorDefault;
+      }
+    }
+  }
+
+  .remove-action {
+    &:hover {
+
+    }
+  }
+
+  .more-space {
+    margin-bottom: 20px;
+  }
+
+  .more-space-t {
+    margin-top: 20px;
+  }
+
+  .top-space {
+    margin-top: 50px;
+  }
+
+  ul[dnd-list],
+  ul[dnd-list] > li {
+    position: relative;
+
+    .dndDraggingSource {
+      display: none;
+    }
+
+    .dndPlaceholder {
+      display: block;
+      background-color: @colorBorder;
+      min-height: 36px;
+    }
+  }
+
+  .no-item {
+    position: absolute;
+    padding: 10px;
+  }
+
+  ul.dragable {
+    margin: 0;
+    min-height: 36px;
+    padding: 0;
+
+    li {
+      border-top: 1px solid @colorBorder;
+      padding: 10px 15px;
+
+      &:hover {
+        background-color: lighten(@colorLink, 30%);
+      }
+
+      &:first-child {
+        border-top-style: none;
+      }
+    }
+  }
+
+  div.feed {
+
+
+    h2.standalone {
+      margin-bottom: 20px;
+    }
+    h2.underline {
+      border-bottom: 1px solid @colorIcon;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+
+      span {
+        text-align: center;
+        background-color: @colorIcon;
+        font-size: 0.75em;
+        width: 40px;
+        border-top-left-radius: 100% 1em;
+        border-top-right-radius: 100% 1em;
+        cursor: pointer;
+      }
+    }
+
+    section {
+      article {
+        padding: 10px 0;
+
+        div.source {
+          margin-top: 2px;
+          font-size: 0.7em;
+
+          a {
+            font-weight: normal;
+          }
+        }
+
+        div.rating {
+          display: inline-block;
+          unicode-bidi: bidi-override;
+          direction: rtl;
+
+          span {
+            i {
+              color: @colorIcon;
+              margin-left: 1px;
+              font-weight: normal;
+            }
+            i:first-child {
+              margin-left: 0;
+            }
+            i.colorized {
+              color: @colorGra;
+            }
+          }
+
+          span.unrated {
+            i:hover:before,
+            i:hover ~ i:before {
+              color: @colorGra;
+            }
+          }
+        }
+      }
+
+      header {
+        position: relative;
+
+        ul {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+
+          li {
+            .bookmarklet-bottom;
+          }
+        }
+      }
+
+      h2 {
+        border-bottom: 1px solid @colorIcon;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+
+  div.diff {
+    section {
+      article {
+        margin-bottom: 20px;
+
+        dl {
+          dt, dd {
+            display: inline-block;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  div.feed {
+    section {
+      margin-bottom: 50px;
+
+      &.in-form {
+        margin-bottom: 0;
+
+        & > article {
+          padding-bottom: 0;
+        }
+      }
+
+      article {
+
+        &.separator {
+          border-bottom: 1px solid @colorIcon;
+        }
+
+        div {
+          &.visualisation {
+            padding-top: 9px;
+          }
+        }
+      }
+
+      h3 {
+        color: @colorLink;
+      }
+    }
+  }
+
+  p.description,
+  div.description {
+    margin-bottom: 20px;
+  }
+
+  div.quick-feed {
+    h5 {
+      margin: 20px 0 10px;
+    }
+
+    article {
+      padding: 0;
+    }
+
+    ul {
+      li {
+        line-height: @contentLh;
+        margin-bottom: 30px;
+
+        a {
+          font-weight: normal;
+
+          &.active {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  div.quick-feed-content {
+
+    div.action-bar {
+      border-bottom: 1px solid @colorIcon;
+      margin: 50px 0 30px;
+      padding-top: 50px;
+      position: relative;
+
+      ul {
+        position: absolute;
+        top: 10px;
+
+        &.feed-action {
+          left: 0;
+        }
+
+        &.social-action {
+          right: 0;
+        }
+
+        li {
+          float: left;
+          .bookmarklet-bottom;
+
+          &.text {
+            background-color: transparent;
+            color: @colorIcon;
+            width: auto;
+            border-radius: 0;
+          }
+        }
+      }
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    h6 {
+      margin: 100px 0 30px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    p {
+      line-height: @contentLh;
+      margin-bottom: 10px;
+    }
+  }
+}
